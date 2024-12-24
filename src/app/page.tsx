@@ -1,7 +1,9 @@
+import NavBarLayout from "@/components/molecules/navbar/NavBarLayout";
 
 export default function Home() {
   return (
-    <div className="">
-    </div>
+    <main className="max-w-[1920] mx-auto overflow-x-hidden min-h-screen">
+      <NavBarLayout/>
+    </main>
   );
 }

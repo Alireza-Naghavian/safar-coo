@@ -4,22 +4,22 @@
 @layer base {
   @font-face {
     font-family: "Yekan";
-    src: url("./fonts/woff2/YekanBakhFaNum-Regular.woff2") format("woff2")
-      url("./fonts/woff/YekanBakhFaNum-Regular.woff") format("woff");
+    src: url("/fonts/woff2/YekanBakhFaNum-Regular.woff2") format("woff2"),
+      url("/fonts/woff/YekanBakhFaNum-Regular.woff") format("woff");
 
-    font-display: "swap";
+      font-display: swap;
   }
   @font-face {
     font-family: "Yekan SemiBold";
-    src: url("./fonts/woff2/YekanBakhFaNum-SemiBold.woff2") format("woff2")
-      url("./fonts/woff/YekanBakhFaNum-SemiBold.woff") format("woff");
-    font-display: "swap";
+    src:local("Yekan SemiBold"), url("/fonts/woff2/YekanBakhFaNum-SemiBold.woff2") format("woff2"),
+      url("/fonts/woff/YekanBakhFaNum-SemiBold.woff") format("woff");
+      font-display: swap;
   }
   @font-face {
     font-family: "Yekan Bold";
-    src: url("./fonts/woff2/YekanBakhFaNum-Bold.woff2") format("woff2")
-      url("./fonts/woff/YekanBakhFaNum-Bold.woff") format("woff");
-    font-display: "swap";
+    src:local("Yekan Bold"), url("/fonts/woff2/YekanBakhFaNum-Bold.woff2") format("woff2"),
+      url("/fonts/woff/YekanBakhFaNum-Bold.woff") format("woff");
+      font-display: swap;
   }
 }
 @layer utilities {
@@ -38,4 +38,14 @@
   .box-center {
     @apply flex justify-center items-center;
   }
+  .tr-300{
+    @apply transition-all duration-300
+  }
+}
+
+/* navItem line */
+#underline {
+  @apply bg-secondary-300  h-[3px] 
+  tr-300 mt-2  absolute
+  top-full;
 }
