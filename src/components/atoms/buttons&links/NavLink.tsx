@@ -1,16 +1,10 @@
-import { ButtonSizes_T, ButtonState_T, ButtonVars_T } from "@/types/buttons.t";
+import { NavLinks_T } from "@/types/buttons.t";
 import { ChildrenProps } from "@/types/global.t";
 import { cva } from "class-variance-authority";
 import Link from "next/link";
 import React from "react";
-type NavLinks_T = {
-  size: ButtonSizes_T;
-  variant: ButtonVars_T;
-  state: ButtonState_T;
-  className?: string;
-  target?: string;
-};
-const linkStyles = cva(
+
+export const linkStyles = cva(
   "box-center relative hover:scale-[1.08] transition-all duration-300 py-2 px-3 ",
   {
     variants: {
@@ -28,6 +22,7 @@ const linkStyles = cva(
         noBorder: "border-none bg-transparent",
       },
       state: {
+        normal:"",
         hover: "hover:bg-secondary-400 ",
         disable: "disabled:bg-natural-gray3",
       },

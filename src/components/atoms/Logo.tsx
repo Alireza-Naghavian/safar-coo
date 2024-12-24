@@ -8,7 +8,7 @@ type Logo_T = {
   size: LogoSize_T;
   className?:string
 };
-const logoStyles = cva("first:rounded-full w-full h-full flex  flex-col gap-y-6 items-center justify-center ", {
+const logoStyles = cva("first:rounded-full relative w-full h-full flex  flex-col gap-y-6 items-center justify-center ", {
   variants: {
     size: {
       xxl: "first:w-[303px] first:h-[303px] last:w-full last:text-center last:text-natural-black text-D4Semi  ",
@@ -22,9 +22,9 @@ const logoStyles = cva("first:rounded-full w-full h-full flex  flex-col gap-y-6 
 });
 function Logo({ hasCaption, size,className }: Logo_T) {
   return <Link href={"/"}  className={logoStyles({size,className})}>
-   <>
+   <div>
    <Image quality={100}  alt="logo.png" src={"/icons/logo_xxl_no_caption.png"} fill />
-   </>
+   </div>
    {hasCaption &&
    <span>کشف کنید،تجربه کنید</span>
    }
