@@ -1,8 +1,8 @@
-import { ChildrenProps } from "./global.t";
+import { Size_T } from "./global.t";
 
 export type NavItem_T =  {
   className?: string;
-  size: "mobile" | "desktop";
+  size:Size_T;
   title: string;
   target: string;
 };

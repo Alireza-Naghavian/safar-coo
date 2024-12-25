@@ -1,5 +1,3 @@
-import NavItem from "@/components/atoms/NavItem/NavItem";
-import { menuItems } from "@/utils/constants";
 import NavBarItems from "./NavBarItems";
 function DeskNav() {
   return (

@@ -46,6 +46,6 @@
 /* navItem line */
 #underline {
   @apply bg-secondary-300  h-[3px] 
-  tr-300 mt-2  absolute
+  tr-300   absolute
   top-full;
 }

@@ -9,14 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@nextui-org/input": "^2.4.7",
     "@nextui-org/react": "^2.6.8",
+    "@nextui-org/system": "^2.4.5",
+    "@nextui-org/theme": "^2.4.4",
     "@react-aria/ssr": "^3.9.7",
     "@tanstack/react-query": "^5.62.8",
     "class-variance-authority": "^0.7.1",
+    "framer-motion": "^11.15.0",
     "motion": "^11.15.0",
     "next": "15.1.2",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-share": "^5.1.1"
   },
   "devDependencies": {
