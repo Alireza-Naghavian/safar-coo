@@ -1,5 +1,9 @@
 import { useState } from "react"
-
+export type Disclosure_T = {
+    open:()=>void;
+    close:()=>void;
+    isOpen:boolean
+}
 const useDisclosure  = ()=>{
 const [isOpen,setIsOpen]= useState<boolean>(false);
 

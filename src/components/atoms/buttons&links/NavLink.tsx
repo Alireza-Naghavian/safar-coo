@@ -5,15 +5,15 @@ import Link from "next/link";
 import React from "react";
 
 export const linkStyles = cva(
-  "box-center relative hover:scale-[1.08] transition-all duration-300 py-2 px-3 ",
+  "box-center relative  transition-all duration-300 py-2 px-3 ",
   {
     variants: {
       size: {
-        sm: "w-[81px] h-[30px] gap-1",
-        md: "w-[91px] h-[34px]  gap-1",
-        lg: "w-[101px] h-[36px] gap-1",
-        xl: "w-[115px] h-[41px] gap-2",
-        xxl: "w-[125px] h-[50px] gap-2",
+        sm: "h-[30px] gap-1",
+        md: "h-[34px]  gap-1",
+        lg: "h-[36px] gap-1",
+        xl: "h-[41px] gap-2",
+        xxl:"h-[50px] gap-2",
       },
       variant: {
         fill: "outline-none ",

@@ -1,18 +1,16 @@
-"use client";
 import MainBtn from "@/components/atoms/buttons&links/MainBtn";
 import Nav_searchBox from "@/components/atoms/inputFields/Nav_searchBox";
 import SearchBox from "@/components/atoms/inputFields/SearchBox";
 import NavItem from "@/components/atoms/NavItem/NavItem";
-import useDisclosure from "@/hooks/useDisclosure";
+import { Disclosure_T } from "@/hooks/useDisclosure";
 import useUnderline from "@/hooks/useUnderline";
 import { menuItems } from "@/utils/constants";
 import { motionDisappear } from "@/utils/motionVairants";
 import { AnimatePresence, motion } from "motion/react";
-function NavBarItems() {
+function NavBarItems({close,isOpen:isSearchOpen,open}:Disclosure_T) {
   const { itemsRef, markerRef, style } = useUnderline();
-  const { isOpen: isSearchOpen, close, open } = useDisclosure();
   return (
-    <div className="h-full w-full flex items-center  py-[31px] relative">
+    <div className={`h-full  ${isSearchOpen ? "w-full" : "w-[80%]"}  flex items-center   relative`}>
       {isSearchOpen && (
         <motion.div key={"revertmenu"} className="left-0 absolute">
           <MainBtn
