@@ -12,7 +12,7 @@ const logoStyles = cva("first:rounded-full relative w-full h-full flex  flex-col
   variants: {
     size: {
       xxl: "first:w-[303px] first:h-[303px] last:w-full last:text-center last:text-natural-black text-D4Semi  ",
-      xl: "first:w-[80px] first:h-[80px] last:w-full last:text-center last:text-natural-black text-captionMd",
+      xl: "sm:first:w-[80px] first:w-[70px] sm:first:h-[80px] first:h-[70px] last:w-full last:text-center last:text-natural-black text-captionMd",
       md: "first:w-[42px] first:h-[42px] last:w-full last:text-center last:text-natural-black text-captionXXs",
     },
   },

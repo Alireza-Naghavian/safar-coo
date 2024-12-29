@@ -9,7 +9,7 @@ function MenuItems() {
   const { isOpen: isSearchOpen, close, open } = useDisclosure();
   const { isOpen: isMenuOpen, close: closeMenu, open: openMenu } = useDisclosure();
   return (
-    <div
+    <section
       className="  flex items-center lg:justify-normal justify-between  gap-x-2   xl:px-8 px-6   
      py-[31px] h-full w-full  rounded-12 bg-accent-300 "
     >
@@ -24,7 +24,7 @@ function MenuItems() {
       <div className={`  gap-x-4  mr-auto ${isSearchOpen ? "hidden":"box-center "}`} >
        <NavBtnGroup/>
       </div>
-    </div>
+    </section>
   );
 }
 

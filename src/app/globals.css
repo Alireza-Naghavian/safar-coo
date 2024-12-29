@@ -41,6 +41,16 @@
   .tr-300{
     @apply transition-all duration-300
   }
+  .tr-400{
+    @apply transition-all duration-400
+  }
+  .tr-450{
+    @apply transition-all;
+    transition-duration: 450ms
+  }
+  .tr-500{
+    @apply transition-all duration-500
+  }
 }
 
 /* navItem line */
