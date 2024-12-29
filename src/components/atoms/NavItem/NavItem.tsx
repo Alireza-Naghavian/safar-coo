@@ -18,7 +18,7 @@ const itemStyles = cva("font-Yekan relative text-right tr-300 tracking-tight", {
 function NavItem({ size, className, target, title }: NavItem_T) {
 
   return (
-    <div className=" group w-full ">
+    <div className=" group  ">
       <Link href={target} className={itemStyles({ className, size })}>
         {title}
       </Link>

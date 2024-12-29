@@ -10,21 +10,22 @@ import { AnimatePresence, motion } from "motion/react";
 function NavBarItems({close,isOpen:isSearchOpen,open}:Disclosure_T) {
   const { itemsRef, markerRef, style } = useUnderline();
   return (
-    <div className={`h-full  ${isSearchOpen ? "w-full" : "w-[80%]"}  flex items-center   relative`}>
+    <div className={`h-full  ${isSearchOpen ? "w-full" : "w-[70%]"}   hidden lg:flex items-center   relative`}>
       {isSearchOpen && (
         <motion.div key={"revertmenu"} className="left-0 absolute">
           <MainBtn
             onClick={close}
             state="normal"
+            className="font-YekanSemi rounded-2 border-secondary-400 "
             type="button"
-            variant="noBorder"
+            variant="outline"
             size="md"
           >
             بازگشت
           </MainBtn>
         </motion.div>
       )}
-      <div className=" flex  h-[60%]  items-center gap-x-12 absolute tr-300">
+      <div className=" flex  h-[60%]  items-center flex-grow 2xl:gap-x-7 gap-x-4 absolute tr-300">
         {menuItems.map((item) => {
           return (
             <AnimatePresence key={item._id} mode="wait" initial={false}>
@@ -48,6 +49,7 @@ function NavBarItems({close,isOpen:isSearchOpen,open}:Disclosure_T) {
                     size="desktop"
                     target={item.target}
                     title={item.title}
+                    className=" xl:text-xl lg:text-lg  "
                   />
                 </div>
               </motion.div>
