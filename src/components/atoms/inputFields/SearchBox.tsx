@@ -10,7 +10,7 @@ const searchBoxStyles = cva(
       size: {
         desktop: `
             max-w-[511px]  max-h-[54px]  py-3 px-4`,
-        mobile: `  max-w-[177px]  max-h-[29px]    sm:max-w-[283px]  sm:max-h-[44px] py-1 px-2 `,
+        mobile: `max-w-[283px] max-h-[44px] sm:max-w-[80%] sm:max-h-[54px] py-2 px-3 `,
       },
     },
   }

@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
 const useUnderline = () => {
-  const markerRef = useRef<HTMLDivElement | null>(null);
-  const itemsRef = useRef<HTMLDivElement[]>([]);
+  const markerRef = useRef<HTMLDivElement  | null>(null);
+  const itemsRef = useRef<HTMLUListElement[]>([]);
   const [style, setStyle] = useState({
     left: 0,
     width: 0,
