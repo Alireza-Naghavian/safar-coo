@@ -5,8 +5,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fa">
-      <body
+    <html lang="fa" dir="rtl">
+      <body className="font-Yekan bg-gray-800 "
       >
         {children}
       </body>

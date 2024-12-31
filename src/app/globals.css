@@ -1,3 +1,61 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer base {
+  @font-face {
+    font-family: "Yekan";
+    src: url("/fonts/woff2/YekanBakhFaNum-Regular.woff2") format("woff2"),
+      url("/fonts/woff/YekanBakhFaNum-Regular.woff") format("woff");
+
+      font-display: swap;
+  }
+  @font-face {
+    font-family: "Yekan SemiBold";
+    src:local("Yekan SemiBold"), url("/fonts/woff2/YekanBakhFaNum-SemiBold.woff2") format("woff2"),
+      url("/fonts/woff/YekanBakhFaNum-SemiBold.woff") format("woff");
+      font-display: swap;
+  }
+  @font-face {
+    font-family: "Yekan Bold";
+    src:local("Yekan Bold"), url("/fonts/woff2/YekanBakhFaNum-Bold.woff2") format("woff2"),
+      url("/fonts/woff/YekanBakhFaNum-Bold.woff") format("woff");
+      font-display: swap;
+  }
+}
+@layer utilities {
+  .defaultEffectStyles {
+    @apply opacity-[63%] bg-[#8D8D8D];
+  }
+  .backDrop_blur_sm {
+    @apply defaultEffectStyles  backdrop-blur-0;
+  }
+  .backDrop_blur_md {
+    @apply defaultEffectStyles backdrop-blur-[4.2px ];
+  }
+  .backDrop_blur_lg {
+    @apply defaultEffectStyles backdrop-blur-[20.7px ];
+  }
+  .box-center {
+    @apply flex justify-center items-center;
+  }
+  .tr-300{
+    @apply transition-all duration-300
+  }
+  .tr-400{
+    @apply transition-all duration-400
+  }
+  .tr-450{
+    @apply transition-all;
+    transition-duration: 450ms
+  }
+  .tr-500{
+    @apply transition-all duration-500
+  }
+}
+
+/* navItem line */
+#underline {
+  @apply bg-secondary-300  h-[3px] 
+  tr-300   absolute mt-3
+  top-full;
+}
