@@ -1,3 +1,4 @@
+import Footer from "@/components/organisms/footer/Footer";
 import "./globals.css";
 export default function RootLayout({
   children,
@@ -9,6 +10,7 @@ export default function RootLayout({
       <body className="font-Yekan bg-gray-800 "
       >
         {children}
+        <Footer/>
       </body>
     </html>
   );

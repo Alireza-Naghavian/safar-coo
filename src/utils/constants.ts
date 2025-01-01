@@ -1,4 +1,4 @@
-import { menuItems_T } from "@/types/constants.t";
+import { FooterLinks_T, menuItems_T } from "@/types/constants.t";
 import DucomentIcon from "../../public/icons/svgs/DucomentIcon";
 import MapIcon from "../../public/icons/svgs/MapIcon";
 import CalendarIcon from "../../public/icons/svgs/CalendarIcon";
@@ -18,3 +18,34 @@ export const MobileMenuItems = [
   ...menuItems,
   { title: "دانلود اپلکیشن سفرکو", target: "", _id: "183", Icon: MobileIcon },
 ].reverse()
+
+
+export const footerLinks:FooterLinks_T[]=[
+  {
+    title:"پروفایل کاربری",
+    items:[
+      {content:"ویرایش پروفایل",href:""},
+      {content:"اعلان ها",href:""},
+      {content:"تیکت های من",href:""},
+    ]
+  },
+  {
+    title:"ارتباط با ما",
+    items:[
+      {content:"ارسال تیکت",href:""},
+      {content:"درباره ما",href:""},
+      {content:"تماس با پشتیبانی",href:""},
+    ]
+  },
+  {
+    title:"خدمات سریع",
+    items:[
+      {content:"بازگشت به صفحه اصلی",href:""},
+      {content:"مقالات گردشگری",href:""},
+      {content:"تجربه های سفر",href:""},
+      {content:"برنامه ریزی سفر",href:""},
+      {content:"ایران شناسی",href:""},
+
+    ]
+  },
+]
