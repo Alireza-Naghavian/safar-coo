@@ -51,9 +51,9 @@ function MobileMenu({
                 key={item._id}
               >
                 <NavItem
-                  title={item.title}
-                  size="mobile"
                   target={item.target}
+                  size="mobile"
+                  title={item.title}
                   Icon={item.Icon as React.FC}
                 />
               </motion.li>
