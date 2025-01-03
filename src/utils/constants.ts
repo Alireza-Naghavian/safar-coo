@@ -17,35 +17,35 @@ export const menuItems: menuItems_T[] = [
 export const MobileMenuItems = [
   ...menuItems,
   { title: "دانلود اپلکیشن سفرکو", target: "", _id: "183", Icon: MobileIcon },
-].reverse()
+].reverse();
 
-
-export const footerLinks:FooterLinks_T[]=[
+export const footerLinks: FooterLinks_T[] = [
   {
-    title:"پروفایل کاربری",
-    items:[
-      {content:"ویرایش پروفایل",href:""},
-      {content:"اعلان ها",href:""},
-      {content:"تیکت های من",href:""},
-    ]
+    title: "خدمات سریع",
+    items: menuItems,
   },
   {
-    title:"ارتباط با ما",
-    items:[
-      {content:"ارسال تیکت",href:""},
-      {content:"درباره ما",href:""},
-      {content:"تماس با پشتیبانی",href:""},
-    ]
+    title: "پروفایل کاربری",
+    items: [
+      { title: "ویرایش پروفایل", target: "" },
+      { title: "اعلان ها", target: "" },
+      { title: "تیکت های من", target: "" },
+    ],
   },
   {
-    title:"خدمات سریع",
-    items:[
-      {content:"بازگشت به صفحه اصلی",href:""},
-      {content:"مقالات گردشگری",href:""},
-      {content:"تجربه های سفر",href:""},
-      {content:"برنامه ریزی سفر",href:""},
-      {content:"ایران شناسی",href:""},
-
-    ]
+    title: "ارتباط با ما",
+    items: [
+      { title: "ارسال تیکت", target: "" },
+      { title: "درباره ما", target: "" },
+      { title: "تماس با پشتیبانی", target: "" },
+    ],
   },
-]
+  
+];
+
+export const licenceLogos = [
+  { src: "/images/enamad.png", alt: "enamad" },
+  { src: "/images/env-gov.png", alt: "env-gov" },
+  { src: "/images/media.png", alt: "media" },
+  { src: "/images/tourists.png", alt: "tourists" },
+];
