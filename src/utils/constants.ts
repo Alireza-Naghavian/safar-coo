@@ -44,8 +44,8 @@ export const footerLinks: FooterLinks_T[] = [
 ];
 
 export const licenceLogos = [
-  { src: "/images/enamad.png", alt: "enamad" },
-  { src: "/images/env-gov.png", alt: "env-gov" },
-  { src: "/images/media.png", alt: "media" },
-  { src: "/images/tourists.png", alt: "tourists" },
+  { src: "/images/enamad.png", alt: "enamad",_id:"imageLicense_1" },
+  { src: "/images/env-gov.png", alt: "env-gov",_id:"imageLicense_2" },
+  { src: "/images/media.png", alt: "media",_id:"imageLicense_3" },
+  { src: "/images/tourists.png", alt: "tourists",_id:"imageLicense_4" },
 ];

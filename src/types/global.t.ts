@@ -10,3 +10,5 @@ export interface IconBaseProps extends React.SVGAttributes<SVGElement> {
     title?: string;
 }
 export type Icon_T =React.FC
+
+export type ClassName_T = {className?:string|undefined}
