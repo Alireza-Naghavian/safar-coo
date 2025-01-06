@@ -6,7 +6,7 @@ import SearchBox from '@/components/atoms/inputFields/SearchBox';
 
 const FilterCities = () => {
     return (
-      <div className="flex flex-col items-start">
+      <div className="flex flex-col items-start ">
         <div className="flex flex-col gap-y-[57px]">
           <h1 className="text-h1Semi text-white text-right tracking-tight">
             دیدنی های ایران را کشف کن!

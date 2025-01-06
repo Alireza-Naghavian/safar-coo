@@ -7,9 +7,10 @@ function HomePage() {
     <ClientLayout>
       <div className="md:px-[113px] sm:px-5 ">
         <section
-          className="mt-[205px] w-full 
+          className="mt-[120px] w-full relative
                 max-h-[650px] rounded-12
-             bg-primary-500 p-10 flex items-center justify-between"
+             bg-primary-500 p-10  flex items-center
+              justify-between gap-x-[90px] "
         >
           <FilterCities />
           <IranMap />
