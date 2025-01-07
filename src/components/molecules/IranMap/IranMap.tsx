@@ -26,7 +26,7 @@ function IranMap() {
               {iranProvinces.map((province) => {
                 return (
                   <React.Fragment key={province.id}>
-                    <Link href={`/city/${province.name}`}>
+                    <Link href={`/city/${province.eName}`}>
                       <Tooltip
                         content={province.name}
                         showArrow

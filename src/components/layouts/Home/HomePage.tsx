@@ -1,11 +1,14 @@
 import FilterCities from "@/components/molecules/filters/FilterCities";
 import IranMap from "@/components/molecules/IranMap/IranMap";
 import ClientLayout from "../ClientLayout";
+import BlogCard from "@/components/molecules/cards/BlogCard";
+import SectionTitle from "@/components/atoms/SectionTitle/SectionTitle";
 
 function HomePage() {
   return (
     <ClientLayout>
       <div className="md:px-[113px] px-5 ">
+        {/* heaader */}
         <section
           className="mt-[120px] w-full relative
                 xl:max-h-[650px] rounded-12
@@ -18,6 +21,23 @@ function HomePage() {
           <div className="xl:order-2 order-1 hidden md:block">
           <IranMap />
           </div>
+        </section>
+        {/* popular blogs */}
+        <section className="md:mt-[116px] mt-[56px] relative w-full">
+        <div className="relative flex flex-col gap-y-[56px] ">
+          <SectionTitle title="مقالات منتخب" className="tracking-tighter"/> 
+          <div className="w-full relative flex flex-col sm:gap-y-10 gap-y-6">
+          <div className="grid sm:grid-cols-2  gap-x-8 lg:px-[71px] gap-y-6 sm:gap-y-0"> 
+            <BlogCard variant="inner-capion" cover="/images/sample-card.png" href="" title="خوشمزه ترین غذاهای شمال ایران" badgeContent="غذاها"/>
+            <BlogCard variant="inner-capion" cover="/images/sample-card.png" href="" title="خوشمزه ترین غذاهای شمال ایران" badgeContent="غذاها"/>
+             </div>
+          <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-x-8 gap-y-6 sm:gap-y-10">
+          <BlogCard variant="inner-capion" cover="/images/sample-card.png" href="" title="خوشمزه ترین غذاهای شمال ایران" badgeContent="غذاها"/>
+          <BlogCard variant="inner-capion" cover="/images/sample-card.png" href="" title="خوشمزه ترین غذاهای شمال ایران" badgeContent="غذاها"/>
+          <BlogCard variant="inner-capion" cover="/images/sample-card.png" href="" title="خوشمزه ترین غذاهای شمال ایران" badgeContent="غذاها"/>
+          </div>
+          </div>
+        </div>
         </section>
       </div>
     </ClientLayout>

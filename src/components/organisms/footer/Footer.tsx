@@ -132,7 +132,7 @@ const SocialMedias = ({className}:ClassName_T) => {
 const LicenseLogos = ({className}:ClassName_T)=>{
   return(
     <div className={` flex  justify-center items-center gap-x-4  rounded-full  sm:child:!w-[80px] child:!w-[50px]  sm:child:!h-[80px] child:!h-[50px] ${className}`}>
-    {licenceLogos.map((logo, index) => {
+    {licenceLogos.map((logo) => {
       return (
         <Image
           key={logo._id}

@@ -1,5 +1,5 @@
 
-import React, { Dispatch, FC, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 
 export type SetState<T>= Dispatch<SetStateAction<T>>
 export type ChildrenProps = {children:React.ReactNode};
