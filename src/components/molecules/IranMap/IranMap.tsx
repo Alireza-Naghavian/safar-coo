@@ -1,15 +1,16 @@
-"use client";
+"use client"
+import { caspianD, persianGulfD } from "@/utils/IranMapData";
 import iranProvinces from "@/utils/iranProvince";
 import { Tooltip } from "@nextui-org/react";
-import { motion } from "motion/react";
-import  {caspianD,persianGulfD} from "@/utils/IranMapData"
 import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
+import { HeaderSearchBox } from "../filters/FilterCities";
 import styles from "./iranMap.module.css";
 function IranMap() {
-  const [provinces] = useState(() => iranProvinces);
   return (
-    <div className="relative  ">
+    <div className="flex flex-col gap-y-6">
+      <HeaderSearchBox className="xl:hidden flex"/>
+        <div className="relative  ">
       <div className={styles.container}>
         <div className={styles.map}>
           <svg
@@ -22,7 +23,7 @@ function IranMap() {
             xmlSpace="preserve"
           >
             <g className={`${styles.border} `}>
-              {provinces.map((province) => {
+              {iranProvinces.map((province) => {
                 return (
                   <React.Fragment key={province.id}>
                     <Link href={`/city/${province.name}`}>
@@ -31,10 +32,8 @@ function IranMap() {
                         showArrow
                         offset={-10}
                         closeDelay={0}
-                        className="bg-secondary-500 tr-200 text-white">
-                        <motion.path
-                          initial={{ scale: 1 }}
-                          whileHover={{ scale: 1.02, backgroundColor: " red" }}
+                        className="bg-secondary-500 cursor-pointer tr-200 text-white">
+                        <path
                           className={
                             `
                             border-1 border-accent-300 stroke-accent-300 
@@ -42,7 +41,7 @@ function IranMap() {
                             `
                           }
                           d={province.d}
-                        ></motion.path>
+                        ></path>
                       </Tooltip>
                     </Link>
                   </React.Fragment>
@@ -73,6 +72,7 @@ function IranMap() {
           </svg>
         </div>
       </div>
+    </div>
     </div>
   );
 }

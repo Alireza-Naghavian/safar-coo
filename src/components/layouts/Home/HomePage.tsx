@@ -5,15 +5,19 @@ import ClientLayout from "../ClientLayout";
 function HomePage() {
   return (
     <ClientLayout>
-      <div className="md:px-[113px] sm:px-5 ">
+      <div className="md:px-[113px] px-5 ">
         <section
           className="mt-[120px] w-full relative
-                max-h-[650px] rounded-12
-             bg-primary-500 p-10  flex items-center
-              justify-between gap-x-[90px] "
+                xl:max-h-[650px] rounded-12
+             bg-primary-500 md:p-10 p-3  flex xl:items-center
+              justify-between gap-x-[90px] xl:flex-row flex-col "
         >
+          <div className="xl:w-1/3 xl:order-1 order-2 ">
           <FilterCities />
+          </div>
+          <div className="xl:order-2 order-1 hidden md:block">
           <IranMap />
+          </div>
         </section>
       </div>
     </ClientLayout>
