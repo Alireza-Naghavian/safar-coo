@@ -1,8 +1,9 @@
 import FilterCities from "@/components/molecules/filters/FilterCities";
 import IranMap from "@/components/molecules/IranMap/IranMap";
 import ClientLayout from "../ClientLayout";
-import BlogCard, { FullBlogCard } from "@/components/molecules/cards/BlogCard";
+import BlogCard from "@/components/molecules/cards/BlogCard";
 import SectionTitle from "@/components/atoms/SectionTitle/SectionTitle";
+import FullBlogCard from "@/components/molecules/cards/FullBlogCard";
 
 function HomePage() {
   return (
@@ -79,7 +80,18 @@ function HomePage() {
               href=""
               className="tracking-tighter"
             />
-            <div className="flex flex-col ">
+            <div className="flex flex-col md:gap-y-16 gap-y-[45px]">
+              <FullBlogCard
+                cover="/images/sample-card.png"
+                date={new Date}
+                desc={`شیراز مهد فرهنگ، ادب و هنر فارسی، با هوایی آکنده از بوی عطر
+               بهار نارنج در فصل بهار، هر مسافری را برای سفر به این شهر وسوسه می‌کند و...`}
+               href=""
+               time={new Date}
+               title="برای سفر به شیراز کجاها بریم؟"
+               variant="full-detail"
+               badgeContent="گردشگری"
+              />
               <FullBlogCard
                 cover="/images/sample-card.png"
                 date={new Date}
