@@ -1,5 +1,5 @@
 
-import React, { Dispatch, FC, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 
 export type SetState<T>= Dispatch<SetStateAction<T>>
 export type ChildrenProps = {children:React.ReactNode};
@@ -10,3 +10,5 @@ export interface IconBaseProps extends React.SVGAttributes<SVGElement> {
     title?: string;
 }
 export type Icon_T =React.FC
+
+export type ClassName_T = {className?:string|undefined}

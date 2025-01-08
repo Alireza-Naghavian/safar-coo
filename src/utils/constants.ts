@@ -1,4 +1,4 @@
-import { menuItems_T } from "@/types/constants.t";
+import { FooterLinks_T, menuItems_T } from "@/types/constants.t";
 import DucomentIcon from "../../public/icons/svgs/DucomentIcon";
 import MapIcon from "../../public/icons/svgs/MapIcon";
 import CalendarIcon from "../../public/icons/svgs/CalendarIcon";
@@ -17,4 +17,35 @@ export const menuItems: menuItems_T[] = [
 export const MobileMenuItems = [
   ...menuItems,
   { title: "دانلود اپلکیشن سفرکو", target: "", _id: "183", Icon: MobileIcon },
-].reverse()
+].reverse();
+
+export const footerLinks: FooterLinks_T[] = [
+  {
+    title: "خدمات سریع",
+    items: menuItems,
+  },
+  {
+    title: "پروفایل کاربری",
+    items: [
+      { title: "ویرایش پروفایل", target: "" },
+      { title: "اعلان ها", target: "" },
+      { title: "تیکت های من", target: "" },
+    ],
+  },
+  {
+    title: "ارتباط با ما",
+    items: [
+      { title: "ارسال تیکت", target: "" },
+      { title: "درباره ما", target: "" },
+      { title: "تماس با پشتیبانی", target: "" },
+    ],
+  },
+  
+];
+
+export const licenceLogos = [
+  { src: "/images/enamad.png", alt: "enamad",_id:"imageLicense_1" },
+  { src: "/images/env-gov.png", alt: "env-gov",_id:"imageLicense_2" },
+  { src: "/images/media.png", alt: "media",_id:"imageLicense_3" },
+  { src: "/images/tourists.png", alt: "tourists",_id:"imageLicense_4" },
+];

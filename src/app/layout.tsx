@@ -6,7 +6,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl">
-      <body className="font-Yekan bg-gray-800 "
+      <body className="font-Yekan "
       >
         {children}
       </body>

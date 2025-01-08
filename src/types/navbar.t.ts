@@ -1,10 +1,10 @@
-import React, { JSX } from "react";
-import { Icon_T, Size_T } from "./global.t";
+import React from "react";
+import { Size_T } from "./global.t";
 
 export type NavItem_T =  {
   className?: string;
   size:Size_T;
-  title: string;
   target: string;
+  title: string;
   Icon?:React.FC
 };
