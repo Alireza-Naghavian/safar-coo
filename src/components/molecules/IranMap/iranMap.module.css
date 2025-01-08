@@ -1,0 +1,60 @@
+.container {
+  display: flex;
+  justify-content: center;
+  direction: rtl;
+  text-align: right;
+  font-size: 11px;
+  overflow-x: auto;
+  @apply xl:py-[50px] py-0
+}
+
+.map {
+  position: relative;
+  display: block;
+}
+
+.map .svg {
+  position: relative;
+  max-height: 630px;
+  height: 630px;
+  width: 100%;
+  transition: transform 2.5s ease;
+  padding: 20px;
+}
+
+.map .border path {
+  fill: #fff;
+}
+
+.province {
+  fill: #999;
+}
+
+.map .sea path,
+.map .lake path {
+  fill: #6caed8;
+}
+
+.map .province path:hover {
+  fill: #c7414a;
+  cursor: crosshair;
+}
+
+.map .sea path:nth-child(2):hover {
+  fill: #1f79b1;
+}
+
+.map .province path:focus {
+  fill: #1bb97c;
+  outline: 0;
+}
+@media only screen and (max-width: 1100px) {
+  .container {
+    direction: ltr;
+    text-align: center;
+  }
+  .map .svg {
+    padding-top: 1rem;
+    width: 90%;
+  }
+}

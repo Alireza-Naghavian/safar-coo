@@ -1,7 +1,5 @@
 import MainBtn from '@/components/atoms/buttons&links/MainBtn'
-import React from 'react'
 import ProfileIcon from '../../../../public/icons/svgs/ProfileIcon'
-import AddIcon from '../../../../public/icons/svgs/AddIcon'
 
 function NavBtnGroup() {
   return (

@@ -53,7 +53,7 @@ function NavBarItems({ close, isOpen: isSearchOpen, open }: Disclosure_T) {
                       size="desktop"
                       target={item.target}
                       title={item.title}
-                      className=" xl:text-xl lg:text-lg  "
+                      className=" xl:text-xl lg:text-lg"
                     />
                   </li>
                 </ul>
@@ -78,7 +78,7 @@ function NavBarItems({ close, isOpen: isSearchOpen, open }: Disclosure_T) {
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={"activeSearchBox"}
-            className="  lg:w-[511px] w-[177px] right-0 absolute "
+            className="lg:w-[511px] w-[177px] right-0 absolute "
             variants={motionDisappear}
             initial={"animate"}
             animate={isSearchOpen ? "initial" : "animate"}

@@ -5,10 +5,13 @@ import { MobileMenuItems } from "@/utils/constants";
 import { motion } from "motion/react";
 import React from "react";
 import Close_square from "../../../../public/icons/svgs/Close_square";
+import useScrollLocker from "@/hooks/useScrollLocker";
 function MobileMenu({
   close: closeMenu,
   isOpen: isMenuOpen,
 }: Partial<Disclosure_T>) {
+  // lock scroll bar if isMenuOpen
+  useScrollLocker(isMenuOpen as boolean)
   return (
     <div
       className={`
@@ -51,9 +54,9 @@ function MobileMenu({
                 key={item._id}
               >
                 <NavItem
-                  title={item.title}
-                  size="mobile"
                   target={item.target}
+                  size="mobile"
+                  title={item.title}
                   Icon={item.Icon as React.FC}
                 />
               </motion.li>
