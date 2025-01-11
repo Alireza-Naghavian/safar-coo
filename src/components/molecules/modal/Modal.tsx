@@ -6,6 +6,7 @@ import { cva } from "class-variance-authority";
 import React from "react";
 import Close_square from "../../../../public/icons/svgs/Close_square";
 import { ChildrenProps } from "@/types/global.t";
+import ClientOnlyPortal from "@/utils/ClientOnlyPortal";
 const Modal: React.FC<Modal_T> = (props) => {
   const { children, effect, isShow, onClose, className } = props;
   // hidden scroll when modal is active
@@ -14,8 +15,8 @@ const Modal: React.FC<Modal_T> = (props) => {
   // based effect styles
   const modalStyle = cva(
     `
-    bg-white rounded-12 shadow-lg w-full h-full lg:h-fit 
-    tr-500 fixed left-0 right-0  flex flex-col md:p-8 p-4 mx-auto
+    bg-white rounded-12 shadow-lg w-full !h-fit 
+    tr-500 z-[60] fixed left-0 right-0  flex flex-col  mx-auto 
     `,
     {
       variants: {
@@ -24,7 +25,7 @@ const Modal: React.FC<Modal_T> = (props) => {
             isShow ? `bottom-0 lg:top-20` : `-bottom-full lg:top-60`
           }`,
           ease_out: `${
-            isShow ? "top-20 transform scale-100" : `top-40 transform scale-50 `
+            isShow ? "top-16 transform scale-100" : `top-40 transform scale-50 `
           } `,
           buttom_to_fit: `${isShow ? "bottom-0" : "-bottom-full"} `,
         },
@@ -36,12 +37,13 @@ const Modal: React.FC<Modal_T> = (props) => {
   );
 
   return (
-    <div
+ <ClientOnlyPortal>
+      <div
       className={`${
         isShow ? "visible opacity-100" : "invisible opacity-0 "
       } z-[60] fixed inset-0 tr-500`}
     >
-      <Overlay onClose={onClose} openCondition={isShow} />
+      <Overlay className="!tr-400" onClose={onClose} openCondition={isShow} />
       <div className={modalStyle({ className, effect })}>
         {React.Children.map(children, (child) => {
           return React.isValidElement(child)
@@ -50,6 +52,7 @@ const Modal: React.FC<Modal_T> = (props) => {
         })}
       </div>
     </div>
+ </ClientOnlyPortal>
   );
 };
 // Header Modal
