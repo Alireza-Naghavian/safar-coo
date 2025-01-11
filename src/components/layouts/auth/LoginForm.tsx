@@ -1,11 +1,11 @@
 "use client";
-import AuthFormLayout, { inputStyles } from "@/app/auth/layout";
 import MainBtn from "@/components/atoms/buttons&links/MainBtn";
 import { TextField } from "@/components/atoms/inputFields/TextFields";
 import useDisclosure from "@/hooks/useDisclosure";
 import { AuthFormProps_T } from "@/types/auth.t";
 import EyeFilledIcon from "../../../../public/icons/svgs/EyeFilledIcon";
 import EyeSlashFilledIcon from "../../../../public/icons/svgs/EyeSlashFilledIcon";
+import AuthFormLayout, { inputStyles } from "./AuthFormLayout";
 function LoginForm({toggleSignUp}:AuthFormProps_T) {
     const {isOpen:isVisible,toggle} = useDisclosure()
   return (
@@ -49,7 +49,8 @@ function LoginForm({toggleSignUp}:AuthFormProps_T) {
        className={inputStyles.style}
         isClearable={false}
        />
-
+       {/* forget password */}
+      <button className="ml-auto sm:-mt-6 -mt-2 mr-[3px] text-sm tracking-tighter ">فراموشی رمز عبور</button>
     <MainBtn 
     size="xxl"
      state="hover"
