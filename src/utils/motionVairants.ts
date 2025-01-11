@@ -3,6 +3,11 @@ export const motionHiddenVariants ={
     animate:{opacity:0,x:"100%",display:"none"},
     exit:{opacity:100,x:"0%"}
   }
+  export const FadeInOutVar = {
+    initial:{opacity:100},
+    animate:{opacity:0},
+    exit:{opacity:100},
+  }
   export const motionDisappear ={
     initial:{opacity:100,display:"block"},
     animate:{opacity:0,display:"none"},

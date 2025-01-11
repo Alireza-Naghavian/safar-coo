@@ -15,7 +15,7 @@ const Modal: React.FC<Modal_T> = (props) => {
   // based effect styles
   const modalStyle = cva(
     `
-    bg-white rounded-12 shadow-lg w-full !h-fit 
+    bg-white rounded-12 shadow-lg w-full 
     tr-500 z-[60] fixed left-0 right-0  flex flex-col  mx-auto 
     `,
     {

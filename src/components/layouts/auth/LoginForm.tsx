@@ -1,15 +1,16 @@
 "use client";
 import AuthFormLayout, { inputStyles } from "@/app/auth/layout";
+import MainBtn from "@/components/atoms/buttons&links/MainBtn";
 import { TextField } from "@/components/atoms/inputFields/TextFields";
 import useDisclosure from "@/hooks/useDisclosure";
-import React from "react";
-import EyeSlashFilledIcon from "../../../../public/icons/svgs/EyeSlashFilledIcon";
+import { AuthFormProps_T } from "@/types/auth.t";
 import EyeFilledIcon from "../../../../public/icons/svgs/EyeFilledIcon";
-import MainBtn from "@/components/atoms/buttons&links/MainBtn";
-function LoginForm() {
+import EyeSlashFilledIcon from "../../../../public/icons/svgs/EyeSlashFilledIcon";
+function LoginForm({toggleSignUp}:AuthFormProps_T) {
     const {isOpen:isVisible,toggle} = useDisclosure()
   return (
     <AuthFormLayout
+    toggleSignUp={toggleSignUp}
       linkContent="ایجاد حساب"
       qTitle="حساب کاربری ندارید؟"
       title="ورود به حساب کاربری"
