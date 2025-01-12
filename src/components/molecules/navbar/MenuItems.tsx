@@ -16,7 +16,7 @@ function MenuItems() {
       {/* right side */}
      <NavBarItems isOpen={isSearchOpen}  close={close}  open={open}/>
      <button className="lg:hidden" onClick={openMenu}>
-      <MenuBarIcon/>
+      <MenuBarIcon />
      </button>
       <MobileMenu isOpen={isMenuOpen}  close={closeMenu}/>
       <Overlay onClose={closeMenu} openCondition={isMenuOpen}/>

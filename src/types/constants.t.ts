@@ -1,3 +1,4 @@
+import { IconProps } from "iconsax-react";
 import { Icon_T } from "./global.t";
 
 export type menuItems_T = {
@@ -5,6 +6,7 @@ export type menuItems_T = {
   target: string;
   _id: string;
   Icon?: Icon_T;
+  IconProps?:IconProps
 };
 export type FooterLinks_T = {
   title: string;

@@ -1,5 +1,5 @@
 "use client"
-import SearchIcon from '../../../../public/icons/svgs/SearchIcon';
+import { SearchNormal } from 'iconsax-react';
 function Nav_searchBox({open}:{open:()=>void}) {
   
 
@@ -9,7 +9,7 @@ function Nav_searchBox({open}:{open:()=>void}) {
     className='box-center gap-x-1.5 bg-transparent child:text-white tr-300'
     >
         <span   className="text-bodyB2Regular  xl:text-xl lg:text-lg">جستجو</span>
-        <SearchIcon/>
+        <SearchNormal variant='Outline' className='size-6 fill-white'/>
     </button>
 
   )

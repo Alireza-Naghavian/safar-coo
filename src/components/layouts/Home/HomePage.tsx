@@ -8,6 +8,7 @@ import FullBlogCard from "@/components/molecules/cards/FullBlogCard";
 function HomePage() {
   return (
     <ClientLayout>
+      <main className="max-w-[1920px] relative mx-auto overflow-x-hidden min-h-screen ">
       <div className="md:px-[113px] px-5 ">
         {/* heaader */}
         <section
@@ -105,6 +106,7 @@ function HomePage() {
           </div>
         </section>
       </div>
+      </main>
     </ClientLayout>
   );
 }
