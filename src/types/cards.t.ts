@@ -8,5 +8,4 @@ export type BlogCard_T = {
 export type FullBLogCard_T = BlogCard_T&{
     desc:string,
     date:Date,
-    time:Date
 }
