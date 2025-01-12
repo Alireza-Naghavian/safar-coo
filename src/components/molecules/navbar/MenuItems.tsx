@@ -1,13 +1,13 @@
 "use client";
+import Overlay from "@/components/atoms/Overlay/Overlay";
 import useDisclosure from "@/hooks/useDisclosure";
-import NavBarItems from "./NavBarItems";
-import NavBtnGroup from "./NavBtnGroup";
 import MenuBarIcon from "../../../../public/icons/svgs/MenuBarIcon";
 import MobileMenu from "./MobileMenu";
-import Overlay from "@/components/atoms/Overlay/Overlay";
+import NavBarItems from "./NavBarItems";
+import NavBtnGroup from "./NavBtnGroup";
 function MenuItems() {
   const { isOpen: isSearchOpen, close, open } = useDisclosure();
-  const { isOpen: isMenuOpen, close: closeMenu, open: openMenu } = useDisclosure();
+  const { isOpen: isMenuOpen, close: closeMenu, open: openMenu } = useDisclosure(); 
   return (
     <section
       className="  flex items-center lg:justify-normal justify-between  gap-x-2   xl:px-8 px-6   

@@ -52,7 +52,7 @@ import ClockIcon from '../../../../public/icons/svgs/ClockIcon';
               <span className="mt-0.5"><ClockIcon  /></span>
               <span className="text-natural-gray3 sm:text-bodyB3Regular  ">
                 {
-                  new Date(restProps.time).toLocaleString("fa-IR",
+                  new Date(restProps.date).toLocaleString("fa-IR",
                        {timeStyle:"short",hour12:true}) as string
                 }
               </span>
