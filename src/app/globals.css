@@ -62,8 +62,10 @@
 
 ::-webkit-scrollbar{
   width: 8px;
+  height: 8px;
   @apply bg-natural-gray2;
 }
+
 ::-webkit-scrollbar-thumb{
   width:6px;
   @apply bg-natural-gray3 rounded-4;

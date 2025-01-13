@@ -11,9 +11,9 @@ export const menuItems: menuItems_T[] = [
   { title: "مقالات گردشگری", target: "", _id: "133", Icon: Document,IconProps:{variant:"Outline",} },
 ];
 export const userMenuItem : menuItems_T[] = [
-  {title:"ویرایش پروفایل",target:"/user-panel/edit-profile",_id:"userProfile_edit",Icon:ProfileCircle},
-
   {title:"تیکت ها",target:"/user-panel/tickets",_id:"userProfile_tickets",Icon:Ticket},
+  
+  {title:"ویرایش پروفایل",target:"/user-panel/edit-profile",_id:"userProfile_edit",Icon:ProfileCircle},
 
   {title:"اعلان ها",target:"/user-panel/notifications",_id:"userProfile_notifications",Icon:Notification},
 
