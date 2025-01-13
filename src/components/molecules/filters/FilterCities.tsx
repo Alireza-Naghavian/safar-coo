@@ -1,9 +1,8 @@
-import CustomSwitch from '@/components/atoms/Switch/CustomSwitch';
-import React from 'react'
-import FilterIcon from '../../../../public/icons/svgs/FilterIcon';
 import MainBtn from '@/components/atoms/buttons&links/MainBtn';
 import SearchBox from '@/components/atoms/inputFields/SearchBox';
+import CustomSwitch from '@/components/atoms/Switch/CustomSwitch';
 import { ClassName_T } from '@/types/global.t';
+import { FilterSearch } from 'iconsax-react';
 
 const FilterCities = () => {
     return (
@@ -11,7 +10,7 @@ const FilterCities = () => {
         <HeaderSearchBox className='sm:flex md:hidden xl:flex'/>
         <div className="mt-16 flex flex-col gap-y-4 items-start w-full">
           <p className="flex items-center gap-x-1 text-white">
-            <FilterIcon />
+            <FilterSearch className='size-10 fill-white' variant='Bold'  />
             <span className="sm:text-bodyB2semi text-bodyB4semi">فیلتر کردن مکان</span>
           </p>
           <div className="rounded-4 p-4 flex flex-col  bg-primary-700 w-full">
