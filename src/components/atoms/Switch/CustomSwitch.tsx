@@ -16,7 +16,7 @@ function CustomSwitch({ hasTitle = true, title, className, name }: Switch_T) {
   return (
     <div className="flex items-center gap-x-1">
       {hasTitle && <label htmlFor={name} className={`text-white tr-300 
-     ${className} ${isSelected && "!text-secondary-400"}`}>
+     ${className} ${isSelected && "!text-secondary-700"}`}>
             {title}
 
     </label>}

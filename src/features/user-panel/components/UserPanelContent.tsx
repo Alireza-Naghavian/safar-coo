@@ -1,9 +1,10 @@
 "use client"
+import { ChildrenProps } from '@/types/global.t'
 import React from 'react'
 
-function UserPanelContent() {
+function UserPanelContent({children}:ChildrenProps) {
   return (
-    <div>UserPanelContent</div>
+    <div className='w-full relative h-full bg-accent-200 rounded-12 '>{children}</div> 
   )
 }
 

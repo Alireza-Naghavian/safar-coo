@@ -22,7 +22,7 @@ function NavItem({ size, className, target, title,Icon,IconProps,IconStyles }: N
     <div className=" group  ">
       <Link href={target} className={itemStyles({ className, size })}>
         {size === "mobile" &&Icon&&<Icon {...IconProps} className={`size-8 stroke-natural-black ${IconStyles}`} /> }
-        {title}
+        {title ??null}
       </Link>
     </div>
   );

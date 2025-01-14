@@ -1,6 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* user panel */
+:root{
+  --motion-content-width-open:75%;
+  --motion-content-width-close:95%;
+  --motion-menu-width-open:25%;
+  --motion-menu-width-close:5%;
+}
+@media screen and (max-width:1024px) {
+  :root{
+    --motion-content-width-open:100%;
+    --motion-content-width-close:100%;
+    --motion-menu-width-open:100%;
+    --motion-menu-width-close:100%;
+  }
+}
 @layer base {
   @font-face {
     font-family: "Yekan";
@@ -38,6 +53,12 @@
   .box-center {
     @apply flex justify-center items-center;
   }
+  .tr-100{
+    @apply transition-all duration-100
+  }
+  .tr-200{
+    @apply transition-all duration-200
+  }
   .tr-300{
     @apply transition-all duration-300
   }
@@ -62,8 +83,10 @@
 
 ::-webkit-scrollbar{
   width: 8px;
+  height: 8px;
   @apply bg-natural-gray2;
 }
+
 ::-webkit-scrollbar-thumb{
   width:6px;
   @apply bg-natural-gray3 rounded-4;

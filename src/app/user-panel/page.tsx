@@ -1,8 +1,7 @@
-import UserPanelLayout from "@/features/user-panel/components/UserPanelLayout";
-import React from "react";
+import MyTickets from "@/components/molecules/cards/MyTickets";
 
 function page() {
-  return <UserPanelLayout />
+  return <MyTickets/>
 }
 
 export default page;
