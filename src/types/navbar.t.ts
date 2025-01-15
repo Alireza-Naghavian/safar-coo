@@ -5,7 +5,7 @@ export type NavItem_T =  {
   className?: string;
   size:Size_T;
   target: string;
-  title: string;
+  title?: string|null;
   Icon?:Icon_T
   IconProps?:IconProps
   IconStyles?:string

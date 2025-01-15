@@ -11,17 +11,17 @@ export const menuItems: menuItems_T[] = [
   { title: "مقالات گردشگری", target: "", _id: "133", Icon: Document,IconProps:{variant:"Outline",} },
 ];
 export const userMenuItem : menuItems_T[] = [
-  {title:"تیکت ها",target:"/user-panel/tickets",_id:"userProfile_tickets",Icon:Ticket},
+  {title:"تیکت ها",target:"/user-panel",_id:"userProfile_tickets",Icon:Ticket},
   
   {title:"ویرایش پروفایل",target:"/user-panel/edit-profile",_id:"userProfile_edit",Icon:ProfileCircle},
 
   {title:"اعلان ها",target:"/user-panel/notifications",_id:"userProfile_notifications",Icon:Notification},
 
-  {title:"نوشتن تجربه جدید سفر",target:"/user-panel/add-travel-exprience",_id:"userProfile_travel_exprience",Icon:DocumentText},
+  {title:"تجربه جدید سفر",target:"/user-panel/add-travel-exprience",_id:"userProfile_travel_exprience",Icon:DocumentText},
 
   {title:"آمار بازدید مقاله",target:"/user-panel/blog-analytics",_id:"userProfile_blog_analytics",Icon:Chart},
 
-  {title:"مقالات ذخیره شده من",target:"/user-panel/my-bookmark",_id:"userProfile_my_bookmark",Icon:Save2},
+  {title:"مقالات ذخیره شده",target:"/user-panel/my-bookmark",_id:"userProfile_my_bookmark",Icon:Save2},
 ]
 export const MobileMenuItems = [
   ...menuItems,
