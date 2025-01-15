@@ -29,3 +29,10 @@ export type InputProps_T = { labelstyles?: string } & Pick<
   | "endContent"
 >;
 
+export type TextAria_T = Omit<InputProps_T, "variant"|"size"> &
+  React.ComponentProps<"textarea"> & {
+    variant: "outLine" | "freeMode";
+    size?: "medium" | "free";
+    // validattionschema?: RegisterOptions;
+  
+  };

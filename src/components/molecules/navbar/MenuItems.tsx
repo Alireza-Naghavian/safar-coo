@@ -14,7 +14,7 @@ function MenuItems() {
      py-[31px] h-full w-full  rounded-12 bg-accent-300 "
     >
       {/* right side */}
-     <NavBarItems isOpen={isSearchOpen}  close={close}  open={open}/>
+     <NavBarItems  isOpen={isSearchOpen}  close={close}  open={open}/>
      <button className="lg:hidden" onClick={openMenu}>
       <MenuBarIcon />
      </button>

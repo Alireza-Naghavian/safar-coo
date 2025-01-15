@@ -1,5 +1,5 @@
 import MainBtn from "@/components/atoms/buttons&links/MainBtn";
-import Nav_searchBox from "@/components/atoms/inputFields/Nav_searchBox";
+import Nav_searchBox from "@/components/atoms/inputFields/NavsearchBox";
 import SearchBox from "@/components/atoms/inputFields/SearchBox";
 import NavItem from "@/components/atoms/NavItem/NavItem";
 import { Disclosure_T } from "@/hooks/useDisclosure";
