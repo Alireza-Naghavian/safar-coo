@@ -14,6 +14,7 @@ function NewTicketForm() {
     <section className="w-full shadow-lg h-full overflow-y-auto flex flex-col gap-y-0 pb-6">
       {/* header */}
       <HeaderContentPanelLayout
+      className="!flex-nowrap child:mb-auto"
         title="ایجاد تیکت"
         desc="تیکت های ارسالی شما در اسرع وقت پاسخ داده خواهد شد،
         ساعت پاسخگویی شنبه تا پنجشنبه از ساعت ۹ صبح الی ۹شب
@@ -23,7 +24,7 @@ function NewTicketForm() {
       </HeaderContentPanelLayout>
       <form className="flex flex-col items-center mt-12 sm:px-11 px-4">
         {/* input group */}
-        <div className="flex items-center justify-between w-full child:w-1/2 gap-x-6 ">
+        <div className="flex items-center justify-between sm:flex-row flex-col w-full sm:gap-y-0 gap-y-6 sm:child:w-1/2 gap-x-6 ">
           <TextField
             className={`${inputStyles.style} !rounded-12 `}
             label="عنوان تیکت"
@@ -48,7 +49,7 @@ function NewTicketForm() {
             })}
           </Select>
         </div>
-        <div className="mt-20 w-full">
+        <div className="sm:mt-20 mt-8 w-full">
           <TextAriaField
             variant="freeMode"
             size="medium"
