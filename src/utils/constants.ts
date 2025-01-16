@@ -58,3 +58,10 @@ export const licenceLogos = [
   { src: "/images/media.png", alt: "media",_id:"imageLicense_3" },
   { src: "/images/tourists.png", alt: "tourists",_id:"imageLicense_4" },
 ];
+
+
+export const TicketPriorities = [
+  {key:"high",label:"بالا",_id:"highTicket"},
+  {key:"medium",label:"متوسط",_id:"mediumTicket"},
+  {key:"low",label:"پایین",_id:"lowTicket"},
+]

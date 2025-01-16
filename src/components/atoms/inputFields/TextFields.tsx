@@ -1,10 +1,6 @@
-import React from "react";
-import { Input, InputProps } from "@nextui-org/react";
-import { InputProps_T } from "@/types/textField.t";
 import { ClassName_T } from "@/types/global.t";
-import useDisclosure from "@/hooks/useDisclosure";
-import EyeSlashFilledIcon from "../../../../public/icons/svgs/EyeSlashFilledIcon";
-import EyeFilledIcon from "../../../../public/icons/svgs/EyeFilledIcon";
+import { InputProps_T } from "@/types/textField.t";
+import { Input } from "@nextui-org/react";
 
 export function TextField({label,size,type,isInvalid=false,variant="flat",...rest}: ClassName_T & InputProps_T) {
   return (
