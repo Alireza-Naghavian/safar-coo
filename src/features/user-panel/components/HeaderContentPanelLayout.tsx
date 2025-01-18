@@ -1,3 +1,4 @@
+import Divider from "@/components/atoms/Divider/Divider";
 import { ChildrenProps, ClassName_T } from "@/types/global.t";
 import React from "react";
 export type HeaderContent_T = ChildrenProps&ClassName_T & {
@@ -22,7 +23,7 @@ function HeaderContentPanelLayout({ children, desc, title,className }: HeaderCon
         {children}
       </div>
       {/* seperator */}
-      <div className="h-[2px] w-full bg-natural-gray2"></div>
+      <Divider/>
       {/* seperator */}
     </>
   );

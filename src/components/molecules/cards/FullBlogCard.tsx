@@ -1,7 +1,6 @@
 import { FullBLogCard_T } from '@/types/cards.t';
 import { Calendar2, Clock } from 'iconsax-react';
 import Link from 'next/link';
-import ClockIcon from '../../../../public/icons/svgs/ClockIcon';
 import BlogCard from './BlogCard';
 
  const FullBlogCard = ({
