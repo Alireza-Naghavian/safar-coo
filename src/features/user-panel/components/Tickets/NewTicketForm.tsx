@@ -54,8 +54,11 @@ function NewTicketForm() {
             variant="freeMode"
             size="medium"
             placeholder="درخواست خود را به صورت واضح بنویسید"
-            className="w-full "
+            className="w-full tr-300 border-2 tr-300 
+                      outline-none focus-within:shadow-accent-200
+                      focus-within:border-accent-400"
             label={"محتوای تیکت"}
+            
           />
         </div>
         <>
