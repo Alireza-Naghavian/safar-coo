@@ -8,7 +8,7 @@ function Ticket() {
   return (
     <>
       {/* header */}
-      <div className="relative w-full px-4 sm:px-7 py-6 flex items-center flex-wrap gap-x-16 child:text-natural-black">
+      <div className="relative w-full px-4 sm:px-7 py-6 flex items-center flex-wrap gap-x-16 child:text-natural-black ">
         <h1 className=" md:text-h2Semi text-bodyB2semi  tracking-tighter text-nowrap">
           تیکت های من
         </h1>
@@ -31,7 +31,7 @@ function Ticket() {
       </div>
       <Divider />
       {/* main content */}
-      <div className="mt-6 w-full relative flex flex-col px-4  sm:px-7  ">
+      <div className="mt-6 w-full relative flex flex-col px-4  sm:px-7 h-[350px] overflow-y-auto ">
         {/* ticket subject */}
         <h2 className="sm:text-bodyB2Regular text-bodyB3Regular text-natural-black">
           عنوان تیکت:مشکل در کامنت گذاشتن در سایت
