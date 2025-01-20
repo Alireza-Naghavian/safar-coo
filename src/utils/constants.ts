@@ -17,7 +17,7 @@ export const userMenuItem : menuItems_T[] = [
 
   {title:"اعلان ها",target:"/user-panel/notifications",_id:"userProfile_notifications",Icon:Notification},
 
-  {title:"تجربه جدید سفر",target:"/user-panel/add-travel-exprience",_id:"userProfile_travel_exprience",Icon:DocumentText},
+  {title:"تجربه جدید سفر",target:"/user-panel/travel-exprience",_id:"userProfile_travel_exprience",Icon:DocumentText},
 
   {title:"آمار بازدید مقاله",target:"/user-panel/blog-analytics",_id:"userProfile_blog_analytics",Icon:Chart},
 
@@ -132,5 +132,24 @@ export const fakeNotifData = [
         فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف ."
     `,
 
+  },
+]
+
+
+export const articlesFilterOption = [
+  {
+    title:" منتشر شده ها",
+    id:"published",
+    value:"published"
+  },
+  {
+    title:"زمان بندی شده",
+    id:"scheduled",
+    value:"scheduled"
+  },
+  {
+    title:"در صف انتشار",
+    id:"queue",
+    value:"queue"
   },
 ]

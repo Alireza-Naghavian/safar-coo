@@ -3,7 +3,7 @@ import { ChildrenProps, ClassName_T } from "@/types/global.t";
 import React from "react";
 export type HeaderContent_T = ChildrenProps&ClassName_T & {
   title: string;
-  desc: string;
+  desc: string|null;
 };
 function HeaderContentPanelLayout({ children, desc, title,className }: HeaderContent_T) {
   return (

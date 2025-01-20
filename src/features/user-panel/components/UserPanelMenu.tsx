@@ -21,7 +21,7 @@ function UserPanelMenu({ isMenuOpen, openMenu, closeMenu }: MenuProps) {
     <div className="relative w-full rounded-8 bg-gray-100/65 flex flex-col py-4 px-2
       shadow-lg overflow-hidden">
       <div className="hidden lg:flex w-fit relative   h-9 ">
-        <AnimatePresence initial={false} mode="wait">
+        <AnimatePresence initial={false} mode="sync">
           <motion.button
             key={"closeUserPanelMenu"}
             className="cursor-pointer absolute z-50"

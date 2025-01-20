@@ -70,7 +70,7 @@ function Ticket() {
         />
       </div>
       {/* write new msg */}
-      <form className="mt-8 w-full relative flex flex-col gap-y-4 px-4 pb-10  sm:px-7">
+      <form className="mt-8 w-full border-t-2 pt-2  relative flex flex-col gap-y-4 px-4 pb-10  sm:px-7">
         <TextAriaField
           variant="freeMode"
           size="medium"
