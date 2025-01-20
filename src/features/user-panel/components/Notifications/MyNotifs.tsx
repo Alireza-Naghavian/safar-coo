@@ -11,7 +11,7 @@ function MyNotifs() {
     setIsDropDownOpen(isDropDownOpen === id ? null : id);
   };
   return (
-    <div className="w-full relative  h-full shadow-lg max-h-[645] overflow-y-auto   flex flex-col  gap-y-0 ">
+    <div className="w-full relative  h-full shadow-lg max-h-[645]  rounded-12  overflow-y-auto   flex flex-col  gap-y-0 ">
       <HeaderContentPanelLayout
         title="اعلان های من "
         desc="اعلان های شما تا ۳۰ روز نگه داری و بعد از آن خودکار 
