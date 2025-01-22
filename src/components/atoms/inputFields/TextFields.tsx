@@ -10,7 +10,7 @@ export function TextField({label,size,type,isInvalid=false,variant="flat",...res
       size={size}
       description={rest.description}
       variant={variant}
-      placeholder={rest.placeholder}
+      placeholder={rest.placeholder as string}
       validate={()=>null}
       startContent={rest.startContent}
       endContent={rest.endContent}

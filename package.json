@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^44.1.0",
+    "@ckeditor/ckeditor5-react": "^9.4.0",
     "@nextui-org/input": "^2.4.7",
     "@nextui-org/react": "^2.6.8",
     "@nextui-org/select": "^2.4.9",
@@ -17,6 +19,7 @@
     "@nextui-org/theme": "^2.4.4",
     "@react-aria/ssr": "^3.9.7",
     "@tanstack/react-query": "^5.62.8",
+    "ckeditor5": "^44.1.0",
     "class-variance-authority": "^0.7.1",
     "framer-motion": "^11.15.0",
     "iconsax-react": "^0.0.8",
@@ -24,6 +27,7 @@
     "next": "^15.1.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-multi-date-picker": "^4.5.2",
     "react-share": "^5.1.1"
   },
   "devDependencies": {

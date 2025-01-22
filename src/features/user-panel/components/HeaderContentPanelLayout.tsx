@@ -1,7 +1,7 @@
 import Divider from "@/components/atoms/Divider/Divider";
 import { ChildrenProps, ClassName_T } from "@/types/global.t";
 import React from "react";
-export type HeaderContent_T = ChildrenProps&ClassName_T & {
+export type HeaderContent_T = Partial<ChildrenProps>&ClassName_T & {
   title: string;
   desc: string|null;
 };

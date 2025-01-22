@@ -153,3 +153,18 @@ export const articlesFilterOption = [
     value:"queue"
   },
 ]
+
+
+
+export const ArticleCategories = [
+  {key:"touristCat",label:"گردشگری",_id:"touristCat"},
+  {key:"natureCat",label:"طبیعی",_id:"natureCat"},
+  {key:"historicalCat",label:"تاریخی",_id:"historicalCat"},
+  {key:"culturalCat",label:"فرهنگی",_id:"culturalCat"},
+  {key:"religousCat",label:"مذهبی",_id:"religousCat"},
+]
+export const placePriceOptions = [
+  {key:"touristCat",label:"رایگان",_id:"freeOption"},
+  {key:"natureCat",label:"غیر رایگان",_id:"paidOption"},
+
+]

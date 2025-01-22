@@ -6,7 +6,7 @@ export type SearchBox_T = {
   className?: string;
   placeholder?: string;
 };
-export type InputProps_T = { labelstyles?: string } & Pick<
+export type InputProps_T = { labelstyles?: string , placeholder:string|null} & Pick<
   InputProps,
   | "label"
   | "value"
@@ -20,7 +20,6 @@ export type InputProps_T = { labelstyles?: string } & Pick<
   | "isClearable"
   | "isDisabled"
   | "labelPlacement"
-  | "placeholder"
   | "onFocus"
   | "color"
   | "isInvalid"
