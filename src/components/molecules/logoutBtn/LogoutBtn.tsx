@@ -1,6 +1,4 @@
-import MainBtn from '@/components/atoms/buttons&links/MainBtn'
-import { Logout, LogoutCurve } from 'iconsax-react'
-import React from 'react'
+import { LogoutCurve } from 'iconsax-react'
 
 function LogoutBtn({isMenuOpen}:{isMenuOpen?:boolean}) {
   return (

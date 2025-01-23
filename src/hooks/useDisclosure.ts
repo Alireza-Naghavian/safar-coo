@@ -4,7 +4,7 @@ export type Disclosure_T =DefaultState& {
     open:()=>void;
     close:()=>void;
     isOpen:boolean
-    
+    toggle: () => void;
 }
 const useDisclosure  = (defState:DefaultState=false)=>{
 const [isOpen,setIsOpen]= useState<boolean>(defState);

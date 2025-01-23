@@ -4,6 +4,7 @@ import DatePicker, { DateObject } from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import { ClassName_T, SetState } from "@/types/global.t";
+import TimePicker from "react-multi-date-picker/plugins/time_picker";
 type DatePricker_T = ClassName_T & {
   label: string;
   date: DateObject;
@@ -21,6 +22,9 @@ function DatePickerField({ date, label, setDate,className,labeStyle }: DatePrick
         onChange={(date) => setDate(date as DateObject)}
         value={date}
         calendar={persian}
+        plugins={[
+          <TimePicker position="bottom" />
+        ]}
         locale={persian_fa}
         minDate={Date.now()}
         inputClass={className}

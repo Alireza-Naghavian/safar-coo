@@ -7,7 +7,7 @@ import useUnderline from "@/hooks/useUnderline";
 import { menuItems } from "@/utils/constants";
 import { motionDisappear } from "@/utils/motionVairants";
 import { AnimatePresence, motion } from "motion/react";
-function NavBarItems({ close, isOpen: isSearchOpen, open }: Disclosure_T) {
+function NavBarItems({ close, isOpen: isSearchOpen, open }: Pick<Disclosure_T,"close"|"open"|"isOpen">) {
   const { itemsRef, markerRef, style } = useUnderline();
   return (
     <div

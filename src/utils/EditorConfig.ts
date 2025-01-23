@@ -45,7 +45,9 @@ import {
   Underline,
   Undo,
 } from "ckeditor5";
-const editorConfig: any = {
+import { EditorConfig } from "ckeditor5/core.js";
+
+const editorConfig: EditorConfig = {
   toolbar: {
     items: [
       "undo",
@@ -165,10 +167,16 @@ const editorConfig: any = {
   },
   image: {
     toolbar: ["imageTextAlternative", "imageStyle:full", "imageStyle:side"],
-    styles: ["full", "side"],
+    styles: {
+        options: [
+            'inline', 'alignLeft', 'alignRight',
+            'alignCenter', 'alignBlockLeft', 'alignBlockRight',
+            'block', 'side',"full","side"
+        ]
+    }
   },
 
-  licenseKey:process.env.NEXT_PUBLIC_CKEDITOR,
+  licenseKey: process.env.NEXT_PUBLIC_CKEDITOR,
   link: {
     addTargetToExternalLinks: true,
     defaultProtocol: "https://",
@@ -191,19 +199,19 @@ const editorConfig: any = {
   },
   mediaEmbed: {
     previewsInData: true,
-    providers: [
-      {
-        name: "custom",
-        url: /^(https:\/\/tech\.sabzlearn\.ir\/uploads\/.+\.mp4)(\?.*)?$/,
-        html: (match: string) => {
-          const url = match[1];
-          return `<video controls style="max-width: 100%; height: auto;">
-                  <source src="${url}" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>`;
-        },
-      },
-    ],
+    // providers: [
+    //   {
+    //     name: "custom",
+    //     url: /^(https:\/\/tech\.sabzlearn\.ir\/uploads\/.+\.mp4)(\?.*)?$/,
+    //     html: (match: string) => {
+    //       const url = match[1];
+    //       return `<video controls style="max-width: 100%; height: auto;">
+    //               <source src="${url}" type="video/mp4">
+    //               Your browser does not support the video tag.
+    //             </video>`;
+    //     },
+    //   },
+    // ],
   },
   table: {
     contentToolbar: [

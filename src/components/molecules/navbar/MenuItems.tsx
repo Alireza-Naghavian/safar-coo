@@ -18,7 +18,7 @@ function MenuItems() {
      <button className="lg:hidden" onClick={openMenu}>
       <MenuBarIcon />
      </button>
-      <MobileMenu isOpen={isMenuOpen}  close={closeMenu}/>
+      <MobileMenu isOpen={isMenuOpen}  close={closeMenu} />
       <Overlay onClose={closeMenu} openCondition={isMenuOpen}/>
       {/* left side */}
       <div className={`  gap-x-4  mr-auto ${isSearchOpen ? "hidden":"box-center "}`} >

@@ -10,7 +10,7 @@ import useScrollLocker from "@/hooks/useScrollLocker";
 function MobileMenu({
   close: closeMenu,
   isOpen: isMenuOpen,
-}: Partial<Disclosure_T>) {
+}: Pick<Disclosure_T,"close"|"isOpen">) {
   // lock scroll bar if isMenuOpen
   useScrollLocker(isMenuOpen as boolean)
   return (

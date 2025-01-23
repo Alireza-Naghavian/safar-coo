@@ -147,60 +147,7 @@ export default {
     },
   },
   plugins: [
-    nextui({
-      addCommonColors:false,
-      themes:{
-        customTheme:{
-          colors:{
-            primary: {
-              200: "#8FFFF6",
-              300: "#4FF9F2",
-              400: "#1BE6E3",
-              500: "#03C9C9 ",
-              600: "#00A0A3",
-              700: "#047C81",
-            },
-            secondary: {
-              200: "#FFC478",
-              300: "#FFC152",
-              400: "#FFAB16",
-              500: "#FF8F00 ",
-              600: "#CC6902",
-              700: "#A1510B",
-            },
-            accent: {
-              200: "#9DDAF9",
-              300: "#1EB5FF",
-              400: "#0698FF",
-              500: "#007DF0",
-              600: "#0865C5",
-              700: "#0D579B",
-            },
-            natural: {
-              black: "#131313",
-              gray1: "#3D3D3D",
-              gray2: "#797979",
-              gray3: "#B7B7B7",
-              gray4: "#E6E6E6",
-            },
-            success: {
-              100: "#00DD16",
-              200: "#00FF1A",
-              300: "#50FF61",
-            },
-            error: {
-              100: "#DD0000",
-              200: "#FF0000",
-              300: "#FF5050",
-            },
-            danger: {
-              100: "#F2DB06",
-              200: "#FFF500",
-            },
-          }
-        }
-      }
-    }),
+    nextui({}),
     function({addVariant}:{addVariant:(target:string,state:string)=>void}){
       addVariant("child","&>*")
       addVariant("child-hover","&>*:hover")
