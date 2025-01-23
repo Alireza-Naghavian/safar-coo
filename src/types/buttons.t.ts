@@ -17,6 +17,6 @@ export type Button_T= NavLinks_T&ChildrenProps  & React.ComponentProps<"button">
 export type Badge_T = ClassName_T &{title:string}
 
 export type BtnGroup_T = Partial<ChildrenProps>&{
-  activate:SetState<{value:string}>
-  activeBtn:{value:string}
+  activate?:SetState<{value:string}>
+  activeBtn?:{value:string}
 }

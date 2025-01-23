@@ -16,8 +16,7 @@ function AddExprienceForm() {
   const [description, setDescription] = useState<string>("");
   return (
     <div
-      className="w-full  h-full shadow-lg max-h-[645px] 
-    overflow-y-auto flex flex-col gap-y-0  rounded-12"
+      className="user-panel-container"
     >
       <HeaderContentPanelLayout
         title="نوشتن تجربه جدید از سفر"

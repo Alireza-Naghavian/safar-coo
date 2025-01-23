@@ -13,16 +13,16 @@ function BtnGroup({ activate, children,activeBtn }: BtnGroup_T) {
         child:text-bodyB4Regular child:text-natural-gray1
         `}
     >
-      {React.isValidElement(children)
-        ? children
+      {children?
+       children
         : articlesFilterOption.map((option) => {
             return (
               <button
                 key={option.id}
-                onClick={()=>activate({value:option.value})}
+                onClick={ ()=>activate &&activate({value:option.value})}
                 className={`
                     first:rounded-r-8 last:rounded-l-8 
-                    ${activeBtn.value === option.value ? "bg-primary-500" : "bg-white"}
+                    ${activeBtn?.value === option.value ? "bg-primary-500" : "bg-white"}
                     sm:px-8 px-2 sm:py-4 py-3 sm:text-nowrap
                     `}
               >

@@ -2,18 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 /* user panel */
-:root{
-  --motion-content-width-open:75%;
-  --motion-content-width-close:95%;
-  --motion-menu-width-open:25%;
-  --motion-menu-width-close:5%;
+:root {
+  --motion-content-width-open: 75%;
+  --motion-content-width-close: 95%;
+  --motion-menu-width-open: 25%;
+  --motion-menu-width-close: 5%;
 }
-@media screen and (max-width:1024px) {
-  :root{
-    --motion-content-width-open:100%;
-    --motion-content-width-close:100%;
-    --motion-menu-width-open:100%;
-    --motion-menu-width-close:100%;
+@media screen and (max-width: 1024px) {
+  :root {
+    --motion-content-width-open: 100%;
+    --motion-content-width-close: 100%;
+    --motion-menu-width-open: 100%;
+    --motion-menu-width-close: 100%;
   }
 }
 @layer base {
@@ -22,19 +22,21 @@
     src: url("/fonts/woff2/YekanBakhFaNum-Regular.woff2") format("woff2"),
       url("/fonts/woff/YekanBakhFaNum-Regular.woff") format("woff");
 
-      font-display: swap;
+    font-display: swap;
   }
   @font-face {
     font-family: "Yekan SemiBold";
-    src:local("Yekan SemiBold"), url("/fonts/woff2/YekanBakhFaNum-SemiBold.woff2") format("woff2"),
+    src: local("Yekan SemiBold"),
+      url("/fonts/woff2/YekanBakhFaNum-SemiBold.woff2") format("woff2"),
       url("/fonts/woff/YekanBakhFaNum-SemiBold.woff") format("woff");
-      font-display: swap;
+    font-display: swap;
   }
   @font-face {
     font-family: "Yekan Bold";
-    src:local("Yekan Bold"), url("/fonts/woff2/YekanBakhFaNum-Bold.woff2") format("woff2"),
+    src: local("Yekan Bold"),
+      url("/fonts/woff2/YekanBakhFaNum-Bold.woff2") format("woff2"),
       url("/fonts/woff/YekanBakhFaNum-Bold.woff") format("woff");
-      font-display: swap;
+    font-display: swap;
   }
 }
 @layer utilities {
@@ -53,24 +55,24 @@
   .box-center {
     @apply flex justify-center items-center;
   }
-  .tr-100{
-    @apply transition-all duration-100
+  .tr-100 {
+    @apply transition-all duration-100;
   }
-  .tr-200{
-    @apply transition-all duration-200
+  .tr-200 {
+    @apply transition-all duration-200;
   }
-  .tr-300{
-    @apply transition-all duration-300
+  .tr-300 {
+    @apply transition-all duration-300;
   }
-  .tr-400{
-    @apply transition-all duration-400
+  .tr-400 {
+    @apply transition-all duration-400;
   }
-  .tr-450{
+  .tr-450 {
     @apply transition-all;
-    transition-duration: 450ms
+    transition-duration: 450ms;
   }
-  .tr-500{
-    @apply transition-all duration-500
+  .tr-500 {
+    @apply transition-all duration-500;
   }
 }
 
@@ -81,13 +83,17 @@
   top-full;
 }
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   width: 8px;
   height: 8px;
   @apply bg-natural-gray2;
 }
 
-::-webkit-scrollbar-thumb{
-  width:6px;
+::-webkit-scrollbar-thumb {
+  width: 6px;
   @apply bg-natural-gray3 rounded-4;
+}
+.user-panel-container {
+  @apply w-full  h-full shadow-lg max-h-[645]  rounded-12 
+  overflow-y-auto   flex flex-col  gap-y-0;
 }

@@ -25,10 +25,9 @@ function InfoCardWrapper({ children,className }: ChildrenProps&ClassName_T) {
 function InfoCardItem({ className, children, title, value }: InfoItem_T) {
   return (
     <div
-      className={`flex w-full relative  flex-nowrap text-nowrap flex-col gap-y-6 items-center child:text-white  ${className}`}
-    >
-      <span className=" text-bodyB3semi ">{title}</span>
-      <span className=" text-bodyB4semi">
+      className={`flex w-full relative  flex-nowrap text-nowrap flex-col gap-y-6  items-center child:text-white  ${className}`}>
+      <span className="text-bodyB3semi">{title}</span>
+      <span className="text-bodyB4semi">
         {value || children}
       </span>
     </div>

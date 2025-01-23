@@ -9,7 +9,7 @@ import React from "react";
 
 function MyTickets() {
   return (
-    <div className="w-full  h-full shadow-lg max-h-[645]  rounded-12  overflow-y-auto   flex flex-col  gap-y-0 ">
+    <div className="user-panel-container">
       {/* header */}
       <HeaderContentPanelLayout
         title="تیکت های من"
