@@ -17,7 +17,10 @@ export function TextField({label,size,type,isInvalid=false,variant="flat",...res
       isInvalid={isInvalid}
       isClearable={rest.isClearable}
       color={rest.color}
+      name={rest.name}
       className={`${rest.className} `}
+      value={rest.value}
+      readOnly={rest.readOnly}
       label={
         <span className={`text-bodyB2semi  text-natural-black  ${rest.labelstyles}`}>
          {label}

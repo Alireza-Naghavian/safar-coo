@@ -26,6 +26,8 @@ export type InputProps_T = { labelstyles?: string , placeholder:string|null} & P
   | "validate"
   | "startContent"
   | "endContent"
+  | "name"
+
 >;
 
 export type TextAria_T = Omit<InputProps_T, "variant"|"size"> &
