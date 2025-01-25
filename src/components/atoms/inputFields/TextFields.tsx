@@ -1,10 +1,6 @@
-import React from "react";
-import { Input, InputProps } from "@nextui-org/react";
-import { InputProps_T } from "@/types/textField.t";
 import { ClassName_T } from "@/types/global.t";
-import useDisclosure from "@/hooks/useDisclosure";
-import EyeSlashFilledIcon from "../../../../public/icons/svgs/EyeSlashFilledIcon";
-import EyeFilledIcon from "../../../../public/icons/svgs/EyeFilledIcon";
+import { InputProps_T } from "@/types/textField.t";
+import { Input } from "@nextui-org/react";
 
 export function TextField({label,size,type,isInvalid=false,variant="flat",...rest}: ClassName_T & InputProps_T) {
   return (
@@ -14,14 +10,17 @@ export function TextField({label,size,type,isInvalid=false,variant="flat",...res
       size={size}
       description={rest.description}
       variant={variant}
-      placeholder={rest.placeholder}
+      placeholder={rest.placeholder as string}
       validate={()=>null}
       startContent={rest.startContent}
       endContent={rest.endContent}
       isInvalid={isInvalid}
       isClearable={rest.isClearable}
       color={rest.color}
+      name={rest.name}
       className={`${rest.className} `}
+      value={rest.value}
+      readOnly={rest.readOnly}
       label={
         <span className={`text-bodyB2semi  text-natural-black  ${rest.labelstyles}`}>
          {label}

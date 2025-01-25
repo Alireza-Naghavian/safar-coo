@@ -1,9 +1,7 @@
 import { FullBLogCard_T } from '@/types/cards.t';
-import React from 'react'
-import BlogCard from './BlogCard';
+import { Calendar2, Clock } from 'iconsax-react';
 import Link from 'next/link';
-import Calendar2Icon from '../../../../public/icons/svgs/Calendar2Icon';
-import ClockIcon from '../../../../public/icons/svgs/ClockIcon';
+import BlogCard from './BlogCard';
 
  const FullBlogCard = ({
     title,
@@ -40,7 +38,7 @@ import ClockIcon from '../../../../public/icons/svgs/ClockIcon';
           {/* date & time */}
           <div className="flex lg:flex-col lg:gap-x-0 gap-x-4 items-start gap-y-3">
             <div className="flex  gap-x-1">
-              <span className="mt-0.5"><Calendar2Icon  /></span>
+              <span className="mt-0.5"><Calendar2 className='size-[18px] stroke-natural-gray2 '/></span>
               <span className="text-natural-gray3 sm:text-bodyB3Regular  ">
                 {
                   new Date(restProps.date).toLocaleString("fa-IR",
@@ -49,7 +47,7 @@ import ClockIcon from '../../../../public/icons/svgs/ClockIcon';
               </span>
             </div>
             <div className="flex  gap-x-1">
-              <span className="mt-0.5"><ClockIcon  /></span>
+              <span className="mt-0.5"><Clock className='size-[18px] stroke-natural-gray2 ' /></span>
               <span className="text-natural-gray3 sm:text-bodyB3Regular  ">
                 {
                   new Date(restProps.date).toLocaleString("fa-IR",

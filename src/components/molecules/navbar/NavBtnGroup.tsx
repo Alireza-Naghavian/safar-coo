@@ -3,8 +3,8 @@ import MainBtn from "@/components/atoms/buttons&links/MainBtn";
 import LoginForm from "@/components/layouts/auth/LoginForm";
 import SignUpForm from "@/components/layouts/auth/SignUpForm";
 import useDisclosure from "@/hooks/useDisclosure";
-import ProfileIcon from "../../../../public/icons/svgs/ProfileIcon";
 import MainModal from "../modal/Modal";
+import { Profile } from "iconsax-react";
 function NavBtnGroup() {
   const { isOpen: isModalOpen, open, close } = useDisclosure();
   const { isOpen: isSignUpOpen, toggle: toggleSignUp } = useDisclosure();
@@ -18,7 +18,7 @@ function NavBtnGroup() {
         variant="fill"
       >
         <span className="sm:hidden">
-          <ProfileIcon />
+          <Profile variant="Outline" className="size-6 fill-white" />
         </span>
         <span className="">ثبت نام</span>
       </MainBtn>

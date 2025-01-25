@@ -8,7 +8,7 @@ function ClientOnlyPortal({ children }: ChildrenProps) {
   const { isOpen: isClient, open } = useDisclosure();
   useLayoutEffect(() => {
     open();
-  }, []);
+  }, [open]);
   if (!isClient) return null;
   return createPortal(children, document.body);
 }

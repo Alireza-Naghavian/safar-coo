@@ -16,13 +16,13 @@ const itemStyles = cva("font-Yekan relative text-right tr-300 tracking-tight", {
     size: "desktop",
   },
 });
-function NavItem({ size, className, target, title,Icon }: NavItem_T) {
+function NavItem({ size, className, target, title,Icon,IconProps,IconStyles }: NavItem_T) {
 
   return (
     <div className=" group  ">
       <Link href={target} className={itemStyles({ className, size })}>
-        {size === "mobile" && Icon &&<Icon /> }
-        {title}
+        {size === "mobile" &&Icon&&<Icon {...IconProps} className={`size-8 stroke-natural-black ${IconStyles}`} /> }
+        {title ??null}
       </Link>
     </div>
   );
