@@ -34,7 +34,7 @@ const useUnderline = () => {
     }
 
     return () => {
-      const items = itemsRef.current;
+     
       if (items) {
         items.forEach((link) => {
           link.removeEventListener("mousemove", updatePosition);

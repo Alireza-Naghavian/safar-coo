@@ -9,7 +9,7 @@ function Badge({ className, title }: Badge_T) {
     >
       {title}
     </span>
-  );
+  )
 }
 
 export default Badge;

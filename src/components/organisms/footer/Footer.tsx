@@ -8,7 +8,7 @@ import { ClassName_T } from "@/types/global.t";
 
 function Footer() {
   return (
-    <div className="w-full overflow-hidden ">
+    <footer className="w-full overflow-hidden ">
       <div
         className="w-full bg-[#0E453A] lg:px-[95px] px-2 pt-[56px] pb-[22px] relative  overflow-hidden
       mt-[115px] gap-2 child:bg-transparent"
@@ -58,7 +58,7 @@ function Footer() {
           ذکر منبع بلامانع است
         </p>
       </div>
-    </div>
+    </footer>
   );
 }
 

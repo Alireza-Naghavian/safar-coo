@@ -1,3 +1,4 @@
+"use client"
 import SearchBox from "@/components/atoms/inputFields/SearchBox";
 import NavItem from "@/components/atoms/NavItem/NavItem";
 import { Disclosure_T } from "@/hooks/useDisclosure";
@@ -9,7 +10,7 @@ import useScrollLocker from "@/hooks/useScrollLocker";
 function MobileMenu({
   close: closeMenu,
   isOpen: isMenuOpen,
-}: Partial<Disclosure_T>) {
+}: Pick<Disclosure_T,"close"|"isOpen">) {
   // lock scroll bar if isMenuOpen
   useScrollLocker(isMenuOpen as boolean)
   return (
@@ -57,7 +58,7 @@ function MobileMenu({
                   target={item.target}
                   size="mobile"
                   title={item.title}
-                  Icon={item.Icon as React.FC}
+                  Icon={item.Icon }
                 />
               </motion.li>
             );

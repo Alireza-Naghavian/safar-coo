@@ -1,5 +1,5 @@
 import MainBtn from "@/components/atoms/buttons&links/MainBtn";
-import Nav_searchBox from "@/components/atoms/inputFields/Nav_searchBox";
+import Nav_searchBox from "@/components/atoms/inputFields/NavsearchBox";
 import SearchBox from "@/components/atoms/inputFields/SearchBox";
 import NavItem from "@/components/atoms/NavItem/NavItem";
 import { Disclosure_T } from "@/hooks/useDisclosure";
@@ -7,7 +7,7 @@ import useUnderline from "@/hooks/useUnderline";
 import { menuItems } from "@/utils/constants";
 import { motionDisappear } from "@/utils/motionVairants";
 import { AnimatePresence, motion } from "motion/react";
-function NavBarItems({ close, isOpen: isSearchOpen, open }: Disclosure_T) {
+function NavBarItems({ close, isOpen: isSearchOpen, open }: Pick<Disclosure_T,"close"|"open"|"isOpen">) {
   const { itemsRef, markerRef, style } = useUnderline();
   return (
     <div
