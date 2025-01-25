@@ -9,8 +9,8 @@ import { LocationAdd } from "iconsax-react";
 import DatePickerField from "@/components/atoms/DatePicker/DatePickerField";
 import { DateObject } from "react-multi-date-picker";
 import { SetState } from "@/types/global.t";
-import TextEditor from "@/components/organisms/TextEditor/TextEditor";
-
+import dynamic from "next/dynamic";
+const TextEditor = dynamic(()=>import("@/components/organisms/TextEditor/TextEditor"),{ssr:false})
 function AddExprienceForm() {
   const [date, setDate] = useState<DateObject>();
   const [description, setDescription] = useState<string>("");

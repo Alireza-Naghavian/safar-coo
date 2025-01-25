@@ -45,9 +45,7 @@ import {
   Underline,
   Undo,
 } from "ckeditor5";
-import { EditorConfig } from "ckeditor5/core.js";
-
-const editorConfig: EditorConfig = {
+const editorConfig: any = {
   toolbar: {
     items: [
       "undo",

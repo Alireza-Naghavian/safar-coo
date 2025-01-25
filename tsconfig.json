@@ -5,8 +5,8 @@
       "dom.iterable",
       "esnext"
     ],
-    "types": [
-      "ckeditor__ckeditor5-core"
+    "typeRoots": [
+      "./node_modules/@types",
     ],
     "allowJs": true,
     "skipLibCheck": true,

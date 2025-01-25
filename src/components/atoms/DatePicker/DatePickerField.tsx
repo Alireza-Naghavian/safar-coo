@@ -23,7 +23,7 @@ function DatePickerField({ date, label, setDate,className,labeStyle }: DatePrick
         value={date}
         calendar={persian}
         plugins={[
-          <TimePicker position="bottom" />
+          <TimePicker position="bottom" key={Math.floor((Math.random()*100))} />
         ]}
         locale={persian_fa}
         minDate={Date.now()}
