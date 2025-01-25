@@ -21,7 +21,7 @@ export const userMenuItem : menuItems_T[] = [
 
   {title:"آمار بازدید مقاله",target:"/user-panel/blog-analytics",_id:"userProfile_blog_analytics",Icon:Chart},
 
-  {title:"مقالات ذخیره شده",target:"/user-panel/my-bookmark",_id:"userProfile_my_bookmark",Icon:Save2},
+  {title:"مقالات ذخیره شده",target:"/user-panel/my-bookmarks",_id:"userProfile_my_bookmark",Icon:Save2},
 ]
 export const MobileMenuItems = [
   ...menuItems,
