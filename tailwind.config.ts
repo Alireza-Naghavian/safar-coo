@@ -23,6 +23,7 @@ export default {
         Yekan: "Yekan",
         YekanSemi: "Yekan SemiBold",
         YekanBold: "Yekan Bold",
+        NotoSemi:"Noto Semi"
       },
       colors: {
         primary: {
