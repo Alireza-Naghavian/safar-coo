@@ -4,6 +4,7 @@ import HDivider from "@/components/atoms/Divider/HDivider";
 import SectionTitle from "@/components/atoms/SectionTitle/SectionTitle";
 import BlogCard from "@/components/molecules/cards/BlogCard";
 import FavUserExpSwiper from "./swipers/FavUserExpSwiper";
+import TourismSwiper from "./swipers/TourismSwiper";
 
 function CityInfo() {
   return (
@@ -35,40 +36,9 @@ function CityInfo() {
           href=""
           linkTitle="مشاهده همه"
         />
-        <div className="mt-20 w-full grid grid-cols-4 gap-x-8">
-          <BlogCard
-            cover="/images/blogCardSampleCover.png"
-            href=""
-            score={"4.2"}
-            title="غار نمکدان قشم"
-          variant="inner-caption"
-          badgeContent="جاذبه طبیعی"
-          />
-          <BlogCard
-            cover="/images/blogCardSampleCover.png"
-            href=""
-            score={"4.2"}
-            title="غار نمکدان قشم"
-          variant="inner-caption"
-          badgeContent="جاذبه طبیعی"
-          />
-          <BlogCard
-            cover="/images/blogCardSampleCover.png"
-            href=""
-            score={"4.2"}
-            title="غار نمکدان قشم"
-          variant="inner-caption"
-          badgeContent="جاذبه طبیعی"
-          />
-          <BlogCard
-            cover="/images/blogCardSampleCover.png"
-            href=""
-            score={"4.2"}
-            title="غار نمکدان قشم"
-          variant="inner-caption"
-          badgeContent="جاذبه طبیعی"
-          />
-        </div>
+        <div className="mt-20 relative">
+          <TourismSwiper/>
+     </div>
       </section>
       {/* traver user expriences */}
       <div className="mt-[66px]">
