@@ -33,7 +33,7 @@ function CityInfo() {
           title="جاذبه های گردشگری شیراز"
           className="tracking-tighter"
           hasLink
-          href=""
+          href="/tourism-articles"
           linkTitle="مشاهده همه"
         />
         <div className="mt-20 relative">
