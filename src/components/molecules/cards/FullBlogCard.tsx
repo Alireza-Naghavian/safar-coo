@@ -11,7 +11,7 @@ import BlogCard from './BlogCard';
   }: FullBLogCard_T) => {
     return (
       <div className="flex sm:flex-row flex-col sm:gap-y-0 gap-y-4 items-start
-       md:max-h-[285px]  gap-x-6 lg:pb-[73px] sm:pb-8 pb-4 border-b border-natural-gray3 ">
+       md:max-h-[285px]  gap-x-6 lg:pb-[73px] sm:pb-8 pb-4 border-b border-natural-gray3 last:border-b-0 ">
         <div className="md:max-w-[390px]  w-full  h-full">
           <BlogCard
             title={title}
