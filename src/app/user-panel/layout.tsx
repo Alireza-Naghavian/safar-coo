@@ -13,7 +13,7 @@ function UserPanelLayout({ children }: ChildrenProps) {
   return (
     <ClientLayout>
       <main className="max-w-[1920px] relative mx-auto overflow-x-hidden min-h-screen  ">
-        <section className="md:px-[113px] px-5 ">
+        <section className="md:px-[113px] px-5 "> 
           {/* content wrapper*/}
           <div className="  w-full mt-10">
             <BreadCrumb

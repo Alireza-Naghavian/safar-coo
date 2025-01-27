@@ -168,3 +168,12 @@ export const placePriceOptions = [
   {key:"natureCat",label:"غیر رایگان",_id:"paidOption"},
 
 ]
+
+
+// hero cities header info
+export const citiesInfoOptions = [
+  {src:"/images/pasargad.png",alt:"pasargad"},
+  {src:"/images/bloodBay.png",alt:"bloodBay"},
+  {src:"/images/plain.png",alt:"plain"},
+  {src:"/images/azadiTower.png",alt:"azadiTower"},
+]

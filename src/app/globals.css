@@ -38,6 +38,12 @@
       url("/fonts/woff/YekanBakhFaNum-Bold.woff") format("woff");
     font-display: swap;
   }
+  @font-face {
+    font-family: "Noto Semi";
+    src: local("Noto Semi"),
+      url("/fonts/ttf/NotoNastaliqUrdu-SemiBold.ttf") format("trueType");
+    font-display: swap;
+  }
 }
 @layer utilities {
   .defaultEffectStyles {
