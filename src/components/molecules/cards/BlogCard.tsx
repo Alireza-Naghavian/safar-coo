@@ -12,8 +12,9 @@ function BlogCard({ cover, title, variant,...rest }: BlogCard_T) {
       <Badge
         className="shadow-md z-50 self-end"
         title={rest.badgeContent as string}
+        variant="fill"
       />
-       {rest.hasScore &&
+       {rest.score &&
         <div className="flex  gap-x-1 absolute w-fit z-50 top-4">
         <span className="text-white text-btnText2xl ">{rest.score}</span>
           <Star1 className="size-[20px] fill-danger-1" />

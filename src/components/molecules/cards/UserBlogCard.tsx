@@ -1,3 +1,4 @@
+import Avatar from "@/components/atoms/Avatar/Avatar";
 import Badge from "@/components/atoms/Badge/Badge";
 import NavLink from "@/components/atoms/buttons&links/NavLink";
 import { ChildrenProps, ClassName_T } from "@/types/global.t";
@@ -21,19 +22,7 @@ function UserBlogCard({ title, desc, cover, ...rest }: UserBlogCard_T) {
          rounded-12 items-start ${rest.className}`}
     >
       {/*  user provider */}
-      <div className="w-fit relative lg:flex hidden items-center gap-x-2  ">
-        <Image
-          alt="blog-provider-image"
-          src={"/images/user_sample.png"}
-          width={45}
-          height={45}
-          sizes="45px"
-          className="rounded-full border border-primary-400"
-        />
-        <span className="text-natural-black text-bodyB2Regular tracking-tighter">
-          تجربه گر :{rest.provider}
-        </span>
-      </div>
+      <Avatar wrapperStyles="lg:flex hidden"  provider="تجربه گر :سعید"/>
       {/* main content */}
       <div className="w-full flex flex-col md:flex-row items-center md:gap-y-0 gap-y-6 gap-x-6 h-full max-h-[373px] ">
         {/* cover */}
@@ -45,6 +34,7 @@ function UserBlogCard({ title, desc, cover, ...rest }: UserBlogCard_T) {
             src={cover}
           />
           <Badge
+          variant="fill"
             className=" absolute top-3 left-[14px] !bg-white"
             title={rest.category}
           />

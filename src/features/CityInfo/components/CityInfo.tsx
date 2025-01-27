@@ -39,7 +39,6 @@ function CityInfo() {
           <BlogCard
             cover="/images/blogCardSampleCover.png"
             href=""
-            hasScore
             score={"4.2"}
             title="غار نمکدان قشم"
           variant="inner-caption"
@@ -48,7 +47,6 @@ function CityInfo() {
           <BlogCard
             cover="/images/blogCardSampleCover.png"
             href=""
-            hasScore
             score={"4.2"}
             title="غار نمکدان قشم"
           variant="inner-caption"
@@ -57,7 +55,6 @@ function CityInfo() {
           <BlogCard
             cover="/images/blogCardSampleCover.png"
             href=""
-            hasScore
             score={"4.2"}
             title="غار نمکدان قشم"
           variant="inner-caption"
@@ -66,7 +63,6 @@ function CityInfo() {
           <BlogCard
             cover="/images/blogCardSampleCover.png"
             href=""
-            hasScore
             score={"4.2"}
             title="غار نمکدان قشم"
           variant="inner-caption"
@@ -86,7 +82,7 @@ function CityInfo() {
           href=""
           linkTitle="مشاهده همه"
         />
-        <div className="mt-20 w-full relative">
+        <div className="mt-20 w-full relative pb-6 ">
         <FavUserExpSwiper/>
         </div>
       </section>

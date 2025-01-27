@@ -24,7 +24,7 @@ function SwiperWrapper({ nextClass, prevClass, ...rest }: SwiperWrapper_T) {
           loop={true}
           breakpoints={{
             320: {
-              slidesPerView: 1,
+              slidesPerView:1,
               spaceBetween: 10,
             },
             640: {
