@@ -1,4 +1,4 @@
-import CityInfo from '@/features/CityInfo/CityInfo'
+import CityInfo from '@/features/CityInfo/components/CityInfo'
 import React from 'react'
 
 function City() {
