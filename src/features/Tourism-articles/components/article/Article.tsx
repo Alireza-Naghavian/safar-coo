@@ -3,6 +3,7 @@ import ClientLayout from "@/components/layouts/ClientLayout";
 import ArticleHeader from "./ArticleHeader";
 import Image from "next/image";
 import ArticleContent from "./ArticleContent";
+import RateStar from "@/components/molecules/RateStar/RateStar";
 
 function Article() {
   return (
@@ -51,7 +52,7 @@ function Article() {
             />
           </div>
           <ArticleContent/>
-          {/* cover */}
+         <RateStar/>
         </div>
       </main>
     </ClientLayout>
