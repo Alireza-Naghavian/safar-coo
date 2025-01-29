@@ -11,7 +11,7 @@ import BlogCard from './BlogCard';
   }: FullBLogCard_T) => {
     return (
       <div className="flex sm:flex-row flex-col sm:gap-y-0 gap-y-4 items-start
-       md:max-h-[285px]  gap-x-6 lg:pb-[73px] sm:pb-8 pb-4 border-b border-natural-gray3 ">
+       md:max-h-[285px]  gap-x-6 lg:pb-[73px] sm:pb-8 pb-4 border-b border-natural-gray3 last:border-b-0 ">
         <div className="md:max-w-[390px]  w-full  h-full">
           <BlogCard
             title={title}
@@ -36,7 +36,7 @@ import BlogCard from './BlogCard';
             {desc}
           </p>
           {/* date & time */}
-          <div className="flex lg:flex-col lg:gap-x-0 gap-x-4 items-start gap-y-3">
+          <div className="fle lg:flex-col  lg:gap-x-0 gap-x-4 items-start gap-y-3">
             <div className="flex  gap-x-1">
               <span className="mt-0.5"><Calendar2 className='size-[18px] stroke-natural-gray2 '/></span>
               <span className="text-natural-gray3 sm:text-bodyB3Regular  ">

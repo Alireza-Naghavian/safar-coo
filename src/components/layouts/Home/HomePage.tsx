@@ -78,7 +78,7 @@ function HomePage() {
               title="مقالات جدید این ماه"
               hasLink
               linkTitle="مشاهده همه"
-              href=""
+              href="/tourism-articles"
               className="tracking-tighter"
             />
             <div className="flex flex-col md:gap-y-16 gap-y-[45px]">

@@ -7,11 +7,7 @@ import { userMenuItem } from "@/utils/constants";
 import LogoutBtn from "@/components/molecules/logoutBtn/LogoutBtn";
 import { HambergerMenu } from "iconsax-react";
 import { AnimatePresence, motion } from "motion/react";
-type MenuProps = {
-  isMenuOpen: boolean;
-  openMenu: () => void;
-  closeMenu: () => void;
-};
+import { MenuProps } from "../user-panel.t";
 const menuMotionVars = {
   open: { x: 100, display: "none"},
   close: { x: 0, display: "block" },
