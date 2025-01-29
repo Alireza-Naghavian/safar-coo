@@ -141,25 +141,25 @@ const editorConfig: any = {
       {
         model: "paragraph",
         title: "Paragraph",
-        class: "text-base leading-relaxed text-gray-700",
+        class: "lg:text-bodyB3Regular text-bodyB4Regular text-natural-black",
       },
       {
         model: "heading1",
         view: "h1",
         title: "Heading 1",
-        class: "text-3xl font-font-DanaBold  leading-tight text-gray-900",
+        class: "lg:text-h1Semi sm:text-h2Semi text-h3Semi font-YekanBold   leading-tight text-natural-black",
       },
       {
         model: "heading2",
         view: "h2",
         title: "Heading 2",
-        class: "text-2xl font-DanaMediumleading-snug text-gray-800",
+        class: "lg:text-h2Semi  sm:text-h3Semi text-h4semi text-natural-black",
       },
       {
         model: "heading3",
         view: "h3",
         title: "Heading 3",
-        class: "text-xl font-Dana leading-normal text-gray-700",
+        class: "lg:text-h3Semi  sm:text-h4Semi text-hB5semi text-natural-black",
       },
     ],
   },
@@ -167,9 +167,7 @@ const editorConfig: any = {
     toolbar: ["imageTextAlternative", "imageStyle:full", "imageStyle:side"],
     styles: {
         options: [
-            'inline', 'alignLeft', 'alignRight',
-            'alignCenter', 'alignBlockLeft', 'alignBlockRight',
-            'block', 'side',"full","side"
+           "full","side"
         ]
     }
   },

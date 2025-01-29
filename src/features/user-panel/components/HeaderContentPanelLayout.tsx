@@ -1,10 +1,6 @@
 import Divider from "@/components/atoms/Divider/Divider";
-import { ChildrenProps, ClassName_T } from "@/types/global.t";
-import React from "react";
-export type HeaderContent_T = Partial<ChildrenProps>&ClassName_T & {
-  title: string|React.ReactNode;
-  desc: string|null;
-};
+import { HeaderContent_T } from "../user-panel.t";
+
 function HeaderContentPanelLayout({ children, desc, title,className }: HeaderContent_T) {
   return (
     <>
