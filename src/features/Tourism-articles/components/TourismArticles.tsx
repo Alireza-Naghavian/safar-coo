@@ -36,7 +36,7 @@ function TourismArticles() {
                 date={new Date}
                 desc={`شیراز مهد فرهنگ، ادب و هنر فارسی، با هوایی آکنده از بوی عطر
                بهار نارنج در فصل بهار، هر مسافری را برای سفر به این شهر وسوسه می‌کند و...`}
-               href=""
+               href="/tourism-articles/about-shiraz"
                title="برای سفر به شیراز کجاها بریم؟"
                variant="full-detail"
                badgeContent="گردشگری"

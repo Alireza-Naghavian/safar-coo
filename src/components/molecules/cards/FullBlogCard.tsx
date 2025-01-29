@@ -36,7 +36,7 @@ import BlogCard from './BlogCard';
             {desc}
           </p>
           {/* date & time */}
-          <div className="flex lg:flex-col lg:gap-x-0 gap-x-4 items-start gap-y-3">
+          <div className="fle lg:flex-col  lg:gap-x-0 gap-x-4 items-start gap-y-3">
             <div className="flex  gap-x-1">
               <span className="mt-0.5"><Calendar2 className='size-[18px] stroke-natural-gray2 '/></span>
               <span className="text-natural-gray3 sm:text-bodyB3Regular  ">
