@@ -4,6 +4,9 @@ import ArticleHeader from "./ArticleHeader";
 import Image from "next/image";
 import ArticleContent from "./ArticleContent";
 import RateStar from "@/components/molecules/RateStar/RateStar";
+import RelatedArticles from "./RelatedArticles";
+import ArtilceCommentForm from "./ArtilceCommentForm";
+import ArticleComments from "../comments/ArticleComments";
 
 function Article() {
   return (
@@ -52,7 +55,10 @@ function Article() {
             />
           </div>
           <ArticleContent/>
+          <RelatedArticles/>
          <RateStar/>
+         <ArtilceCommentForm/>
+         <ArticleComments/>
         </div>
       </main>
     </ClientLayout>
