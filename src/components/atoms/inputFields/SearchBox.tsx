@@ -18,10 +18,7 @@ const searchBoxStyles = cva(
 
 function SearchBox({size,className,placeholder="جستجو کنید"}:SearchBox_T) {
   return (
-        <form>
         <input className={searchBoxStyles({className,size})} type="search"  placeholder={placeholder} />
-        </form>
-
   )
 }
 

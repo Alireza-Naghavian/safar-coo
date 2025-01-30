@@ -19,6 +19,9 @@ export default {
       "3xl": "1440px",
     },
     extend: {
+      backgroundImage:{
+        'iranology-bg': "url('/images/iranologyBg.png')",
+      },
       fontFamily: {
         Yekan: "Yekan",
         YekanSemi: "Yekan SemiBold",

@@ -157,11 +157,19 @@ export const articlesFilterOption = [
 
 
 export const ArticleCategories = [
-  {key:"touristCat",label:"گردشگری",_id:"touristCat"},
-  {key:"natureCat",label:"طبیعی",_id:"natureCat"},
-  {key:"historicalCat",label:"تاریخی",_id:"historicalCat"},
-  {key:"culturalCat",label:"فرهنگی",_id:"culturalCat"},
-  {key:"religousCat",label:"مذهبی",_id:"religousCat"},
+  {key:"touristCat",label:"گردشگری",_id:"touristCat",name:"touristCat"},
+  {key:"natureCat",label:"طبیعی",_id:"natureCat",name:"natureCat"},
+  {key:"historicalCat",label:"تاریخی",_id:"historicalCat",name:"historicalCat"},
+  {key:"culturalCat",label:"فرهنگی",_id:"culturalCat",name:"culturalCat"},
+  {key:"religousCat",label:"مذهبی",_id:"religousCat",name:"religousCat"},
+]
+export const recreationalCategories = [
+  {key:"resturantsCat",label:"رستوران ها",_id:"resturantsCat",name:"resturantsCat"},
+  {key:"shoppingMalls",label:"مراکز خرید",_id:"shoppingMalls",name:"shoppingMalls"},
+  {key:"coffeeShops",label:"کافه ها",_id:"coffeeShops",name:"coffeeShops"},
+  {key:"recreationalPlace",label:"مناطق تفریحی",_id:"recreationalPlace",name:"recreationalPlace"},
+  {key:"accommodations",label:"اقامتگاه ها",_id:"accommodations",name:"accommodations"},
+
 ]
 export const placePriceOptions = [
   {key:"touristCat",label:"رایگان",_id:"freeOption"},

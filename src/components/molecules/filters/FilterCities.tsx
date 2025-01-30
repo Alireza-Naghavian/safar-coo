@@ -16,11 +16,11 @@ const FilterCities = () => {
           <div className="rounded-4 p-4 flex flex-col  bg-primary-700 w-full">
             <span className=" text-white text-bodyB4semi">نوع جاذبه</span>
             <div className="max-w-[390px] mt-6 flex items-center gap-y-8 gap-x-10 flex-wrap">
-              <CustomSwitch  name="natural" title="طبیعی" hasTitle />
-              <CustomSwitch  name="historical" title="تاریخی" hasTitle />
-              <CustomSwitch  name="cultural" title="فرهنگی" hasTitle />
-              <CustomSwitch  name="tourism" title="گردشگری" hasTitle />
-              <CustomSwitch  name="religious" title="مذهبی" hasTitle />
+              <CustomSwitch  name="natural" label="طبیعی"  />
+              <CustomSwitch  name="historical" label="تاریخی"  />
+              <CustomSwitch  name="cultural" label="فرهنگی"  />
+              <CustomSwitch  name="tourism" label="گردشگری"  />
+              <CustomSwitch  name="religious" label="مذهبی"  />
             </div>
             <div className="self-end mt-[20px] w-[172px]">
               <MainBtn
