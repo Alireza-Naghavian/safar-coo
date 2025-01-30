@@ -2,10 +2,14 @@ import BreadCrumb from '@/components/atoms/Breadcrumb/BreadCrumb'
 import ClientLayout from '@/components/layouts/ClientLayout'
 import React from 'react'
 import IranologyFilterSection from './IranologyFilterSection'
+import PopularAttractions from './swipers/PopularAttractions'
+import TransitionRoute from '@/components/organisms/TransitionRoute/TransitionRoute'
+import PopRecreationalPlaces from './swipers/PopRecreationalPlaces'
 
 function IranologyMain() {
   return (
     <ClientLayout>
+        <TransitionRoute>
     <main className="max-w-[1920px] relative mx-auto overflow-x-hidden min-h-screen  ">
       <div className="md:px-[113px] px-5">
         <div className="mt-10 w-full">
@@ -29,8 +33,11 @@ function IranologyMain() {
           مکانی که میخوای رو پیدا کنی.
         </p>
         <IranologyFilterSection/>
+        <PopularAttractions/>
+        <PopRecreationalPlaces/>
       </div>
     </main>
+    </TransitionRoute>
   </ClientLayout>
   )
 }
