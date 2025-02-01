@@ -46,9 +46,7 @@ const Modal: React.FC<Modal_T> = (props) => {
         isShow ? "visible opacity-100" : "invisible opacity-0 "
       } z-[60] fixed inset-0 tr-500`}
     >
-      <Overlay className="!tr-400" onClose={()=>{
-        if(isClickable) onClose
-      } } openCondition={isShow} />
+      <Overlay className="!tr-400" onClose={() => isClickable &&onClose && onClose()} openCondition={isShow} />
       <div className={modalStyle({ className, effect })}>
         {React.Children.map(children, (child) => {
           return React.isValidElement(child)

@@ -1,17 +1,16 @@
 "use client";
 import MainBtn from "@/components/atoms/buttons&links/MainBtn";
 import SearchBox from "@/components/atoms/inputFields/SearchBox";
-import CustomSwitch, { Switch_T } from "@/components/atoms/Switch/CustomSwitch";
-import { Edit2 } from "iconsax-react";
-import React from "react";
-import { FilterSwitchBox_T } from "../iranology.t";
-import { ArticleCategories, recreationalCategories } from "@/utils/constants";
-import useDisclosure from "@/hooks/useDisclosure";
 import Loader from "@/components/atoms/Loader/Loader";
 import Spinner from "@/components/atoms/Loader/Spinner";
+import CustomSwitch from "@/components/atoms/Switch/CustomSwitch";
+import useDisclosure from "@/hooks/useDisclosure";
+import { ArticleCategories, recreationalCategories } from "@/utils/constants";
+import { Edit2 } from "iconsax-react";
+import { FilterSwitchBox_T } from "../iranology.t";
 
 function IranologyFilterSection() {
-  const { isOpen: isSearching, close, open } = useDisclosure(false);
+  const { isOpen: isSearching, open } = useDisclosure(false);
   return (
     <>
       <Loader

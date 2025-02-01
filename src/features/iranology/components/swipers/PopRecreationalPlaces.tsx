@@ -1,10 +1,8 @@
 "use client"
 import SwiperNavigationBtns from '@/components/atoms/buttons&links/SwiperNavigationBtns'
 import SectionTitle from '@/components/atoms/SectionTitle/SectionTitle'
-import BlogCard from '@/components/molecules/cards/BlogCard'
 import TrExprienceCard from '@/components/molecules/cards/TrExprienceCard'
 import SwiperWrapper from '@/components/molecules/swiper/SwiperWrapper'
-import React from 'react'
 import { SwiperSlide } from 'swiper/react'
 const nextId = `swiper-button-next-rereationalPlaces`;
 const prevId = `swiper-button-prev-rereationalPlaces`;

@@ -1,4 +1,5 @@
 
+import { Switch_T } from "@/components/atoms/Switch/CustomSwitch";
 import { FooterLinks_T, menuItems_T } from "@/types/constants.t";
 import { Calendar, Chart, Document, DocumentText, Map, Mobile, Notification, ProfileCircle, Save2, Smileys, Ticket } from "iconsax-react";
 export const customeBlurDataURL =
@@ -170,6 +171,13 @@ export const recreationalCategories = [
   {key:"recreationalPlace",label:"مناطق تفریحی",_id:"recreationalPlace",name:"recreationalPlace"},
   {key:"accommodations",label:"اقامتگاه ها",_id:"accommodations",name:"accommodations"},
 
+]
+
+export const categories = [...ArticleCategories,recreationalCategories].flat()
+export const sortByOptions = [
+  {key:"latest",label:"جدیدترین",_id:"latest",name:"latest"},
+  {key:"earliest",label:"قدیمی ترین",_id:"earliest",name:"earliest"},
+  {key:"byUsers",label:"از نگاه کاربران",_id:"byUsers",name:"byUsers"},
 ]
 export const placePriceOptions = [
   {key:"touristCat",label:"رایگان",_id:"freeOption"},

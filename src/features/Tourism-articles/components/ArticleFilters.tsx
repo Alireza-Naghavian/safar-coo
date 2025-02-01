@@ -13,13 +13,13 @@ function ArticleFilters() {
 
       <form key={"filterArticleForm"}>
         <div className="max-w-[590px] mt-6 flex items-center gap-y-8 gap-x-8 flex-wrap">
-          <CustomSwitch name="natural" title="طبیعی" hasTitle />
-          <CustomSwitch name="historical" title="تاریخی" hasTitle />
-          <CustomSwitch name="cultural" title="فرهنگی" hasTitle />
-          <CustomSwitch name="tourism" title="گردشگری" hasTitle />
-          <CustomSwitch name="religious" title="مذهبی" hasTitle />
-          <CustomSwitch name="cuisines" title="غذا و خوراکی" hasTitle />
-          <CustomSwitch name="celebrities" title="مشاهیر" hasTitle />
+          <CustomSwitch name="natural" label="طبیعی"  />
+          <CustomSwitch name="historical" label="تاریخی"  />
+          <CustomSwitch name="cultural" label="فرهنگی"  />
+          <CustomSwitch name="tourism" label="گردشگری"  />
+          <CustomSwitch name="religious" label="مذهبی"  />
+          <CustomSwitch name="cuisines" label="غذا و خوراکی"  />
+          <CustomSwitch name="celebrities" label="مشاهیر"  />
         </div>
         <MainBtn
           size="lg"
