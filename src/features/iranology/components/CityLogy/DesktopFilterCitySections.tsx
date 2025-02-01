@@ -10,7 +10,7 @@ function DesktopFilterCitySections() {
   const { isOpen: isSortBySelectet, toggle: sortByToggle } =useDisclosure(false);
   return (
     <div
-      className="sticky h-full w-full max-w-[20%]
+      className="relative h-full  overflow-y-auto w-full
     flex flex-col items-startf px-8 py-10 gap-y-8
     rounded-12 bg-accent-200"
     >
