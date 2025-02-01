@@ -2,6 +2,7 @@
 import SwiperNavigationBtns from '@/components/atoms/buttons&links/SwiperNavigationBtns'
 import SectionTitle from '@/components/atoms/SectionTitle/SectionTitle'
 import BlogCard from '@/components/molecules/cards/BlogCard'
+import TrExprienceCard from '@/components/molecules/cards/TrExprienceCard'
 import SwiperWrapper from '@/components/molecules/swiper/SwiperWrapper'
 import React from 'react'
 import { SwiperSlide } from 'swiper/react'
@@ -10,7 +11,7 @@ const prevId = `swiper-button-prev-rereationalPlaces`;
 function PopRecreationalPlaces() {
   return (
     <section className="relative w-full mt-[104px] flex flex-col">
-    <SectionTitle title="محبوب ترین مکان ها" className="tracking-tighter " />
+    <SectionTitle title="برترین ها از نگاه کاربران" className="tracking-[-0.09em] " />
     <div className="w-full relative mt-[92px]">
       <SwiperWrapper
         className="sm:gap-x-12"
@@ -18,73 +19,66 @@ function PopRecreationalPlaces() {
         nextClass={nextId}
       >
         <SwiperSlide>
-          <BlogCard
-            cover="/images/blogCardSampleCover.png"
+        <TrExprienceCard
+            title="تجربه بازدید از کاخ چهلستون-اصفهان"
+            cover="/images/sotoon.png"
             href=""
-            score={"4.2"}
-            title="غار نمکدان قشم"
-            variant="inner-caption"
-            badgeContent="جاذبه طبیعی"
+            provider="علیرضا رضایی"
+            badgeContent="جاذبه تاریخی"
           />
         </SwiperSlide>
         <SwiperSlide>
-          <BlogCard
-            cover="/images/blogCardSampleCover.png"
+        <TrExprienceCard
+            title="تجربه بازدید از کاخ چهلستون-اصفهان"
+            cover="/images/sotoon.png"
             href=""
-            score={"4.2"}
-            title="غار نمکدان قشم"
-            variant="inner-caption"
-            badgeContent="جاذبه طبیعی"
+            provider="علیرضا رضایی"
+            badgeContent="جاذبه تاریخی"
           />
         </SwiperSlide>
         <SwiperSlide>
-          <BlogCard
-            cover="/images/blogCardSampleCover.png"
+        <TrExprienceCard
+            title="تجربه بازدید از کاخ چهلستون-اصفهان"
+            cover="/images/sotoon.png"
             href=""
-            score={"4.2"}
-            title="غار نمکدان قشم"
-            variant="inner-caption"
-            badgeContent="جاذبه طبیعی"
+            provider="علیرضا رضایی"
+            badgeContent="جاذبه تاریخی"
           />
         </SwiperSlide>
         <SwiperSlide>
-          <BlogCard
-            cover="/images/blogCardSampleCover.png"
+        <TrExprienceCard
+            title="تجربه بازدید از کاخ چهلستون-اصفهان"
+            cover="/images/sotoon.png"
             href=""
-            score={"4.2"}
-            title="غار نمکدان قشم"
-            variant="inner-caption"
-            badgeContent="جاذبه طبیعی"
+            provider="علیرضا رضایی"
+            badgeContent="جاذبه تاریخی"
           />
         </SwiperSlide>
         <SwiperSlide>
-          <BlogCard
-            cover="/images/blogCardSampleCover.png"
+        <TrExprienceCard
+            title="تجربه بازدید از کاخ چهلستون-اصفهان"
+            cover="/images/sotoon.png"
             href=""
-            score={"4.2"}
-            title="غار نمکدان قشم"
-            variant="inner-caption"
-            badgeContent="جاذبه طبیعی"
+            provider="علیرضا رضایی"
+            badgeContent="جاذبه تاریخی"
           />
         </SwiperSlide>
         <SwiperSlide>
-          <BlogCard
-            cover="/images/blogCardSampleCover.png"
+        <TrExprienceCard
+            title="تجربه بازدید از کاخ چهلستون-اصفهان"
+            cover="/images/sotoon.png"
             href=""
-            score={"4.2"}
-            title="غار نمکدان قشم"
-            variant="inner-caption"
-            badgeContent="جاذبه طبیعی"
+            provider="علیرضا رضایی"
+            badgeContent="جاذبه تاریخی"
           />
         </SwiperSlide>
         <SwiperSlide>
-          <BlogCard
-            cover="/images/blogCardSampleCover.png"
+        <TrExprienceCard
+            title="تجربه بازدید از کاخ چهلستون-اصفهان"
+            cover="/images/sotoon.png"
             href=""
-            score={"4.2"}
-            title="غار نمکدان قشم"
-            variant="inner-caption"
-            badgeContent="جاذبه طبیعی"
+            provider="علیرضا رضایی"
+            badgeContent="جاذبه تاریخی"
           />
         </SwiperSlide>
       </SwiperWrapper>

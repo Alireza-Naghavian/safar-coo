@@ -10,7 +10,7 @@ const prevId = `swiper-button-prev-popAttractions`;
 function PopularAttractions() {
   return (
     <section className="relative w-full mt-[104px] flex flex-col">
-      <SectionTitle title="جاذبه های برتر" className="tracking-tighter " />
+      <SectionTitle title="برترین های از نگاه سفرکو" className="tracking-[-0.09em] " />
       <div className="w-full relative mt-[92px]">
         <SwiperWrapper
           className="sm:gap-x-12"

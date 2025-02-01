@@ -21,6 +21,7 @@ function LogoutBtn({ isMenuOpen }: { isMenuOpen?: boolean }) {
         )}
       </button>
       <MainModal 
+      isClickable
        effect="ease_out"
         isShow={isModalShow}
         className="w-full sm:max-w-[553px]   max-w-[271px]
@@ -28,7 +29,7 @@ function LogoutBtn({ isMenuOpen }: { isMenuOpen?: boolean }) {
         px-8 py-4 "
          onClose={close}>
         
-        <MainModal.Header onClose={close}>
+        <MainModal.Header isClickable onClose={close}>
           <></>
         </MainModal.Header>
         <MainModal.Body>
