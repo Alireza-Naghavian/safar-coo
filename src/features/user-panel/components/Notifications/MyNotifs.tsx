@@ -21,14 +21,14 @@ function MyNotifs() {
           <CustomSwitch
             className="text-natural-black sm:!text-bodyB3semi !text-bodyB4semi"
             name="seenNotif"
-            title="فقط خوانده نشده ها"
-            hasTitle
+            label="فقط خوانده نشده ها"
+            
           />
           <CustomSwitch
             className="text-natural-black sm:!text-bodyB3semi !text-bodyB4semi"
             name="unSeenNotif"
-            title="فقط خوانده شده ها"
-            hasTitle
+            label="فقط خوانده شده ها"
+            
           />
         </div>
       </HeaderContentPanelLayout>

@@ -33,6 +33,7 @@ function NavBtnGroup() {
       {/* modal */}
 
       <MainModal
+      isClickable
         className={`
           md:p-8 p-4 relative w-full max-w-[510px] 
           !top-8 
@@ -43,7 +44,7 @@ function NavBtnGroup() {
         onClose={close}
         effect="ease_out"
       >
-        <MainModal.Header onClose={close}>
+        <MainModal.Header isClickable onClose={close}>
           <></>
         </MainModal.Header>
         <MainModal.Body>

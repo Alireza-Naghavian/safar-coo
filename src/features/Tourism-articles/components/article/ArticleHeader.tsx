@@ -4,20 +4,22 @@ import React from "react";
 import { ArticleHeader_T } from "../../tourism-articles.t";
 import Avatar from "@/components/atoms/Avatar/Avatar";
 
-function ArticleHeader({ desc, provider, title ,date}: ArticleHeader_T) {
+function ArticleHeader({ desc, provider, title ,date,children}: ArticleHeader_T) {
   return (
     <div className="relative w-full  flex flex-col">
       <div
-        className="mt-[88px]  w-full relative flex flex-col gap-y-8
-       child:text-natural-black pb-3 border-b border-natural-gray2">
+        className={`mt-[88px]  w-full relative flex ${desc ? "flex-col" : "sm:flex-row flex-col justify-between"} gap-y-8
+       child:text-natural-black pb-3 border-b border-natural-gray2`}>
         <h1 className="text-right md:text-D4Semi text-h3Semi">{title}</h1>
         <div className="flex items-end justify-between flex-wrap gap-y-4">
+         {desc &&
           <p className="w-full max-w-[590px] md:text-bodyB2Regular text-bodyB3Regular">
-            {desc}
-          </p>
-          <div className="flex items-center ">
+          {desc}
+        </p>}
+          <div className="flex sm:items-center sm:flex-row flex-col gap-y-4  mr-auto ">
             {/* share btn */}
-            <div className="w-fit pl-3 border-l-2 border-natural-gray1">
+            <div className="w-fit flex sm:justify-end justify-start flex-wrap gap-x-4 gap-y-2 pl-3 sm:border-l-2 sm:border-natural-gray1">
+            {children}
               <MainBtn
                 size="md"
                 state="normal"
@@ -31,6 +33,7 @@ function ArticleHeader({ desc, provider, title ,date}: ArticleHeader_T) {
                 />
                 <span className="group-hover:text-white sm:text-btnTextXl text-btnTextM">اشتراک گذاری</span>
               </MainBtn>
+           
             </div>
             {/* provider */}
             <Avatar

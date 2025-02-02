@@ -1,10 +1,9 @@
 "use client";
-import React from "react";
+import { ChildrenProps, ClassName_T } from "@/types/global.t";
 import { Suspense } from "react";
 import { Autoplay, Navigation } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper } from "swiper/react";
 import "./swiper-bundle.min.css";
-import { ChildrenProps, ClassName_T } from "@/types/global.t";
 type SwiperWrapper_T = Partial<ChildrenProps> &
   ClassName_T & {
     nextClass: string;

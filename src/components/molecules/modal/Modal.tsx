@@ -8,7 +8,7 @@ import Close_square from "../../../../public/icons/svgs/Close_square";
 import { ChildrenProps } from "@/types/global.t";
 import ClientOnlyPortal from "@/utils/ClientOnlyPortal";
 const Modal: React.FC<Modal_T> = (props) => {
-  const { children, effect, isShow, onClose, className } = props;
+  const { children, effect, isShow, onClose, className,isClickable } = props;
   // hidden scroll when modal is active
   useScrollLocker(isShow);
 
@@ -23,6 +23,9 @@ const Modal: React.FC<Modal_T> = (props) => {
         effect: {
           bottom_to_top: `${
             isShow ? `bottom-0 lg:top-20` : `-bottom-full lg:top-60`
+          }`,
+          top_to_bottom:`${
+                 isShow ? `top-10 lg:bottom-20` : `-top-full lg:bottom-60`
           }`,
           ease_out: `${
             isShow ? "top-16 transform scale-100" : `top-40 transform scale-50 `
@@ -43,7 +46,7 @@ const Modal: React.FC<Modal_T> = (props) => {
         isShow ? "visible opacity-100" : "invisible opacity-0 "
       } z-[60] fixed inset-0 tr-500`}
     >
-      <Overlay className="!tr-400" onClose={onClose} openCondition={isShow} />
+      <Overlay className="!tr-400" onClose={() => isClickable &&onClose && onClose()} openCondition={isShow} />
       <div className={modalStyle({ className, effect })}>
         {React.Children.map(children, (child) => {
           return React.isValidElement(child)

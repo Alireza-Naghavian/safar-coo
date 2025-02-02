@@ -3,21 +3,20 @@ import React, { useState } from "react";
 import { Switch } from "@nextui-org/react";
 import { ClassName_T } from "@/types/global.t";
 
-type Switch_T = ClassName_T & {
-  title: string;
-  hasTitle?: boolean;
+export type Switch_T = ClassName_T & {
+  label: string|null;
   name: string;
-
+  key?:string
 
 };
-function CustomSwitch({ hasTitle = true, title, className, name }: Switch_T) {
+function CustomSwitch({ label, className, name }: Switch_T) {
   const [isSelected, setIsSelected] = useState(false);
 
   return (
     <div className="flex items-center gap-x-1">
-      {hasTitle && <label htmlFor={name} className={`text-white tr-300 
+      {label && <label htmlFor={name} className={`text-white tr-300 
      ${className} ${isSelected && "!text-secondary-700"}`}>
-            {title}
+            {label}
 
     </label>}
       <Switch
