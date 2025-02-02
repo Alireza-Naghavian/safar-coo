@@ -6,6 +6,7 @@ import IranologyIcon from '../../../../../public/icons/svgs/IranologyIcon'
 import { CloudDrizzle } from 'iconsax-react'
 import DesktopFilterCitySections from './DesktopFilterCitySections'
 import CityLogyList from './CityLogyList'
+import MobileFilterCitySections from './MobileFilterCitySections'
 
 function CityLogy() {
   return (
@@ -41,9 +42,14 @@ function CityLogy() {
         </div>
         </div>
         {/*main content */}
-        <section className=' w-full flex items-start gap-x-10 mt-20 md:mt-[100px]'>
+        <section className=' w-full flex lg:flex-row flex-col items-start gap-x-10 mt-20 md:mt-[100px]'>
+            {/* desktop filter section */}
             <div className="w-full lg:block hidden lg:max-w-[20%] h-full max-h-[700px] overflow-y-auto sticky top-2  ">
             <DesktopFilterCitySections/>
+            </div>
+            {/* mobile filter section */}
+            <div className="relative block lg:hidden mb-8">
+                <MobileFilterCitySections/>
             </div>
             <div className="w-full lg:max-w-[80%] relative z-40">
                 <CityLogyList/>

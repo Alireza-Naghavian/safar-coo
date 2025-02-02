@@ -36,7 +36,7 @@ type FilterList_T = ClassName_T & {
   toggle: () => void;
   listContent: Options_T[];
 };
-const FilterList = ({
+export const FilterList = ({
   title,
   isSelected,
   listContent,
