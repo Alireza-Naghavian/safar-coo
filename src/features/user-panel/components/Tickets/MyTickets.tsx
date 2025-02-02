@@ -21,14 +21,14 @@ function MyTickets() {
           <CustomSwitch
             className="text-natural-black sm:!text-bodyB3semi !text-bodyB4semi"
             name="seen"
-            title="فقط پاسخ داده شده"
-            hasTitle
+            label="فقط پاسخ داده شده"
+            
           />
           <CustomSwitch
             className="text-natural-black sm:!text-bodyB3semi !text-bodyB4semi"
             name="unSeen"
-            title="فقط پاسخ داده نشده"
-            hasTitle
+            label="فقط پاسخ داده نشده"
+            
           />
         </div>
       </HeaderContentPanelLayout>

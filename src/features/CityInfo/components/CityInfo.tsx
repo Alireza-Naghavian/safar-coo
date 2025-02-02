@@ -1,8 +1,7 @@
 import BreadCrumb from "@/components/atoms/Breadcrumb/BreadCrumb";
-import HeroCitiesHeader from "./HeroCitiesHeader";
 import HDivider from "@/components/atoms/Divider/HDivider";
 import SectionTitle from "@/components/atoms/SectionTitle/SectionTitle";
-import BlogCard from "@/components/molecules/cards/BlogCard";
+import HeroCitiesHeader from "./HeroCitiesHeader";
 import FavUserExpSwiper from "./swipers/FavUserExpSwiper";
 import TourismSwiper from "./swipers/TourismSwiper";
 

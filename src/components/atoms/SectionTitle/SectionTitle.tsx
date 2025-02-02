@@ -17,7 +17,7 @@ function SectionTitle({
 }: SectionTitle_T) {
   return (
     <div className="w-full flex sm:flex-row flex-col sm:items-center sm:justify-between">
-      <h2 className={`${className} lg:text-h1Semi md:text-h2Semi text-h4Semi  text-natural-black text-right`}>
+      <h2 className={`${className} lg:text-h1Semi md:text-h2Semi text-h3Semi  text-natural-black text-right`}>
         {title}
       </h2>
       {hasLink && (
