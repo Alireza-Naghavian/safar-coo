@@ -25,7 +25,7 @@ function IranologyFilterSection() {
       />
       <section
         className={`
-    w-full relative h-full lg:max-h-[700px] flex flex-col rounded-12  mt-10 sm:mt-[88px]
+    w-full relative h-full lg:max-h-[700px] flex flex-col rounded-12  mt-10 sm:mt-22
      gap-y-12 lg:gap-y-[123px] lg:px-8 lg:py-10 bg-iranology-bg  bg-no-repeat bg-cover
         md:px-6 px-3 md:py-8 py-6
     `}
