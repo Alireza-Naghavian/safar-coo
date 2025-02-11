@@ -7,10 +7,11 @@ import { ArticleCategories, recreationalCategories } from "@/utils/constants";
 import { Edit } from "iconsax-react";
 import MapIcon from "../../../../../public/icons/svgs/MapIcon";
 
-function FilterCityModal() {
+function  FilterCityModal() {
   const { isOpen: isModalOpen, open, close } = useDisclosure();
   return (
-    <section className="w-full relative flex flex-wrap justify-between items-center mt-24">
+    <section className="w-full relative flex flex-wrap justify-between 
+    items-center mt-24 pb-4 border-b border-natural-gray2">
       <div className="flex items-center gap-x-1">
         <MapIcon />
         <h1 className=" text-bodyB2semi sm:text-bodyB1semi md:text-h1B text-natural-black">

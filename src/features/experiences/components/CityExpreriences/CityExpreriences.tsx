@@ -4,7 +4,7 @@ import ClientLayout from "@/components/layouts/ClientLayout";
 import TransitionRoute from "@/components/organisms/TransitionRoute/TransitionRoute";
 import React from "react";
 import FilterCityModal from "./FilterCityModal";
-
+import ResultOfFilterExps from "./ResultOfFilterExps";
 function CityExpreriences() {
   return (
     <ClientLayout>
@@ -27,6 +27,9 @@ function CityExpreriences() {
               />
             </div>
             <FilterCityModal/>
+            <div className="mt-24 ">
+                <ResultOfFilterExps/>
+            </div>
           </div>
         </main>
       </TransitionRoute>
