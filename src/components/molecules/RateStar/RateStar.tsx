@@ -23,7 +23,7 @@ function RateStar() {
     }}
     animate={isShow ? "animate":"initial"}
     className={` w-full mx-auto max-w-[402px] flex 
-        flex-col gap-y-10 mt-[88px] `}>
+        flex-col gap-y-10 mt-22 `}>
           <p className="text-center md:text-h3Semi text-bodyB3semi
            text-natural-black">به این مقاله چند امتیاز میدی؟ </p>
               <div className="box-center">

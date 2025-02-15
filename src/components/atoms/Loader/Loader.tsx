@@ -14,7 +14,7 @@ function Loader({ isShow, spinner, className, title }: Loader_T) {
       isShow={isShow}
       className={`  w-full
             rounded-12 bg-white  relative
-            md:max-w-[851px] max-w-[400px] md:py-[88px] md:px-[160px] p-7
+            md:max-w-[851px] max-w-[400px] md:py-22 md:px-[160px] p-7
             overflow-y-auto ${className}`} 
     >
 

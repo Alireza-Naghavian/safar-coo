@@ -8,7 +8,7 @@ function ArticleHeader({ desc, provider, title ,date,children}: ArticleHeader_T)
   return (
     <div className="relative w-full  flex flex-col">
       <div
-        className={`mt-[88px]  w-full relative flex ${desc ? "flex-col" : "sm:flex-row flex-col justify-between"} gap-y-8
+        className={`mt-22  w-full relative flex ${desc ? "flex-col" : "sm:flex-row flex-col justify-between"} gap-y-8
        child:text-natural-black pb-3 border-b border-natural-gray2`}>
         <h1 className="text-right md:text-D4Semi text-h3Semi">{title}</h1>
         <div className="flex items-end justify-between flex-wrap gap-y-4">

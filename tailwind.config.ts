@@ -137,6 +137,7 @@ export default {
       },
       spacing: {
         smSize: "16px",
+        22:"88px"
       },
       borderRadius:{
         2:"2px",
