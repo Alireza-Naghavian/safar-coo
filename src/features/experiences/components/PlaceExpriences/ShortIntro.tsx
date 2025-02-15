@@ -2,14 +2,7 @@ import Badge from "@/components/atoms/Badge/Badge";
 import MainBtn from "@/components/atoms/buttons&links/MainBtn";
 import { ButtonState_T } from "@/types/buttons.t";
 import { ChildrenProps, Icon_T } from "@/types/global.t";
-import {
-  Clock,
-  DollarCircle,
-  Location,
-  Map,
-  Routing,
-  Star1,
-} from "iconsax-react";
+import {Clock,DollarCircle,Location,Map,Routing,Star1,} from "iconsax-react";
 import Image from "next/image";
 import { PlaceIntro_T, UtilBtn_T } from "../../experiences.t";
 
