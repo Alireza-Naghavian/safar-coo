@@ -22,7 +22,7 @@ function IranologyMain() {
           />
         </div>
         <p
-          className="lg:max-w-[900]  w-full mt-10 sm:mt-[88px] relative text-bodyB4semi
+          className="lg:max-w-[900]  w-full mt-10 sm:mt-22 relative text-bodyB4semi
        md:text-bodyB1semi lg:text-h4Semi text-natural-black text-right"
         >
           در بخش <span className="text-primary-500">ایران شناسی</span>، ما

@@ -3,11 +3,10 @@ import MainBtn from "@/components/atoms/buttons&links/MainBtn";
 import SearchBox from "@/components/atoms/inputFields/SearchBox";
 import Loader from "@/components/atoms/Loader/Loader";
 import Spinner from "@/components/atoms/Loader/Spinner";
-import CustomSwitch from "@/components/atoms/Switch/CustomSwitch";
 import useDisclosure from "@/hooks/useDisclosure";
 import { ArticleCategories, recreationalCategories } from "@/utils/constants";
 import { Edit2 } from "iconsax-react";
-import { FilterSwitchBox_T } from "../iranology.t";
+import FilterSwitchBox from "@/components/molecules/FilterSwitchBox/FilterSwitchBox";
 
 function IranologyFilterSection() {
   const { isOpen: isSearching, open } = useDisclosure(false);
@@ -26,7 +25,7 @@ function IranologyFilterSection() {
       />
       <section
         className={`
-    w-full relative h-full lg:max-h-[700px] flex flex-col rounded-12  mt-10 sm:mt-[88px]
+    w-full relative h-full lg:max-h-[700px] flex flex-col rounded-12  mt-10 sm:mt-22
      gap-y-12 lg:gap-y-[123px] lg:px-8 lg:py-10 bg-iranology-bg  bg-no-repeat bg-cover
         md:px-6 px-3 md:py-8 py-6
     `}
@@ -80,28 +79,5 @@ function IranologyFilterSection() {
   );
 }
 
-const FilterSwitchBox = ({ label, contentBox, ...rest }: FilterSwitchBox_T) => {
-  return (
-    <div
-      className={`w-full relative  p-3 rounded-8
-         bg-white flex flex-col gap-y-6  items-start text-natural-black ${rest.className}`}
-    >
-      <span className="text-right md:text-bodyB3semi text-bodyB4semi">
-        {label}
-      </span>
-      <div className="flex  flex-wrap w-full items-center gap-x-6 gap-y-3 ">
-        {contentBox.map((content) => {
-          return (
-            <CustomSwitch
-              key={content.key as string}
-              name={content.name}
-              label={content.label}
-              className="w-full !text-natural-black"
-            />
-          );
-        })}
-      </div>
-    </div>
-  );
-};
+
 export default IranologyFilterSection;
