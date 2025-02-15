@@ -1,5 +1,4 @@
 
-import { Switch_T } from "@/components/atoms/Switch/CustomSwitch";
 import { FooterLinks_T, menuItems_T } from "@/types/constants.t";
 import { Calendar, Chart, Document, DocumentText, Map, Mobile, Notification, ProfileCircle, Save2, Smileys, Ticket } from "iconsax-react";
 export const customeBlurDataURL =
