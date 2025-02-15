@@ -16,16 +16,16 @@ import { PlaceIntro_T, UtilBtn_T } from "../../experiences.t";
 function ShortIntro({ cover, title, visitCost, ...rest }: PlaceIntro_T) {
   return (
     <section
-      className={`flex items-center gap-x-14 md:mt-[120px]  ${rest.className}`}
+      className={`flex lg:flex-row flex-col items-center gap-x-14 lg:mt-[120px]  md:mt-12 mt-8 ${rest.className}`}
     >
-      <div className="relative  rounded-12   md:w-[60%] h-full">
+      <div className="relative  rounded-12  w-full lg:w-[60%] h-full">
         <Image
           fill
           quality={100}
           priority
           src={cover}
           alt={title as string}
-          className="rounded-12 !relative !max-h-[455px]  !w-full !h-full  "
+          className="rounded-12 !relative sm:!max-h-[455px] !max-h-[178px]  !w-full !h-full  "
         />
         <Badge
           title={<BadgeContent score={rest.score as number} />}
@@ -34,7 +34,7 @@ function ShortIntro({ cover, title, visitCost, ...rest }: PlaceIntro_T) {
         />
       </div>
       {/* short desc */}
-      <div className="md:w-[40%]">
+      <div className="lg:w-[40%] w-full lg:mt-0 mt-8">
         <div
           className="flex flex-col items-start w-full gap-y-6 first:pb-0 child:pb-4 
                     child:border-b child:border-natural-gray2 child:w-full"
@@ -43,10 +43,10 @@ function ShortIntro({ cover, title, visitCost, ...rest }: PlaceIntro_T) {
             اطلاعات مکان گردشگری
           </h3>
           <DescItem Icon={Location}>
-            <p className="w-full text-bodyB2Regular">{rest.address}</p>
+            <p className="w-full sm:text-bodyB2Regular text-bodyB3Regular">{rest.address}</p>
           </DescItem>
           <DescItem Icon={DollarCircle}>
-            <p className="w-full text-bodyB2Regular">
+            <p className="w-full sm:text-bodyB2Regular text-bodyB3Regular">
               بازدید از این جاذبه گردشگری &nbsp;
               <span className="text-accent-400">
                 {visitCost === "FREE" ? "رایگان" : "غیر رایگان"}
@@ -55,7 +55,7 @@ function ShortIntro({ cover, title, visitCost, ...rest }: PlaceIntro_T) {
             </p>
           </DescItem>
           <DescItem Icon={Clock}>
-            <p className="w-full text-bodyB2Regular">
+            <p className="w-full sm:text-bodyB2Regular text-bodyB3Regular">
               ساعت فعالیت:
               <span className="text-accent-400">
                 از &nbsp;
@@ -76,7 +76,7 @@ function ShortIntro({ cover, title, visitCost, ...rest }: PlaceIntro_T) {
             </p>
           </DescItem>
         </div>
-        <div className="mt-6 flex items-center gap-x-6">
+        <div className="mt-6 flex flex-wrap justify-center gap-y-4 items-center gap-x-6">
           <UtilBtn
             className="px-3 py-2 bg-secondary-300 "
             title=" نمایش آدرس روی نقشه "

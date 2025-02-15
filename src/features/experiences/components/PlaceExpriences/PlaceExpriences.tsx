@@ -32,15 +32,16 @@ function PlaceExpriences() {
             </div>
             {/* header */}
             <section className="w-full relative flex flex-col gap-y-8 mt-22 pb-6 border-b border-b-natural-gray2">
-              <div className="w-fit flex items-center gap-x-3">
-                <Avatar />
-                <span className="text-right text-bodyB3Regular text-natural-black">
-                  تجربه گر :سعید
-                </span>
+              <div className="w-fit ">
+                <Avatar
+                  avatarHeight={30}
+                  avatarWidth={30}
+                  provider={" تجربه گر :سعید"}
+                />
               </div>
-              <div className="w-full relative flex justify-between">
+              <div className="w-full relative flex lg:flex-row flex-col gap-y-4 justify-between">
                 <SectionTitle title="تجربه بازدید از کلیسای وانک اصفهان" />
-                <div className="w-fit flex sm:justify-end justify-start  gap-x-4 gap-y-2">
+                <div className="w-full flex  sm:justify-end items-end justify-center mr-auto  gap-x-4 gap-y-2">
                   <BtnBox
                     title="اشتراک گذاری"
                     Iconstyeles="fill-accent-700 group-hover:fill-white"
@@ -60,11 +61,11 @@ function PlaceExpriences() {
               activeTime={new Date()}
               address="استان اصفهان، اصفهان، محله جلفا،
              خیابان نظر شرقی، کوچه کلیسای وانک"
-             coordinates={{lat:"3923423",lng:"9234283942"}}
-             cover="/images/mosque.png"
-             visitCost="FREE"
-             score={4.3}
-             title="کلیسا وانگ"
+              coordinates={{ lat: "3923423", lng: "9234283942" }}
+              cover="/images/mosque.png"
+              visitCost="FREE"
+              score={4.3}
+              title="کلیسا وانگ"
             />
           </div>
         </main>
