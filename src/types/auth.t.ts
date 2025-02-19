@@ -10,4 +10,9 @@ export type AuthFormLayout_T = ChildrenProps & {
   toggleSignUp:ToggleState_T
 };
 
+export type AuthPropsType = {
+  username:string,
+  email:string,
+  password:string
+}
 
