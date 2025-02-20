@@ -1,5 +1,4 @@
 import { AuthFormLayout_T } from "@/types/auth.t";
-import React from "react";
 export const inputStyles = {
   style: `border-2 tr-300 outline-none focus-within:shadow-accent-200
         focus-within:border-accent-400 bg-white md:text-bodyB1semi 
@@ -13,7 +12,7 @@ function AuthFormLayout({
   toggleSignUp,
 }: AuthFormLayout_T) {
   return (
-    <div className="relative w-full h-fit flex  flex-col gap-y-10 sm:gap-y-0 tr-300">
+<div className="relative w-full h-fit flex  flex-col gap-y-10 sm:gap-y-0 tr-300">
       <h5
         className="md:mt-8 mt-4 mx-auto text-center md:text-h2Semi tracking-tighter
                         text-bodyB1semi text-natural-gray1"

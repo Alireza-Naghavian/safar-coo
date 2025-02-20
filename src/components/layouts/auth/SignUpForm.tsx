@@ -1,33 +1,53 @@
 "use client";
 import MainBtn from "@/components/atoms/buttons&links/MainBtn";
 import { TextField } from "@/components/atoms/inputFields/TextFields";
+import Spinner from "@/components/atoms/Loader/Spinner";
+import { SignUpFormValues } from "@/features/auth/auth.t";
+import { useSignUpUser } from "@/features/auth/hooks/auth.hook";
 import useDisclosure from "@/hooks/useDisclosure";
 import { AuthFormProps_T } from "@/types/auth.t";
+import { customToast } from "@/utils/CutomToast";
 import { signUpValidation } from "@/utils/validators/authValidators";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Dislike } from "iconsax-react";
+import { useForm } from "react-hook-form";
 import EyeFilledIcon from "../../../../public/icons/svgs/EyeFilledIcon";
 import EyeSlashFilledIcon from "../../../../public/icons/svgs/EyeSlashFilledIcon";
-import { yupResolver } from "@hookform/resolvers/yup";
 import AuthFormLayout, { inputStyles } from "./AuthFormLayout";
-import { useForm } from "react-hook-form";
-type SignUpFormValues = {
-  username: string;
-  email: string;
-  password: string;
-};
 
-function SignUpForm({ toggleSignUp }: AuthFormProps_T) {
+type SignUpForm_T = AuthFormProps_T & { closeModalForm: () => void };
+
+function SignUpForm({ toggleSignUp, closeModalForm }: SignUpForm_T) {
   const { isOpen: isVisible, toggle } = useDisclosure();
+  const { isSignUpLoading, signUp } = useSignUpUser();
   const {
     register,
     handleSubmit,
     formState: { touchedFields, errors },
   } = useForm<SignUpFormValues>({ resolver: yupResolver(signUpValidation) });
+  const signUpHandler = async (data: SignUpFormValues) => {
+    try {
+      await signUp({ data });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      customToast({
+        title: "خطا در ثبت نام کاربر",
+        desc: error,
+        icon: Dislike,
+        iconColor: "#ef4444",
+        className:"text-red-500",
+        type:"ERROR"
+      });
+    } finally {
+      closeModalForm();
+    }
+  };
 
-  const signUpHandler = (data:SignUpFormValues)=>{
-    console.log(data)
-  }
-
-  const TextInputField = (label: string,type: string,name: keyof SignUpFormValues) => {
+  const TextInputField = (
+    label: string,
+    type: string,
+    name: keyof SignUpFormValues
+  ) => {
     return (
       <TextField
         errors={errors}
@@ -50,8 +70,8 @@ function SignUpForm({ toggleSignUp }: AuthFormProps_T) {
       title="فرم ثبت نام"
     >
       <form
-      onSubmit={handleSubmit(signUpHandler)}
-        className="w-full  sm:mt-12 box-center 
+        onSubmit={handleSubmit(signUpHandler)}
+        className="w-full  sm:mt-12 box-center
       flex-col  md:gap-y-10 sm:gap-y-6 gap-y-5 "
       >
         {TextInputField("نام کاربری", "text", "username")}
@@ -84,12 +104,18 @@ function SignUpForm({ toggleSignUp }: AuthFormProps_T) {
         <MainBtn
           size="xxl"
           state="hover"
-          className="bg-secondary-300 w-full max-w-[240px]
-        text-natural-black rounded-8"
+          disabled={isSignUpLoading }
+          className={`
+            bg-secondary-300 w-full max-w-[240px]
+        text-natural-black rounded-8 `}
           variant="fill"
           type="submit"
         >
-          ثبت نام
+          {isSignUpLoading ? (
+            <Spinner width="w-8" height="h-8" color={"stroke-white"} />
+          ) : (
+            "ثبت نام"
+          )}
         </MainBtn>
       </form>
     </AuthFormLayout>

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import HeaderContentPanelLayout from "../HeaderContentPanelLayout";
 import { TextField } from "@/components/atoms/inputFields/TextFields";
-import { Select, SelectItem } from "@nextui-org/react";
+import {Select, SelectItem} from "@heroui/select";
 import { ArticleCategories, placePriceOptions } from "@/utils/constants";
 import MainBtn from "@/components/atoms/buttons&links/MainBtn";
 import { LocationAdd } from "iconsax-react";

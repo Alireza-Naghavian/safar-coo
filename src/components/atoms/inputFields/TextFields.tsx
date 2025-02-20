@@ -1,8 +1,7 @@
 "use client";
 import { InputProps_T } from "@/types/textField.t";
-import { Input } from "@nextui-org/react";
 import { FieldValues, Path } from "react-hook-form";
-
+import {Input} from "@heroui/input";
 export function TextField<T extends FieldValues>({
   label,
   name,
@@ -18,7 +17,6 @@ export function TextField<T extends FieldValues>({
   const hasError = errors?.[name];
   const hasTouched = !!touchedFields?.[name];
   console.log(hasTouched)
-  console.log(hasError)
   return (
     <div className="flex flex-col w-full gap-y-1">
       {register !== undefined && (

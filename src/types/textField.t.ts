@@ -1,5 +1,4 @@
-import { InputProps } from "@nextui-org/react";
-
+import { InputProps } from "@heroui/input";
 import { ClassName_T, Size_T } from "./global.t";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 
