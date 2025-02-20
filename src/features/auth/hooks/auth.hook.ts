@@ -1,7 +1,7 @@
 import { customToast } from "@/utils/CutomToast";
 import { useMutation } from "@tanstack/react-query";
 import { Like1 } from "iconsax-react";
-import { logoutReq, signUpReq } from "../services/authServices";
+import { logInReq, logoutReq, signUpReq } from "../services/authServices";
 import { ResponseData_T } from "./../../../types/global.t";
 import { useRouter } from "next/navigation";
 
@@ -50,4 +50,21 @@ export const useLogout = ()=>{
     }
   })
   return {islogoutLoading,logout}
+}
+
+export const useSignIn = ()=>{
+  const {isPending:isSignInLoading,mutateAsync:signIn} =useMutation({
+    mutationFn:logInReq,
+    onSuccess:(data: ResponseData_T<string>)=>{
+      customToast({
+        title: "موفقیت آمیز",
+        desc: data,
+        icon: Like1,
+        iconColor: "#22c55e",
+        className: "text-green-500",
+        type:"SUCCESS"
+      })
+    },
+  })
+  return {signIn,isSignInLoading}
 }

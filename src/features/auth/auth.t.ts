@@ -3,4 +3,5 @@ export type SignUpFormValues = {
     email: string;
     password: string;
   };
+  export type SignInFormValues = Omit<SignUpFormValues,"username">
   

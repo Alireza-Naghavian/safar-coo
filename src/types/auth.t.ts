@@ -1,6 +1,7 @@
 import { ChildrenProps } from "./global.t";
 type ToggleState_T = ()=>void
 export type AuthFormProps_T = {
+  closeModalForm:()=>void
     toggleSignUp:ToggleState_T
   };
 export type AuthFormLayout_T = ChildrenProps & {

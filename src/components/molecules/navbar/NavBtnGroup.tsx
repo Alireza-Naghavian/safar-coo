@@ -49,20 +49,23 @@ function NavBtnGroup() {
           <></>
         </MainModal.Header>
         <MainModal.Body>
+          <Providers>
           {isSignUpOpen ? (
             <div key={"signUpForm"} className="h-full ">
-              <Providers>
                 <SignUpForm
                   closeModalForm={close}
                   toggleSignUp={toggleSignUp}
                 />
-              </Providers>
             </div>
           ) : (
             <div key={"loginForm"}>
-              <LoginForm toggleSignUp={toggleSignUp} />
+              <LoginForm 
+              toggleSignUp={toggleSignUp}
+               closeModalForm={close}
+              />
             </div>
           )}
+          </Providers>
         </MainModal.Body>
       </MainModal>
     </>
