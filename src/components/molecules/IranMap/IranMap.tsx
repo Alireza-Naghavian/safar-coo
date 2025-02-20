@@ -1,7 +1,7 @@
 "use client"
 import { caspianD, persianGulfD } from "@/utils/IranMapData";
 import iranProvinces from "@/utils/iranProvince";
-import { Tooltip } from "@nextui-org/react";
+import {Tooltip} from "@heroui/tooltip";
 import Link from "next/link";
 import React from "react";
 import { HeaderSearchBox } from "../filters/FilterCities";
@@ -9,7 +9,7 @@ import styles from "./iranMap.module.css";
 function IranMap() {
   return (
     <div className="flex flex-col gap-y-6">
-      <HeaderSearchBox className="xl:hidden flex"/>
+      <HeaderSearchBox className="xl:hidden flex "/>
         <div className="relative  ">
       <div className={styles.container}>
         <div className={styles.map}>

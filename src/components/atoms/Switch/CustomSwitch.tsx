@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Switch } from "@nextui-org/react";
+import {Switch} from "@heroui/switch";
 import { ClassName_T } from "@/types/global.t";
 
 export type Switch_T = ClassName_T & {

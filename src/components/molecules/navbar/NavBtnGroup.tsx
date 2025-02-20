@@ -5,6 +5,7 @@ import SignUpForm from "@/components/layouts/auth/SignUpForm";
 import useDisclosure from "@/hooks/useDisclosure";
 import MainModal from "../modal/Modal";
 import { Profile } from "iconsax-react";
+import Providers from "@/providers/QueryClientProvider";
 function NavBtnGroup() {
   const { isOpen: isModalOpen, open, close } = useDisclosure();
   const { isOpen: isSignUpOpen, toggle: toggleSignUp } = useDisclosure();
@@ -33,12 +34,12 @@ function NavBtnGroup() {
       {/* modal */}
 
       <MainModal
-      isClickable
+        isClickable
         className={`
           md:p-8 p-4 relative w-full max-w-[510px] 
           !top-8 
           overflow-y-auto 
-         ${isSignUpOpen ? "h-[620px]" :"h-fit"}
+         ${isSignUpOpen ? "h-[620px]" : "h-fit"}
          `}
         isShow={isModalOpen}
         onClose={close}
@@ -50,7 +51,12 @@ function NavBtnGroup() {
         <MainModal.Body>
           {isSignUpOpen ? (
             <div key={"signUpForm"} className="h-full ">
-              <SignUpForm toggleSignUp={toggleSignUp} />
+              <Providers>
+                <SignUpForm
+                  closeModalForm={close}
+                  toggleSignUp={toggleSignUp}
+                />
+              </Providers>
             </div>
           ) : (
             <div key={"loginForm"}>

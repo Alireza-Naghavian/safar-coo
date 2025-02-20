@@ -14,3 +14,10 @@ export type Options_T = {
   _id:string;
   name:string;
 };
+
+export type ResponseData_T<T> ={
+
+data:T,
+message:string,
+status:number
+}

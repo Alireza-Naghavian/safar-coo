@@ -4,7 +4,7 @@ import HeaderContentPanelLayout from "../HeaderContentPanelLayout";
 import BackLink from "@/components/atoms/buttons&links/BackLink";
 import { TextField } from "@/components/atoms/inputFields/TextFields";
 import { inputStyles } from "@/components/layouts/auth/AuthFormLayout";
-import { Select, SelectItem } from "@nextui-org/react";
+import {Select, SelectItem} from "@heroui/select";
 import { TicketPriorities } from "@/utils/constants";
 import TextAriaField from "@/components/atoms/inputFields/TextAriaField";
 import MainBtn from "@/components/atoms/buttons&links/MainBtn";
