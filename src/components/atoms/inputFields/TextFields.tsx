@@ -16,7 +16,6 @@ export function TextField<T extends FieldValues>({
 }: InputProps_T<T>) {
   const hasError = errors?.[name];
   const hasTouched = !!touchedFields?.[name];
-  console.log(hasTouched)
   return (
     <div className="flex flex-col w-full gap-y-1">
       {register !== undefined && (
