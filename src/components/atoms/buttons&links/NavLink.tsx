@@ -42,7 +42,7 @@ const NavLink: React.FC<NavLinks_T & ChildrenProps> = ({
     <button
       {...rest}
       className={linkStyles({ className, size, state, variant })}>
-      <Link href={target as string} className={`w-full h-full box-center  relative size-[${Object.values(size).join("")}]`}>
+      <Link scroll={false} href={target as string} className={`w-full h-full box-center  relative size-[${Object.values(size).join("")}]`}>
         {children} 
       </Link>
     </button>

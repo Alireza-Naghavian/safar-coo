@@ -15,15 +15,14 @@ import EyeFilledIcon from "../../../../public/icons/svgs/EyeFilledIcon";
 import EyeSlashFilledIcon from "../../../../public/icons/svgs/EyeSlashFilledIcon";
 import AuthFormLayout, { inputStyles } from "./AuthFormLayout";
 
-type SignUpForm_T = AuthFormProps_T & { closeModalForm: () => void };
-
-function SignUpForm({ toggleSignUp, closeModalForm }: SignUpForm_T) {
+function SignUpForm({ toggleSignUp, closeModalForm }: AuthFormProps_T) {
   const { isOpen: isVisible, toggle } = useDisclosure();
   const { isSignUpLoading, signUp } = useSignUpUser();
   const {
     register,
     handleSubmit,
     formState: { touchedFields, errors },
+    reset
   } = useForm<SignUpFormValues>({ resolver: yupResolver(signUpValidation) });
   const signUpHandler = async (data: SignUpFormValues) => {
     try {
@@ -39,6 +38,7 @@ function SignUpForm({ toggleSignUp, closeModalForm }: SignUpForm_T) {
         type:"ERROR"
       });
     } finally {
+      reset();
       closeModalForm();
     }
   };

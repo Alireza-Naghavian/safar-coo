@@ -21,7 +21,7 @@ export const customToast = ({
 }: Toast_T<string>) => {
     const description =
     type === "ERROR"
-      ? (desc as AxiosError<{ message: string }>)?.response?.data?.message ?? "خطای نامشخص"
+      ? (desc as AxiosError<{ message: string|null }>)?.response?.data?.message ?? "خطای نامشخص"
       : (desc as ResponseData_T<string>)?.message;
   return addToast({
     title: title,
