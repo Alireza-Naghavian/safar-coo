@@ -17,7 +17,6 @@ export const useGetMe = () => {
     staleTime: 1000 * 60 * 5,
     refetchOnWindowFocus:false,
     refetchOnReconnect:true,
-    refetchOnMount:true
   });
   return { userInfo, isUserLoading };
 };
