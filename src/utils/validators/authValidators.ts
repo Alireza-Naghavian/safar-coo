@@ -33,5 +33,9 @@ const signInValidation = yup.object().shape({
   email: emailSchema,
   password: passwordSchema,
 });
+ 
+const emailValidation =yup.object().shape({
+  email:emailSchema
+})
 
-export { signUpValidation, signInValidation };
+export { signUpValidation, signInValidation ,emailValidation};

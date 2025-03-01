@@ -17,3 +17,6 @@ export const logInReq = async ({data}:{data:SignInFormValues}):Promise<ResponseD
 export const getMeReq = async ():Promise<User_T>=>{
     return app.get("/auth/getMe").then(({data})=>data)
 }
+export const sendEmailReq = async (data:{email:string}):Promise<ResponseData_T<string>>=>{
+    return app.post("/auth/request-reset",data).then(({data})=>data)
+}

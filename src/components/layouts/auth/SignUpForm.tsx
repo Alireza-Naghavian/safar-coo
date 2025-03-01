@@ -15,7 +15,7 @@ import EyeFilledIcon from "../../../../public/icons/svgs/EyeFilledIcon";
 import EyeSlashFilledIcon from "../../../../public/icons/svgs/EyeSlashFilledIcon";
 import AuthFormLayout, { inputStyles } from "./AuthFormLayout";
 
-function SignUpForm({ toggleSignUp, closeModalForm }: AuthFormProps_T) {
+function SignUpForm({ setFormType, closeModalForm }: AuthFormProps_T) {
   const { isOpen: isVisible, toggle } = useDisclosure();
   const { isSignUpLoading, signUp } = useSignUpUser();
   const {
@@ -64,7 +64,8 @@ function SignUpForm({ toggleSignUp, closeModalForm }: AuthFormProps_T) {
   };
   return (
     <AuthFormLayout
-      toggleSignUp={toggleSignUp}
+    formType={"signIn"}
+    setFormType={setFormType}
       linkContent="ورود"
       qTitle="قبلا ثبت نام کرده اید؟"
       title="فرم ثبت نام"
