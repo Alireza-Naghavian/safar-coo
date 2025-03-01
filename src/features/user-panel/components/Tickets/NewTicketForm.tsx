@@ -63,6 +63,7 @@ function NewTicketForm() {
         <div className="sm:mt-20 mt-8 w-full">
           <TextAriaField
                   register={register}
+                  name="body"
                   errors={errors}
                   touchedFields={touchedFields}
             variant="freeMode"

@@ -2,9 +2,9 @@
 import DeleteBtn from "@/components/atoms/buttons&links/DeleteBtn";
 import UserBlogCard from "@/components/molecules/cards/UserBlogCard";
 import { ArticleCategories } from "@/utils/constants";
-import { Select, SelectItem } from "@nextui-org/select";
 import { Save2 } from "iconsax-react";
 import HeaderContentPanelLayout from "../HeaderContentPanelLayout";
+import { Select, SelectItem } from "@heroui/select";
 
 function SavedUserBlogs() {
   return (

@@ -10,10 +10,12 @@ import DatePickerField from "@/components/atoms/DatePicker/DatePickerField";
 import { DateObject } from "react-multi-date-picker";
 import { SetState } from "@/types/global.t";
 import dynamic from "next/dynamic";
+import { useForm } from "react-hook-form";
 const TextEditor = dynamic(()=>import("@/components/organisms/TextEditor/TextEditor"),{ssr:false})
 function AddExprienceForm() {
   const [date, setDate] = useState<DateObject>();
   const [description, setDescription] = useState<string>("");
+  const {register,formState:{errors,touchedFields},} = useForm()
   return (
     <div
       className="user-panel-container"
@@ -29,6 +31,10 @@ function AddExprienceForm() {
           {/* input group */}
           <div className="flex sm:flex-row flex-col items-center sm:gap-y-0 gap-y-6 gap-x-6">
             <TextField
+          register={register}
+          errors={errors}
+          touchedFields={touchedFields}
+            name="title"
               labelstyles="sm:text-bodyB3Regular text-bodyB4Regular"
               placeholder={" "}
               isClearable
@@ -57,6 +63,10 @@ function AddExprienceForm() {
           <div className="flex sm:flex-row flex-col items-center sm:gap-y-0 gap-y-6 gap-x-6">
             <div className="flex flex-col sm:w-1/2 w-full items-start">
               <TextField
+                  register={register}
+                  errors={errors}
+                  touchedFields={touchedFields}
+                    name="address"
                 labelstyles="sm:text-bodyB3Regular text-bodyB4Regular"
                 placeholder={
                   "آدرس دقیق را وارد کنید یا از موقعیت مکانی استفاده کنید"

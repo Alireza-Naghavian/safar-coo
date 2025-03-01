@@ -4,7 +4,12 @@ import MainBtn from "@/components/atoms/buttons&links/MainBtn";
 import Divider from "@/components/atoms/Divider/Divider";
 import TextAriaField from "@/components/atoms/inputFields/TextAriaField";
 import TicketMsgCard from "@/components/molecules/cards/TicketMsgCard";
+import { useForm } from "react-hook-form";
 function Ticket() {
+  const {
+    register,
+    formState: { errors, touchedFields },
+  } = useForm();
   return (
     <>
       {/* header */}
@@ -12,20 +17,22 @@ function Ticket() {
         <h1 className=" md:text-h2Semi text-bodyB2semi  tracking-tighter text-nowrap">
           تیکت های من
         </h1>
-        <div className=" child:text-natural-black child:text-bodyB4Regular mr-auto 
-        sm:child:text-bodyB3Regular flex items-center flex-wrap gap-4 gap-x-16 text-nowrap">
+        <div
+          className=" child:text-natural-black child:text-bodyB4Regular mr-auto 
+        sm:child:text-bodyB3Regular flex items-center flex-wrap gap-4 gap-x-16 text-nowrap"
+        >
           <span>
             <>وضعیت:</>
             <>در حال بررسی</>
           </span>
           <span>
-          <>تاریخ ارسال:</>
-          <>۱۴۰۳/۰۹/۰۲</>
-            </span>
+            <>تاریخ ارسال:</>
+            <>۱۴۰۳/۰۹/۰۲</>
+          </span>
           <span>
             <>شماره تیکت :</>
             <>۳۷۴۴۵</>
-            </span>
+          </span>
           <BackLink target="/user-panel" />
         </div>
       </div>
@@ -72,6 +79,10 @@ function Ticket() {
       {/* write new msg */}
       <form className="mt-8 w-full border-t-2 pt-2  relative flex flex-col gap-y-4 px-4 pb-10  sm:px-7">
         <TextAriaField
+          register={register}
+          errors={errors}
+          touchedFields={touchedFields}
+          name="newMgs"
           variant="freeMode"
           size="medium"
           placeholder="افزودن پیام جدید"
@@ -80,12 +91,13 @@ function Ticket() {
                   focus-within:border-accent-400 "
           label={"پیام جدید"}
         />
-        <MainBtn type="submit" 
-        size="xl"
-         state="hover"
-         variant="fill"
-         className="max-w-[120px] w-full rounded-4 bg-secondary-300 mr-auto "
-         >
+        <MainBtn
+          type="submit"
+          size="xl"
+          state="hover"
+          variant="fill"
+          className="max-w-[120px] w-full rounded-4 bg-secondary-300 mr-auto "
+        >
           ارسال
         </MainBtn>
       </form>

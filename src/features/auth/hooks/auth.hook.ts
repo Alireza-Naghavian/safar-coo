@@ -1,11 +1,28 @@
 import { customToast } from "@/utils/CutomToast";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Like1 } from "iconsax-react";
-import { logInReq, logoutReq, signUpReq } from "../services/authServices";
+import {
+  getMeReq,
+  logInReq,
+  logoutReq,
+  signUpReq,
+} from "../services/authServices";
 import { ResponseData_T } from "./../../../types/global.t";
 import { useRouter } from "next/navigation";
-
+export const useGetMe = () => {
+  const { data: userInfo, isPending: isUserLoading } = useQuery({
+    queryKey: ["user"],
+    queryFn: getMeReq,
+    gcTime: 1000 * 60 * 10,
+    staleTime: 1000 * 60 * 5,
+    refetchOnWindowFocus:false,
+    refetchOnReconnect:true,
+    refetchOnMount:true
+  });
+  return { userInfo, isUserLoading };
+};
 export const useSignUpUser = () => {
+  const queryClient = useQueryClient();
   const { isPending: isSignUpLoading, mutateAsync: signUp } = useMutation({
     mutationFn: signUpReq,
     onSuccess: (data: ResponseData_T<string>) => {
@@ -15,56 +32,62 @@ export const useSignUpUser = () => {
         icon: Like1,
         iconColor: "#22c55e",
         className: "text-green-500",
-        type:"SUCCESS"
+        type: "SUCCESS",
       });
+      queryClient.removeQueries({ queryKey: ["user"] });
     },
   });
 
   return { isSignUpLoading, signUp };
 };
 
-export const useLogout = ()=>{
-  const {replace} = useRouter();
-  const {isPending:islogoutLoading,mutateAsync:logout} = useMutation({
-    mutationFn:logoutReq,
-    onSuccess:(data: ResponseData_T<string>)=>{
+export const useLogout = () => {
+  const { replace, refresh } = useRouter();
+  const queryClient = useQueryClient();
+  const { isPending: islogoutLoading, mutateAsync: logout } = useMutation({
+    mutationFn: logoutReq,
+    onSuccess: (data: ResponseData_T<string>) => {
       customToast({
         title: "موفقیت آمیز",
         desc: data,
         icon: Like1,
         iconColor: "#22c55e",
         className: "text-green-500",
-        type:"SUCCESS"
-      })
-      replace("/",{scroll:true})
+        type: "SUCCESS",
+      });
+      queryClient.removeQueries({ queryKey: ["user"] });
+      refresh();
+      replace("/", { scroll: true });
     },
-    onError:(err:ResponseData_T<string>)=>{
+    onError: (err: ResponseData_T<string>) => {
       customToast({
         title: "خطا هنگام خروج",
         desc: err,
         icon: Like1,
         iconColor: "#ef4444",
         className: "text-red-500",
-        type:"ERROR"
+        type: "ERROR",
       });
-    }
-  })
-  return {islogoutLoading,logout}
-}
+    },
+  });
+  return { islogoutLoading, logout };
+};
 
-export const useSignIn = ()=>{
-  const {isPending:isSignInLoading,mutateAsync:signIn} =useMutation({
-    mutationFn:logInReq,
-    onSuccess:(data: ResponseData_T<string>)=>{
+export const useSignIn = () => {
+  const queryClient = useQueryClient();
+  const { isPending: isSignInLoading, mutateAsync: signIn } = useMutation({
+    mutationFn: logInReq,
+    onSuccess: (data: ResponseData_T<string>) => {
       customToast({
         title: "موفقیت آمیز",
         desc: data,
         icon: Like1,
         iconColor: "#22c55e",
         className: "text-green-500",
-        type:"SUCCESS"
-      })
+        type: "SUCCESS",
+      });
+      queryClient.removeQueries({ queryKey: ["user"] });
     },
-  })
-  return {signIn,isSignInLoading}
-}
+  });
+  return { signIn, isSignInLoading };
+};

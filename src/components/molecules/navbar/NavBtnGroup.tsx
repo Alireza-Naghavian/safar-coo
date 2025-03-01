@@ -1,36 +1,71 @@
 "use client";
 import MainBtn from "@/components/atoms/buttons&links/MainBtn";
+import NavLink from "@/components/atoms/buttons&links/NavLink";
+import Skeleton_sample from "@/components/atoms/skeltons/SkeltonSample";
 import LoginForm from "@/components/layouts/auth/LoginForm";
 import SignUpForm from "@/components/layouts/auth/SignUpForm";
+import { useGetMe } from "@/features/auth/hooks/auth.hook";
 import useDisclosure from "@/hooks/useDisclosure";
-import MainModal from "../modal/Modal";
 import { Profile } from "iconsax-react";
-import Providers from "@/providers/QueryClientProvider";
+import MainModal from "../modal/Modal";
 function NavBtnGroup() {
   const { isOpen: isModalOpen, open, close } = useDisclosure();
   const { isOpen: isSignUpOpen, toggle: toggleSignUp } = useDisclosure();
+  const { userInfo, isUserLoading } = useGetMe();
   return (
     <>
-      <MainBtn
-        onClick={open}
-        size="xl"
-        state="hover"
-        className="text-nowrap bg-secondary-300   rounded-4"
-        variant="fill"
-      >
-        <span className="sm:hidden">
-          <Profile variant="Outline" className="size-6 fill-white" />
-        </span>
-        <span className="">ثبت نام</span>
-      </MainBtn>
-      <MainBtn
-        size="xl"
-        state="hover"
-        className=" w-[41px] sm:w-auto    !hidden  sm:!block  text-nowrap bg-secondary-400 hover:bg-secondary-500  sm:rounded-4"
-        variant="fill"
-      >
-        <span className="hidden sm:block">نصب اپلیکیشن</span>
-      </MainBtn>
+      {isUserLoading ? (
+        <Skeleton_sample count={1}>
+          <Skeleton_sample.Item
+            backgroundColor="bg-secondary-400"
+            height="h-[41px]"
+            className=" gap-2 py-2 px-3 text-sm flex items-center font-YekanSemi justify-center"
+            animated="background"
+            width="w-[110px]"
+          >
+            بارگزاری...
+          </Skeleton_sample.Item>
+        </Skeleton_sample>
+      ) : (
+        <>
+          { userInfo === undefined ? (
+            <MainBtn
+              onClick={open}
+              size="xl"
+              state="hover"
+              className="text-nowrap bg-secondary-300   rounded-4"
+              variant="fill"
+            >
+              <span className="sm:hidden">
+                <Profile variant="Outline" className="size-6 fill-white" />
+              </span>
+              <span className="">ثبت نام</span>
+            </MainBtn>
+          ) : (
+            <NavLink
+              size="xl"
+              state="normal"
+              variant="fill"
+              target="/user-panel"
+              className="flex bg-secondary-400 rounded-4 items-center gap-x-4 justify-center"
+            >
+              <Profile variant="Bold" className="fill-white size-6"/>
+            <span className="line-clamp-1 child:line-clamp-1 max-w-[80px]">{userInfo?.username}</span>
+            </NavLink>
+          )}
+
+        </>
+      )}
+          <MainBtn
+            size="xl"
+            state="hover"
+            className=" w-[41px] sm:w-auto !hidden sm:!block 
+            text-nowrap bg-secondary-400 hover:bg-secondary-500  sm:rounded-4"
+            variant="fill"
+          >
+            <span className="hidden sm:block">نصب اپلیکیشن</span>
+          </MainBtn>
+
       {/* modal */}
 
       <MainModal
@@ -49,23 +84,15 @@ function NavBtnGroup() {
           <></>
         </MainModal.Header>
         <MainModal.Body>
-          <Providers>
           {isSignUpOpen ? (
             <div key={"signUpForm"} className="h-full ">
-                <SignUpForm
-                  closeModalForm={close}
-                  toggleSignUp={toggleSignUp}
-                />
+              <SignUpForm closeModalForm={close} toggleSignUp={toggleSignUp} />
             </div>
           ) : (
             <div key={"loginForm"}>
-              <LoginForm 
-              toggleSignUp={toggleSignUp}
-               closeModalForm={close}
-              />
+              <LoginForm toggleSignUp={toggleSignUp} closeModalForm={close} />
             </div>
           )}
-          </Providers>
         </MainModal.Body>
       </MainModal>
     </>

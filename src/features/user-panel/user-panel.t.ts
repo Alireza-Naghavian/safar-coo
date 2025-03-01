@@ -10,3 +10,13 @@ export type HeaderContent_T = Partial<ChildrenProps> &
     title: string | React.ReactNode;
     desc: string | null;
   };
+
+  export type User_T={
+    username:string,
+    email:string,
+    _id:string,
+    createdAt:Date,
+    updatedAt:Date,
+    role:"ADMIN"|"USER",
+
+  }|null|undefined

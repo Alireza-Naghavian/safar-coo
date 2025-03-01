@@ -1,10 +1,10 @@
-import { LogoutCurve } from "iconsax-react";
-import MainModal from "../modal/Modal";
-import useDisclosure from "@/hooks/useDisclosure";
-import Image from "next/image";
 import MainBtn from "@/components/atoms/buttons&links/MainBtn";
-import { useLogout } from "@/features/auth/hooks/auth.hook";
 import Spinner from "@/components/atoms/Loader/Spinner";
+import { useLogout } from "@/features/auth/hooks/auth.hook";
+import useDisclosure from "@/hooks/useDisclosure";
+import { LogoutCurve } from "iconsax-react";
+import Image from "next/image";
+import MainModal from "../modal/Modal";
 
 function LogoutBtn({ isMenuOpen }: { isMenuOpen?: boolean }) {
   const { open, isOpen: isModalShow, close } = useDisclosure(false);
