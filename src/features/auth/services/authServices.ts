@@ -1,5 +1,5 @@
 import app from "@/services/services";
-import { SignInFormValues, SignUpFormValues } from "../auth.t";
+import { ResetPasswordReqBody, SignInFormValues, SignUpFormValues } from "../auth.t";
 import { ResponseData_T } from "@/types/global.t";
 import { User_T } from "@/features/user-panel/user-panel.t";
 
@@ -19,4 +19,7 @@ export const getMeReq = async ():Promise<User_T>=>{
 }
 export const sendEmailReq = async (data:{email:string}):Promise<ResponseData_T<string>>=>{
     return app.post("/auth/request-reset",data).then(({data})=>data)
+}
+export const resetPasswordReq = async (data:ResetPasswordReqBody):Promise<ResponseData_T<string>>=>{
+    return app.post("/auth/reset-password",data).then(({data})=>data)
 }

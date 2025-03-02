@@ -2,7 +2,7 @@ import { AuthFormLayout_T } from "@/types/auth.t";
 export const inputStyles = {
   style: `border-2 tr-300 outline-none focus-within:shadow-accent-200
         focus-within:border-accent-400 bg-white md:text-bodyB1semi 
-        text-natural-black  rounded-8 tracking-tight`,
+        text-natural-black  rounded-12 tracking-tight`,
 };
 function AuthFormLayout({
   linkContent,

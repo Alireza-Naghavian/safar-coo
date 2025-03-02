@@ -6,6 +6,7 @@ import {
   getMeReq,
   logInReq,
   logoutReq,
+  resetPasswordReq,
   sendEmailReq,
   signUpReq,
 } from "../services/authServices";
@@ -108,4 +109,24 @@ export const useSendEmail = ()=>{
     },
   })
   return {isEmailSending,sendEmail}
+}
+
+
+export const useResetPassword  = ()=>{
+  const queryClient = useQueryClient();
+  const {isPending:isResetLoading,mutateAsync:resetPassword}=useMutation({
+    mutationFn:resetPasswordReq,
+    onSuccess:(data:ResponseData_T<string>)=>{
+      queryClient.removeQueries({queryKey:["user"]})
+      customToast({
+        title: "موفقیت آمیز",
+        desc: data,
+        icon: Like1,
+        iconColor: "#22c55e",
+        className: "text-green-500",
+        type: "SUCCESS",
+      });
+    },
+  })
+  return {isResetLoading,resetPassword}
 }

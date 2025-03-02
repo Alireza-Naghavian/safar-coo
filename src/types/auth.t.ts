@@ -1,5 +1,5 @@
 import { ChildrenProps, SetState } from "./global.t";
-export type FormType ="signUp"|"signIn"|"forgetPassword"
+export type FormType ="signUp"|"signIn"|"forgetPassword"|"resetPassword"
 export type AuthFormProps_T = {
   closeModalForm:()=>void
   setFormType:SetState<FormType>

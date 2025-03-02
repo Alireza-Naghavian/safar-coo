@@ -15,7 +15,6 @@ function NavBtnGroup() {
   const { isOpen: isModalOpen, open, close } = useDisclosure();
   const [formType, setFormType] = useState<FormType>("signIn");
   const { userInfo, isUserLoading } = useGetMe();
-  console.log(formType)
   return (
     <>
       {isUserLoading ? (

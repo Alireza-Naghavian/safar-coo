@@ -14,6 +14,7 @@ import { Dislike } from "iconsax-react";
 import { customToast } from "@/utils/CutomToast";
 import Spinner from "@/components/atoms/Loader/Spinner";
 import { signInValidation } from "@/utils/validators/authValidators";
+import { ResponseData_T } from "@/types/global.t";
 function LoginForm({ closeModalForm,setFormType }: AuthFormProps_T) {
   const { isOpen: isVisible, toggle } = useDisclosure();
   const {
@@ -27,11 +28,11 @@ function LoginForm({ closeModalForm,setFormType }: AuthFormProps_T) {
   const signInHandler = async(data: SignInFormValues) => {
     try {
       await signIn({data})
-         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error:any) {
+        
+    } catch (error:unknown) {
           customToast({
               title: "خطا در ورود کاربر",
-              desc: error,
+              desc: error as ResponseData_T<string>,
               icon: Dislike,
               iconColor: "#ef4444",
               className:"text-red-500",

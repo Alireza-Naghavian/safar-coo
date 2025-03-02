@@ -76,7 +76,7 @@ function ForgetPassForm({
           variant="fill"
           size="xxl"
           state="hover"
-          className="bg-secondary-300 max-w-[50%] px-16 mx-auto rounded-8"
+          className="bg-secondary-300 max-w-[50%] !px-16 mx-auto rounded-8"
         >
           {isEmailSending ? (
             <Spinner width="w-8" height="h-8" color={"stroke-white"} />
