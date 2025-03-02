@@ -1,71 +1,127 @@
-"use client"
-import MainBtn from '@/components/atoms/buttons&links/MainBtn'
-import { TextField } from '@/components/atoms/inputFields/TextFields'
-import useDisclosure from '@/hooks/useDisclosure'
-import { AuthFormProps_T } from '@/types/auth.t'
-import EyeFilledIcon from '../../../../public/icons/svgs/EyeFilledIcon'
-import EyeSlashFilledIcon from '../../../../public/icons/svgs/EyeSlashFilledIcon'
-import AuthFormLayout, { inputStyles } from './AuthFormLayout'
-function SignUpForm({toggleSignUp}:AuthFormProps_T) {
-  const {isOpen:isVisible,toggle} = useDisclosure()
+"use client";
+import MainBtn from "@/components/atoms/buttons&links/MainBtn";
+import { TextField } from "@/components/atoms/inputFields/TextFields";
+import Spinner from "@/components/atoms/Loader/Spinner";
+import { SignUpFormValues } from "@/features/auth/auth.t";
+import { useSignUpUser } from "@/features/auth/hooks/auth.hook";
+import useDisclosure from "@/hooks/useDisclosure";
+import { AuthFormProps_T } from "@/types/auth.t";
+import { customToast } from "@/utils/CutomToast";
+import { signUpValidation } from "@/utils/validators/authValidators";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Dislike } from "iconsax-react";
+import { useForm } from "react-hook-form";
+import EyeFilledIcon from "../../../../public/icons/svgs/EyeFilledIcon";
+import EyeSlashFilledIcon from "../../../../public/icons/svgs/EyeSlashFilledIcon";
+import AuthFormLayout, { inputStyles } from "./AuthFormLayout";
+import { ResponseData_T } from "@/types/global.t";
+
+function SignUpForm({ setFormType, closeModalForm }: AuthFormProps_T) {
+  const { isOpen: isVisible, toggle } = useDisclosure();
+  const { isSignUpLoading, signUp } = useSignUpUser();
+  const {
+    register,
+    handleSubmit,
+    formState: { touchedFields, errors },
+    reset
+  } = useForm<SignUpFormValues>({ resolver: yupResolver(signUpValidation) });
+  const signUpHandler = async (data: SignUpFormValues) => {
+    try {
+      await signUp({ data });
+    
+    } catch (error: unknown) {
+      customToast({
+        title: "خطا در ثبت نام کاربر",
+        desc: error as ResponseData_T<string>,
+        icon: Dislike,
+        iconColor: "#ef4444",
+        className:"text-red-500",
+        type:"ERROR"
+      });
+    } finally {
+      reset();
+      closeModalForm();
+    }
+  };
+
+  const TextInputField = (
+    label: string,
+    type: string,
+    name: keyof SignUpFormValues
+  ) => {
+    return (
+      <TextField
+        errors={errors}
+        touchedFields={touchedFields}
+        register={register}
+        name={name}
+        label={label}
+        type={type}
+        placeholder=" "
+        className={inputStyles.style}
+        isClearable={true}
+      />
+    );
+  };
   return (
     <AuthFormLayout
-    toggleSignUp={toggleSignUp}
+    formType={"signIn"}
+    setFormType={setFormType}
       linkContent="ورود"
       qTitle="قبلا ثبت نام کرده اید؟"
       title="فرم ثبت نام"
     >
-      <form className="w-full  sm:mt-12 box-center flex-col  md:gap-y-10 sm:gap-y-6 gap-y-5 ">
-       <TextField
-       label={"نام کاربری"}
-       isInvalid={false}
-       type="text"
-       placeholder=" "
-       className={inputStyles.style}
-        isClearable={true}
-       />
-       <TextField
-       label={"ایمیل کاربری"}
-       isInvalid={false}
-       type="email"
-       placeholder=" "
-       className={inputStyles.style}
-        isClearable={true}
-
-       />
-       <TextField
-       label={"رمز عبور"}
-       isInvalid={false}
-       type={isVisible ? "text" : "password"}
-       placeholder=" "
-    //    description={"رمز عبور باید شامل 8 کاراکتر و شامل حروف، اعداد و نمادها باشد."}
-       endContent={
-        <button
-          aria-label="toggle password visibility"
-          className="focus:outline-none"
-          type="button"
-          
-          onClick={toggle}
+      <form
+        onSubmit={handleSubmit(signUpHandler)}
+        className="w-full  sm:mt-12 box-center
+      flex-col  md:gap-y-10 sm:gap-y-6 gap-y-5 "
+      >
+        {TextInputField("نام کاربری", "text", "username")}
+        {TextInputField("ایمیل کاربری", "email", "email")}
+        <TextField
+          errors={errors}
+          touchedFields={touchedFields}
+          register={register}
+          name={"password"}
+          label={"رمز عبور"}
+          type={isVisible ? "text" : "password"}
+          placeholder=" "
+          endContent={
+            <button
+              aria-label="toggle password visibility"
+              className="focus:outline-none"
+              type="button"
+              onClick={toggle}
+            >
+              {isVisible ? (
+                <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+              ) : (
+                <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+              )}
+            </button>
+          }
+          className={inputStyles.style}
+          isClearable={false}
+        />
+        <MainBtn
+          size="xxl"
+          state="hover"
+          disabled={isSignUpLoading }
+          className={`
+            bg-secondary-300 w-full max-w-[240px]
+        text-natural-black rounded-8 `}
+          variant="fill"
+          type="submit"
         >
-          {isVisible ? (
-            <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+          {isSignUpLoading ? (
+            <Spinner width="w-8" height="h-8" color={"stroke-white"} />
           ) : (
-            <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+            "ثبت نام"
           )}
-        </button>
-      }
-       className={inputStyles.style}
-        isClearable={false}
-       />
-
-    <MainBtn 
-    size="xxl"
-     state="hover"
-      className="bg-secondary-300 w-full max-w-[240px]
-     text-natural-black rounded-8" variant="fill">ثبت  نام</MainBtn>
+        </MainBtn>
       </form>
     </AuthFormLayout>
-  )
+  );
 }
 
-export default SignUpForm
+export default SignUpForm;

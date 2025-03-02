@@ -10,3 +10,20 @@ export type HeaderContent_T = Partial<ChildrenProps> &
     title: string | React.ReactNode;
     desc: string | null;
   };
+
+  export type User_T={
+    username:string,
+    email:string,
+    _id:string,
+    createdAt:Date,
+    updatedAt:Date,
+    role:"ADMIN"|"USER",
+
+  }|null|undefined
+
+  export type TicketBody_T={
+    title:string,
+    body:string,
+  }
+  export type Priority_T = 1 | 2 | 3| 0;
+  export type TicketBodyReq_T =TicketBody_T&{priority:Priority_T}

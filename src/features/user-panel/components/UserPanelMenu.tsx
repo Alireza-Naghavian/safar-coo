@@ -8,6 +8,7 @@ import LogoutBtn from "@/components/molecules/logoutBtn/LogoutBtn";
 import { HambergerMenu } from "iconsax-react";
 import { AnimatePresence, motion } from "motion/react";
 import { MenuProps } from "../user-panel.t";
+import Providers from "@/providers/QueryClientProvider";
 const menuMotionVars = {
   open: { x: 100, display: "none"},
   close: { x: 0, display: "block" },
@@ -76,7 +77,9 @@ function UserPanelMenu({ isMenuOpen, openMenu, closeMenu }: MenuProps) {
           );
         })}
         <li className="group">
+          <Providers>
           <LogoutBtn isMenuOpen={isMenuOpen} />
+          </Providers>
         </li>
       </ul>
     </div>

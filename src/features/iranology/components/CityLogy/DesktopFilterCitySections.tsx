@@ -2,7 +2,7 @@
 import useDisclosure from "@/hooks/useDisclosure";
 import { ClassName_T, Options_T } from "@/types/global.t";
 import { categories, sortByOptions } from "@/utils/constants";
-import { Checkbox } from "@nextui-org/react";
+import { Checkbox } from "@heroui/react";
 import React from "react";
 
 function DesktopFilterCitySections() {

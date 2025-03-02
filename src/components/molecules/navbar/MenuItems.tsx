@@ -5,6 +5,7 @@ import MenuBarIcon from "../../../../public/icons/svgs/MenuBarIcon";
 import MobileMenu from "./MobileMenu";
 import NavBarItems from "./NavBarItems";
 import NavBtnGroup from "./NavBtnGroup";
+import Providers from "@/providers/QueryClientProvider";
 function MenuItems() {
   const { isOpen: isSearchOpen, close, open } = useDisclosure();
   const { isOpen: isMenuOpen, close: closeMenu, open: openMenu } = useDisclosure(); 
@@ -22,7 +23,9 @@ function MenuItems() {
       <Overlay onClose={closeMenu} openCondition={isMenuOpen}/>
       {/* left side */}
       <div className={`  gap-x-4  mr-auto ${isSearchOpen ? "hidden":"box-center "}`} >
+       <Providers>
        <NavBtnGroup/>
+       </Providers>
       </div>
     </section>
   );
