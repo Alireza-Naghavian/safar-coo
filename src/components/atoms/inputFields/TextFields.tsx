@@ -51,7 +51,7 @@ export function TextField<T extends FieldValues>({
       )}
 
       {hasError && hasTouched && (
-        <p className="text-red-500 text-xs mt-1">{errors?.[name as string]?.message as string}</p>
+        <p className="text-red-500 text-xs mt-1 h-4">{errors?.[name as string]?.message as string}</p>
       )}
     </div>
   );

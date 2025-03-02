@@ -61,9 +61,9 @@ export const licenceLogos = [
 
 
 export const TicketPriorities = [
-  {key:"high",label:"بالا",_id:"highTicket"},
-  {key:"medium",label:"متوسط",_id:"mediumTicket"},
-  {key:"low",label:"پایین",_id:"lowTicket"},
+  {key:3,label:"بالا",_id:"highTicket"},
+  {key:2,label:"متوسط",_id:"mediumTicket"},
+  {key:1,label:"پایین",_id:"lowTicket"},
 ]
 
 
