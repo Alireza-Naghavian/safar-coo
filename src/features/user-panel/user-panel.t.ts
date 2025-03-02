@@ -20,3 +20,10 @@ export type HeaderContent_T = Partial<ChildrenProps> &
     role:"ADMIN"|"USER",
 
   }|null|undefined
+
+  export type TicketBody_T={
+    title:string,
+    body:string,
+  }
+  export type Priority_T = 1 | 2 | 3| 0;
+  export type TicketBodyReq_T =TicketBody_T&{priority:Priority_T}

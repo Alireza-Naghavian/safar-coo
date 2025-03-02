@@ -53,9 +53,11 @@ export type InputProps_T<T extends FieldValues > = ClassName_T & {
 
 
 
-export type TextAria_T = Omit<InputProps_T<FieldValues>, "variant" | "size"> &
-  React.ComponentProps<"textarea"> & {
-    variant: "outLine" | "freeMode";
+export type TextAria_T <T extends FieldValues>= Omit<InputProps_T<FieldValues>, "variant" | "size"|"register"|"touchedFields"> &
+ React.ComponentProps<"textarea"> & {
+  touchedFields: Partial<Record<keyof T, boolean>>;
+  register:UseFormRegister<T>;
+  variant: "outLine" | "freeMode";
     size?: "medium" | "free";
-    // validattionschema?: RegisterOptions;
+    validattionschema?: RegisterOptions;
   };

@@ -1,5 +1,6 @@
-import { TextAria_T } from "@/types/textField.t";
+import {  TextAria_T } from "@/types/textField.t";
 import { cva } from "class-variance-authority";
+import { FieldValues, Path, RegisterOptions } from "react-hook-form";
 const TexAriaStyles = cva(
   `
     block p-4.5 md:p-4 focus:outline-none w-full text-right
@@ -23,39 +24,46 @@ const TexAriaStyles = cva(
     },
   }
 );
-function TextAriaField({
+function TextAriaField<T extends FieldValues>({
   label,
-  id,
-  required,
-  readOnly,
+  variant,
+  errors,
+  touchedFields,
   value,
+  size,
   name,
-  placeholder,
-  variant,size,className
-}: TextAria_T) {
+  register,
+  className,
+  ...rest
+}: TextAria_T<T>) {
+  const hasError = errors?.[name];
+  const hasTouched = !!touchedFields?.[name];
   return (
     <div className="flex flex-col gap-y-2">
       {label && (
-        <label htmlFor={id} className={"relative  pb-1"}>
+        <label htmlFor={rest.id} className={"relative  pb-1"}>
           <span className={"text-bodyB2Regular"}>{label}</span>
-          {required && <span className="text-red-500">*</span>}
+          {rest.required && <span className="text-red-500">*</span>}
         </label>
       )}
       <textarea
         cols={80}
-        readOnly={readOnly}
-        //  {...register(name, validattionschema)}
-        id={id}
+        readOnly={rest.readOnly}
+        {...register(
+          name as Path<T>,
+          rest.validationSchema as  RegisterOptions<T>
+        )}
+        id={rest.id}
         value={value}
         name={name}
-        placeholder={placeholder}
-        className={TexAriaStyles({ variant,size,className})}
+        placeholder={rest.placeholder}
+        className={TexAriaStyles({ variant, size, className })}
       />
-      {/* {errors && errors[name] && (
-     <span className="text-red-500 block text-sm mt-1">
-       {errors[name]?.message}
-     </span>
-   )} */}
+      {hasError && hasTouched && (
+        <p className="text-red-500 text-xs mt-1">
+          {errors?.[name as string]?.message as string}
+        </p>
+      )}
     </div>
   );
 }
