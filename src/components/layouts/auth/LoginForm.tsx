@@ -8,30 +8,31 @@ import EyeSlashFilledIcon from "../../../../public/icons/svgs/EyeSlashFilledIcon
 import AuthFormLayout, { inputStyles } from "./AuthFormLayout";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { signInValidation } from "@/utils/validators/authValidators";
 import { SignInFormValues } from "@/features/auth/auth.t";
 import { useSignIn } from "@/features/auth/hooks/auth.hook";
 import { Dislike } from "iconsax-react";
 import { customToast } from "@/utils/CutomToast";
 import Spinner from "@/components/atoms/Loader/Spinner";
-function LoginForm({ toggleSignUp,closeModalForm }: AuthFormProps_T) {
+import { signInValidation } from "@/utils/validators/authValidators";
+import { ResponseData_T } from "@/types/global.t";
+function LoginForm({ closeModalForm,setFormType }: AuthFormProps_T) {
   const { isOpen: isVisible, toggle } = useDisclosure();
   const {
     register,
     handleSubmit,
     formState: { errors, touchedFields },
     reset
-  } = useForm<SignInFormValues>({ resolver: yupResolver(signInValidation) });
+  } = useForm<SignInFormValues>({ resolver: yupResolver(signInValidation)});
   const {isSignInLoading,signIn}= useSignIn();
 
   const signInHandler = async(data: SignInFormValues) => {
     try {
       await signIn({data})
-         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error:any) {
+        
+    } catch (error:unknown) {
           customToast({
               title: "خطا در ورود کاربر",
-              desc: error,
+              desc: error as ResponseData_T<string>,
               icon: Dislike,
               iconColor: "#ef4444",
               className:"text-red-500",
@@ -44,7 +45,8 @@ function LoginForm({ toggleSignUp,closeModalForm }: AuthFormProps_T) {
   };
   return (
     <AuthFormLayout
-      toggleSignUp={toggleSignUp}
+      setFormType={setFormType}
+      formType={"signUp"}
       linkContent="ایجاد حساب"
       qTitle="حساب کاربری ندارید؟"
       title="ورود به حساب کاربری"
@@ -92,7 +94,7 @@ function LoginForm({ toggleSignUp,closeModalForm }: AuthFormProps_T) {
           isClearable={false}
         />
         {/* forget password */}
-        <button className="ml-auto sm:-mt-6 -mt-2 mr-[3px] text-sm tracking-tighter ">
+        <button type="button" onClick={()=>setFormType("forgetPassword")} className="ml-auto sm:-mt-6 -mt-2 mr-[3px] text-sm tracking-tighter ">
           فراموشی رمز عبور
         </button>
         <MainBtn

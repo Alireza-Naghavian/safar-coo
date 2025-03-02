@@ -1,14 +1,16 @@
 import { customToast } from "@/utils/CutomToast";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Like1 } from "iconsax-react";
+import { useRouter } from "next/navigation";
 import {
   getMeReq,
   logInReq,
   logoutReq,
+  resetPasswordReq,
+  sendEmailReq,
   signUpReq,
 } from "../services/authServices";
 import { ResponseData_T } from "./../../../types/global.t";
-import { useRouter } from "next/navigation";
 export const useGetMe = () => {
   const { data: userInfo, isPending: isUserLoading } = useQuery({
     queryKey: ["user"],
@@ -90,3 +92,41 @@ export const useSignIn = () => {
   });
   return { signIn, isSignInLoading };
 };
+
+
+export const useSendEmail = ()=>{
+  const {isPending:isEmailSending,mutateAsync:sendEmail} = useMutation({
+    mutationFn:sendEmailReq,
+    onSuccess:(data:ResponseData_T<string>)=>{
+      customToast({
+        title: "موفقیت آمیز",
+        desc: data,
+        icon: Like1,
+        iconColor: "#22c55e",
+        className: "text-green-500",
+        type: "SUCCESS",
+      });
+    },
+  })
+  return {isEmailSending,sendEmail}
+}
+
+
+export const useResetPassword  = ()=>{
+  const queryClient = useQueryClient();
+  const {isPending:isResetLoading,mutateAsync:resetPassword}=useMutation({
+    mutationFn:resetPasswordReq,
+    onSuccess:(data:ResponseData_T<string>)=>{
+      queryClient.removeQueries({queryKey:["user"]})
+      customToast({
+        title: "موفقیت آمیز",
+        desc: data,
+        icon: Like1,
+        iconColor: "#22c55e",
+        className: "text-green-500",
+        type: "SUCCESS",
+      });
+    },
+  })
+  return {isResetLoading,resetPassword}
+}

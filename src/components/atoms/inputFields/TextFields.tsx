@@ -1,6 +1,6 @@
 "use client";
 import { InputProps_T } from "@/types/textField.t";
-import { FieldValues, Path } from "react-hook-form";
+import { FieldValues, Path, RegisterOptions } from "react-hook-form";
 import {Input} from "@heroui/input";
 export function TextField<T extends FieldValues>({
   label,
@@ -12,6 +12,7 @@ export function TextField<T extends FieldValues>({
   type,
   variant = "flat",
   id,
+  validationSchema,
   ...rest
 }: InputProps_T<T>) {
   const hasError = errors?.[name];
@@ -20,7 +21,7 @@ export function TextField<T extends FieldValues>({
     <div className="flex flex-col w-full gap-y-1">
       {register !== undefined && (
         <Input
-          {...register(name as Path<T> )}
+          {...register(name as Path<T>,validationSchema as RegisterOptions<T>)}
           type={type}
           labelPlacement="outside"
           size={size}

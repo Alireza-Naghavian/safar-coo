@@ -1,14 +1,15 @@
-import { ChildrenProps } from "./global.t";
-type ToggleState_T = ()=>void
+import { ChildrenProps, SetState } from "./global.t";
+export type FormType ="signUp"|"signIn"|"forgetPassword"|"resetPassword"
 export type AuthFormProps_T = {
   closeModalForm:()=>void
-    toggleSignUp:ToggleState_T
+  setFormType:SetState<FormType>
   };
 export type AuthFormLayout_T = ChildrenProps & {
   title: string;
-  linkContent: string;
-  qTitle: string;
-  toggleSignUp:ToggleState_T
+  linkContent: string |null;
+  qTitle: string|null;
+  formType:FormType|null
+  setFormType?:SetState<FormType>
 };
 
 export type AuthPropsType = {

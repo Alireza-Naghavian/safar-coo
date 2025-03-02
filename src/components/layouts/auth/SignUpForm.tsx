@@ -14,8 +14,9 @@ import { useForm } from "react-hook-form";
 import EyeFilledIcon from "../../../../public/icons/svgs/EyeFilledIcon";
 import EyeSlashFilledIcon from "../../../../public/icons/svgs/EyeSlashFilledIcon";
 import AuthFormLayout, { inputStyles } from "./AuthFormLayout";
+import { ResponseData_T } from "@/types/global.t";
 
-function SignUpForm({ toggleSignUp, closeModalForm }: AuthFormProps_T) {
+function SignUpForm({ setFormType, closeModalForm }: AuthFormProps_T) {
   const { isOpen: isVisible, toggle } = useDisclosure();
   const { isSignUpLoading, signUp } = useSignUpUser();
   const {
@@ -27,11 +28,11 @@ function SignUpForm({ toggleSignUp, closeModalForm }: AuthFormProps_T) {
   const signUpHandler = async (data: SignUpFormValues) => {
     try {
       await signUp({ data });
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
+    
+    } catch (error: unknown) {
       customToast({
         title: "خطا در ثبت نام کاربر",
-        desc: error,
+        desc: error as ResponseData_T<string>,
         icon: Dislike,
         iconColor: "#ef4444",
         className:"text-red-500",
@@ -64,7 +65,8 @@ function SignUpForm({ toggleSignUp, closeModalForm }: AuthFormProps_T) {
   };
   return (
     <AuthFormLayout
-      toggleSignUp={toggleSignUp}
+    formType={"signIn"}
+    setFormType={setFormType}
       linkContent="ورود"
       qTitle="قبلا ثبت نام کرده اید؟"
       title="فرم ثبت نام"

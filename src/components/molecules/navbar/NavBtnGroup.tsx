@@ -8,9 +8,12 @@ import { useGetMe } from "@/features/auth/hooks/auth.hook";
 import useDisclosure from "@/hooks/useDisclosure";
 import { Profile } from "iconsax-react";
 import MainModal from "../modal/Modal";
+import { useState } from "react";
+import { FormType } from "@/types/auth.t";
+import ForgetPassForm from "@/components/layouts/auth/ForgetPassForm";
 function NavBtnGroup() {
   const { isOpen: isModalOpen, open, close } = useDisclosure();
-  const { isOpen: isSignUpOpen, toggle: toggleSignUp } = useDisclosure();
+  const [formType, setFormType] = useState<FormType>("signIn");
   const { userInfo, isUserLoading } = useGetMe();
   return (
     <>
@@ -28,7 +31,7 @@ function NavBtnGroup() {
         </Skeleton_sample>
       ) : (
         <>
-          { userInfo === undefined ? (
+          {userInfo === undefined ? (
             <MainBtn
               onClick={open}
               size="xl"
@@ -49,22 +52,23 @@ function NavBtnGroup() {
               target="/user-panel"
               className="flex bg-secondary-400 rounded-4 items-center gap-x-4 justify-center"
             >
-              <Profile variant="Bold" className="fill-white size-6"/>
-            <span className="line-clamp-1 child:line-clamp-1 max-w-[80px]">{userInfo?.username}</span>
+              <Profile variant="Bold" className="fill-white size-6" />
+              <span className="line-clamp-1 child:line-clamp-1 max-w-[80px]">
+                {userInfo?.username}
+              </span>
             </NavLink>
           )}
-
         </>
       )}
-          <MainBtn
-            size="xl"
-            state="hover"
-            className=" w-[41px] sm:w-auto !hidden sm:!block 
+      <MainBtn
+        size="xl"
+        state="hover"
+        className=" w-[41px] sm:w-auto !hidden sm:!block 
             text-nowrap bg-secondary-400 hover:bg-secondary-500  sm:rounded-4"
-            variant="fill"
-          >
-            <span className="hidden sm:block">نصب اپلیکیشن</span>
-          </MainBtn>
+        variant="fill"
+      >
+        <span className="hidden sm:block">نصب اپلیکیشن</span>
+      </MainBtn>
 
       {/* modal */}
 
@@ -74,7 +78,7 @@ function NavBtnGroup() {
           md:p-8 p-4 relative w-full max-w-[510px] 
           !top-8 
           overflow-y-auto 
-         ${isSignUpOpen ? "h-[620px]" : "h-fit"}
+         ${formType === "signUp" ? "h-[620px]" : "h-fit"}
          `}
         isShow={isModalOpen}
         onClose={close}
@@ -84,15 +88,17 @@ function NavBtnGroup() {
           <></>
         </MainModal.Header>
         <MainModal.Body>
-          {isSignUpOpen ? (
+          {formType === "signUp" ? (
             <div key={"signUpForm"} className="h-full ">
-              <SignUpForm closeModalForm={close} toggleSignUp={toggleSignUp} />
+              <SignUpForm closeModalForm={close} setFormType={setFormType} />
             </div>
-          ) : (
+          ) :formType === "signIn"? (
             <div key={"loginForm"}>
-              <LoginForm toggleSignUp={toggleSignUp} closeModalForm={close} />
+              <LoginForm setFormType={setFormType} closeModalForm={close} />
             </div>
-          )}
+          ):<div key={"forgetPasswordForm"}>
+            <ForgetPassForm setFormType={setFormType} closeModalForm={close}/>
+            </div>}
         </MainModal.Body>
       </MainModal>
     </>
