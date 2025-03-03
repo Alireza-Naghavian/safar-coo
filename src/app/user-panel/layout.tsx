@@ -29,7 +29,6 @@ function UserPanelLayout({ children }: ChildrenProps) {
             {/* menu wrapper */}
             <motion.section
               transition={{ duration: 0.2 ,bounce:0,stiffness:0}}
-
               animate={isMenuOpen ? { width: "var(--motion-menu-width-open)" } : { width: "var(--motion-menu-width-close)" }}
               className="relative  tr-200"
             >

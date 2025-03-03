@@ -5,9 +5,12 @@ import InfoCard from "@/components/molecules/cards/InfoCard";
 import HeaderContentPanelLayout from "@/features/user-panel/components/HeaderContentPanelLayout";
 import { AddCircle, Eye } from "iconsax-react";
 import Link from "next/link";
-import React from "react";
-
+import { useGetTickets } from "../../hooks/user.hook";
+import { Ticket_T } from "../../user-panel.t";
+import PreLoader from "@/components/atoms/Loaders/PreLoader";
+import { motion } from "motion/react";
 function MyTickets() {
+  const { isTicketsLoading, tickets } = useGetTickets();
   return (
     <div className="user-panel-container">
       {/* header */}
@@ -22,13 +25,11 @@ function MyTickets() {
             className="text-natural-black sm:!text-bodyB3semi !text-bodyB4semi"
             name="seen"
             label="فقط پاسخ داده شده"
-            
           />
           <CustomSwitch
             className="text-natural-black sm:!text-bodyB3semi !text-bodyB4semi"
             name="unSeen"
             label="فقط پاسخ داده نشده"
-            
           />
         </div>
       </HeaderContentPanelLayout>
@@ -43,53 +44,80 @@ function MyTickets() {
           <AddCircle className="sm:size-[22px] size-6 stroke-natural-black ml-2" />
           <span className="sm:text-btnText2xl text-nowrap">تیکت جدید</span>
         </NavLink>
-        <div className=" max-h-[450px] overflow-y-auto flex flex-col gap-y-8  overflow-x-auto">
-          <InfoCard>
-            <InfoCard.InfoCardItem title="شماره تیکت" value="۳۷۴۴۵" />
-            <InfoCard.InfoCardItem
-              title="عنوان تیکت"
-              value="درست کار نکردن کامنت"
-            />
-            <InfoCard.InfoCardItem title="تاریخ" value="۱۴۰۲/۰۲/۰۲" />
-            <InfoCard.InfoCardItem title="وضعیت" value="وضعیت" />
-            <InfoCard.InfoCardItem title="مشاهده">
-              <Link href="/user-panel/tickets/ticketId" className="">
-                <Eye variant="Outline" className="fill-white size-6" />
-              </Link>
-            </InfoCard.InfoCardItem>
-          </InfoCard>
-          <InfoCard>
-            <InfoCard.InfoCardItem title="شماره تیکت" value="۳۷۴۴۵" />
-            <InfoCard.InfoCardItem
-              title="عنوان تیکت"
-              value="درست کار نکردن کامنت"
-            />
-            <InfoCard.InfoCardItem title="تاریخ" value="۱۴۰۲/۰۲/۰۲" />
-            <InfoCard.InfoCardItem title="وضعیت" value="وضعیت" />
-            <InfoCard.InfoCardItem title="مشاهده">
-              <Link href="/user-panel/tickets/ticketId" className="">
-                <Eye variant="Outline" className="fill-white size-6" />
-              </Link>
-            </InfoCard.InfoCardItem>
-          </InfoCard>
-          <InfoCard>
-            <InfoCard.InfoCardItem title="شماره تیکت" value="۳۷۴۴۵" />
-            <InfoCard.InfoCardItem
-              title="عنوان تیکت"
-              value="درست کار نکردن کامنت"
-            />
-            <InfoCard.InfoCardItem title="تاریخ" value="۱۴۰۲/۰۲/۰۲" />
-            <InfoCard.InfoCardItem title="وضعیت" value="وضعیت" />
-            <InfoCard.InfoCardItem title="مشاهده">
-              <Link href="/user-panel/tickets/ticketId" className="">
-                <Eye variant="Outline" className="fill-white size-6" />
-              </Link>
-            </InfoCard.InfoCardItem>
-          </InfoCard>
-        </div>
+        <motion.div
+          initial={"hidden"}
+          animate={isTicketsLoading ? "hidden" : "visible"}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.25,
+                staggerDirection: 1,
+              },
+            },
+          }}
+          className=" max-h-[450px] overflow-y-auto flex flex-col
+           gap-y-8  overflow-x-auto"
+        >
+          {isTicketsLoading ? (
+            <PreLoader isShow={isTicketsLoading} />
+          ) : (
+            tickets?.map((ticket, index) => {
+              return (
+                <motion.div
+                  key={ticket._id}
+                  variants={{
+                    hidden: { y: 200 },
+                    visible: { y: 0 },
+                  }}
+                >
+                  <TicketCardItem ticket={ticket} index={index} />
+                </motion.div>
+              );
+            })
+          )}
+        </motion.div>
       </div>
     </div>
   );
 }
+
+const ticketStatus = [
+  { key: "PENDING", value: "در انتظار پاسخ" },
+  { key: "REPLIED", value: "پاسخ داده شده" },
+  { key: "CLOSED", value: "بسته شده" },
+];
+
+const TicketCardItem = ({
+  index,
+  ticket,
+}: {
+  ticket: Ticket_T;
+  index: number;
+}) => {
+  const ticketCurrStatus = ticketStatus.find((status) => {
+    return JSON.stringify(ticket.status) === JSON.stringify(status.key);
+  });
+  return (
+    <InfoCard key={ticket._id}>
+      <InfoCard.InfoCardItem title="شماره تیکت" value={`${index + 1}`} />
+      <InfoCard.InfoCardItem title="عنوان تیکت" value={ticket.title} />
+      <InfoCard.InfoCardItem
+        title="تاریخ"
+        value={new Date(ticket.createdAt as Date).toLocaleDateString("fa-IR")}
+      />
+      <InfoCard.InfoCardItem
+        title="وضعیت"
+        value={`${ticketCurrStatus?.value}`}
+      />
+      <InfoCard.InfoCardItem title="مشاهده">
+        <Link href={`/user-panel/tickets/${ticket._id}`} className="">
+          <Eye variant="Outline" className="fill-white size-6" />
+        </Link>
+      </InfoCard.InfoCardItem>
+    </InfoCard>
+  );
+};
 
 export default MyTickets;

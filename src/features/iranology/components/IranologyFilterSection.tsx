@@ -1,8 +1,8 @@
 "use client";
 import MainBtn from "@/components/atoms/buttons&links/MainBtn";
 import SearchBox from "@/components/atoms/inputFields/SearchBox";
-import Loader from "@/components/atoms/Loader/Loader";
-import Spinner from "@/components/atoms/Loader/Spinner";
+import Loader from "@/components/atoms/Loaders/Loader";
+import Spinner from "@/components/atoms/Loaders/Spinner";
 import useDisclosure from "@/hooks/useDisclosure";
 import { ArticleCategories, recreationalCategories } from "@/utils/constants";
 import { Edit2 } from "iconsax-react";

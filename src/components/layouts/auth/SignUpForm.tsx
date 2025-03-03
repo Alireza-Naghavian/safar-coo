@@ -1,7 +1,7 @@
 "use client";
 import MainBtn from "@/components/atoms/buttons&links/MainBtn";
 import { TextField } from "@/components/atoms/inputFields/TextFields";
-import Spinner from "@/components/atoms/Loader/Spinner";
+import Spinner from "@/components/atoms/Loaders/Spinner";
 import { SignUpFormValues } from "@/features/auth/auth.t";
 import { useSignUpUser } from "@/features/auth/hooks/auth.hook";
 import useDisclosure from "@/hooks/useDisclosure";

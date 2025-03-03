@@ -4,7 +4,7 @@ import React from 'react'
 
 function UserPanelContent({children}:ChildrenProps) {
   return (
-    <div className='w-full relative h-full bg-accent-200 rounded-12 '>{children}</div> 
+    <div className='w-full lg:max-w-[970px] relative h-full bg-accent-200 rounded-12 '>{children}</div> 
   )
 }
 
