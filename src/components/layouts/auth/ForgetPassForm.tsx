@@ -11,7 +11,7 @@ import { FormType } from "@/types/auth.t";
 import { customToast } from "@/utils/CutomToast";
 import { Like1 } from "iconsax-react";
 import { useSendEmail } from "@/features/auth/hooks/auth.hook";
-import Spinner from "@/components/atoms/Loader/Spinner";
+import Spinner from "@/components/atoms/Loaders/Spinner";
 
 function ForgetPassForm({
   setFormType,

@@ -12,7 +12,7 @@ import { SignInFormValues } from "@/features/auth/auth.t";
 import { useSignIn } from "@/features/auth/hooks/auth.hook";
 import { Dislike } from "iconsax-react";
 import { customToast } from "@/utils/CutomToast";
-import Spinner from "@/components/atoms/Loader/Spinner";
+import Spinner from "@/components/atoms/Loaders/Spinner";
 import { signInValidation } from "@/utils/validators/authValidators";
 import { ResponseData_T } from "@/types/global.t";
 function LoginForm({ closeModalForm,setFormType }: AuthFormProps_T) {

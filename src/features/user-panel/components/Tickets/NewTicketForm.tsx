@@ -16,7 +16,7 @@ import { customToast } from "@/utils/CutomToast";
 import { ResponseData_T } from "@/types/global.t";
 import { Dislike } from "iconsax-react";
 import { useCreateTicket } from "../../hooks/user.hook";
-import Spinner from "@/components/atoms/Loader/Spinner";
+import Spinner from "@/components/atoms/Loaders/Spinner";
 import { addToast } from "@heroui/toast";
 
 

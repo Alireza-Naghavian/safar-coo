@@ -1,5 +1,5 @@
 import MainBtn from "@/components/atoms/buttons&links/MainBtn";
-import Spinner from "@/components/atoms/Loader/Spinner";
+import Spinner from "@/components/atoms/Loaders/Spinner";
 import { useLogout } from "@/features/auth/hooks/auth.hook";
 import useDisclosure from "@/hooks/useDisclosure";
 import { LogoutCurve } from "iconsax-react";

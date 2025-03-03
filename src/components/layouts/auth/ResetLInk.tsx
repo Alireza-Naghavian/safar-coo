@@ -15,7 +15,7 @@ import { useResetPassword } from "../../../features/auth/hooks/auth.hook";
 import { customToast } from "@/utils/CutomToast";
 import { ResponseData_T } from "@/types/global.t";
 import { Dislike } from "iconsax-react";
-import Spinner from "@/components/atoms/Loader/Spinner";
+import Spinner from "@/components/atoms/Loaders/Spinner";
 
 function ResetLink() {
   const params = useSearchParams();
