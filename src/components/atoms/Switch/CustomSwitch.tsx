@@ -1,16 +1,17 @@
 "use client";
-import React, { useState } from "react";
-import {Switch} from "@heroui/switch";
-import { ClassName_T } from "@/types/global.t";
+import { ClassName_T, SetState } from "@/types/global.t";
+import { Switch } from "@heroui/switch";
 
 export type Switch_T = ClassName_T & {
   label: string|null;
   name: string;
   key?:string
+  isSelected:boolean,
+  setIsSelected:SetState<boolean>
 
 };
-function CustomSwitch({ label, className, name }: Switch_T) {
-  const [isSelected, setIsSelected] = useState(false);
+function CustomSwitch({ label, className, name,isSelected,setIsSelected }: Switch_T) {
+
 
   return (
     <div className="flex items-center gap-x-1">
