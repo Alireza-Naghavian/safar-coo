@@ -1,16 +1,42 @@
 "use client";
 import NavLink from "@/components/atoms/buttons&links/NavLink";
+import PreLoader from "@/components/atoms/Loaders/PreLoader";
 import CustomSwitch from "@/components/atoms/Switch/CustomSwitch";
 import InfoCard from "@/components/molecules/cards/InfoCard";
 import HeaderContentPanelLayout from "@/features/user-panel/components/HeaderContentPanelLayout";
 import { AddCircle, Eye } from "iconsax-react";
-import Link from "next/link";
-import { useGetTickets } from "../../hooks/user.hook";
-import { Ticket_T } from "../../user-panel.t";
-import PreLoader from "@/components/atoms/Loaders/PreLoader";
 import { motion } from "motion/react";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
+import { useGetTicketByQuery, useGetTickets } from "../../hooks/user.hook";
+import { Ticket_T } from "../../user-panel.t";
 function MyTickets() {
   const { isTicketsLoading, tickets } = useGetTickets();
+  const {isTicketLoading,ticketsByQueries} =useGetTicketByQuery()
+  const router= useRouter();
+  const searchParams  = useSearchParams();
+  const urlSearchParams = new URLSearchParams(searchParams.toString())
+  const [isReplied, setIsReplied] = useState(urlSearchParams.get("status")==="REPLIED"?true:false);
+  const [isPending,setIsPending]=useState(urlSearchParams.get("status")==="PENDING"?true:false)
+  const filterOptions= (option:string,value:boolean)=>{
+    urlSearchParams.set("status",value?option:"");
+    router.replace(
+      `/user-panel?${urlSearchParams.toString()}`
+    )
+  }
+const handleRepliedTickets = ()=>{
+const newTicketOption = !isReplied;
+setIsReplied(newTicketOption)
+setIsPending(isPending &&!newTicketOption)
+filterOptions("REPLIED",newTicketOption)
+}
+const handlePendingTickets = ()=>{
+  const newTicketOption = !isPending;
+  setIsPending(newTicketOption)
+  setIsReplied(isReplied&&!newTicketOption)
+  filterOptions("PENDING",newTicketOption)
+}
   return (
     <div className="user-panel-container">
       {/* header */}
@@ -23,12 +49,16 @@ function MyTickets() {
         <div className="h-full w-full my-auto flex items-center gap-x-6 md:flex-nowrap flex-wrap md:gap-y-0 gap-y-4">
           <CustomSwitch
             className="text-natural-black sm:!text-bodyB3semi !text-bodyB4semi"
-            name="seen"
+            name="repliedOnly"
+            isSelected={isReplied}
+            setIsSelected={handleRepliedTickets}
             label="فقط پاسخ داده شده"
           />
           <CustomSwitch
             className="text-natural-black sm:!text-bodyB3semi !text-bodyB4semi"
-            name="unSeen"
+            name="pending"
+            isSelected={isPending}
+            setIsSelected={handlePendingTickets}
             label="فقط پاسخ داده نشده"
           />
         </div>
@@ -46,7 +76,7 @@ function MyTickets() {
         </NavLink>
         <motion.div
           initial={"hidden"}
-          animate={isTicketsLoading ? "hidden" : "visible"}
+          animate={isTicketsLoading&&isTicketLoading ? "hidden" : "visible"}
           variants={{
             hidden: { opacity: 0 },
             visible: {
@@ -63,7 +93,7 @@ function MyTickets() {
           {isTicketsLoading ? (
             <PreLoader isShow={isTicketsLoading} />
           ) : (
-            tickets?.map((ticket, index) => {
+            (searchParams.size == 0 ?tickets:ticketsByQueries)?.map((ticket, index) => {
               return (
                 <motion.div
                   key={ticket._id}
