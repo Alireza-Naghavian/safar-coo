@@ -4,8 +4,10 @@ const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 // custom err messages
 yup.setLocale({
   string: {
-    min: ({ min }: {min:string|number}) => `حداقل باید ${min} کاراکتر باشد.`,
-    max: ({ max }: {max:string|number}) => `حداکثر باید ${max} کاراکتر باشد.`,
+    min: ({ min }: { min: string | number }) =>
+      `حداقل باید ${min} کاراکتر باشد.`,
+    max: ({ max }: { max: string | number }) =>
+      `حداکثر باید ${max} کاراکتر باشد.`,
     email: "ایمیل وارد شده معتبر نمی‌باشد.",
   },
   mixed: {
@@ -20,7 +22,7 @@ const emailSchema = yup
   .string()
   .trim()
   .email()
-  .matches(emailPattern,"ایمیل معتبر نیست")
+  .matches(emailPattern, "ایمیل معتبر نیست")
   .required();
 
 const signUpValidation = yup.object().shape({
@@ -33,12 +35,23 @@ const signInValidation = yup.object().shape({
   email: emailSchema,
   password: passwordSchema,
 });
- 
-const emailValidation =yup.object().shape({
-  email:emailSchema
-})
+
+const emailValidation = yup.object().shape({
+  email: emailSchema,
+});
 const newPassValidation = yup.object().shape({
-  newPassword:passwordSchema,
-  confirmPassword:passwordSchema
-})
-export { signUpValidation, signInValidation ,emailValidation,newPassValidation};
+  newPassword: passwordSchema,
+  confirmPassword: passwordSchema,
+});
+
+const editProfileValidation = yup.object().shape({
+  newPassword: passwordSchema,
+  newUsername: usernameSchema,
+});
+export {
+  signUpValidation,
+  signInValidation,
+  emailValidation,
+  newPassValidation,
+  editProfileValidation
+};

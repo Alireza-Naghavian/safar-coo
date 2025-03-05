@@ -11,6 +11,7 @@ export type HeaderContent_T = Partial<ChildrenProps> &
     desc: string | null;
   };
 
+// user types
 export type User_T =
   | {
       username: string;
@@ -23,6 +24,15 @@ export type User_T =
   | null
   | undefined;
 
+export type EditProfile_T = {
+  newUsername: string;
+  newPassword: string;
+
+};
+export type EditProfileReq_T=EditProfile_T&{
+  email: string;
+}
+// ticket types
 export type TicketBody_T = {
   title: string;
   body: string;
@@ -33,15 +43,15 @@ export type TicketBodyReq_T = TicketBody_T & { priority: Priority_T };
 export type Msg_T = {
   body: string;
   sendAt: Date;
-  sender: string;
+  sender: User_T;
 };
 export type Ticket_T = TicketBody_T & {
   priority: Priority_T;
-  user: string;
+  user: User_T;
   status?: "REPLIED" | "PENDING" | "CLOSED";
   createdAt?: Date;
   updatedAt?: Date;
   messages: Msg_T[] | [];
   adminMessages: Msg_T[] | [];
-  _id:string
+  _id: string;
 };

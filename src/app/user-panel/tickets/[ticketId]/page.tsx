@@ -1,9 +1,16 @@
-import Ticket from '@/features/user-panel/components/Tickets/Ticket'
-import React from 'react'
+import Ticket from '@/features/user-panel/components/Tickets/Ticket';
+import Providers from '@/providers/QueryClientProvider';
 
-function page() {
+type PropsType = {
+  params: Promise<{ ticketId: string }>;
+};
+ export const dynamic = "force-dynamic"
+async function page({params}:PropsType) {
+  const { ticketId } = await params;
   return (
-    <Ticket/>
+    <Providers>
+      <Ticket ticketId={ticketId}/>
+    </Providers>
   )
 }
 
