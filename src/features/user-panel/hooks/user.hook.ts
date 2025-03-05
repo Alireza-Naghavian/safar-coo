@@ -1,17 +1,37 @@
-import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
+import { ResponseData_T } from "@/types/global.t";
+import { customToast } from "@/utils/CutomToast";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Like1 } from "iconsax-react";
+import { useSearchParams } from "next/navigation";
 import {
   createTicketReq,
   getTicketByQueryReq,
   getTicketReq,
   getTicketsReq,
+  updateUserInfoReq,
 } from "../services/userServices";
-import { ResponseData_T } from "@/types/global.t";
-import { customToast } from "@/utils/CutomToast";
-import { Like1 } from "iconsax-react";
-import { useSearchParams } from "next/navigation";
+
+export const useEditUserProfile = () => {
+  const queryClient =useQueryClient();
+  const { isPending: isEditLoading, mutateAsync: editProfile } = useMutation({
+    mutationFn: updateUserInfoReq,
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["user"] });
+      customToast({
+        title: "موفقیت آمیز",
+        desc: data,
+        icon: Like1,
+        iconColor: "#22c55e",
+        className: "text-green-500",
+        type: "SUCCESS",
+      });
+    },
+  });
+  return { isEditLoading, editProfile };
+};
 
 export const useCreateTicket = () => {
-  const queryClient = new QueryClient();
+  const queryClient =useQueryClient();
   const { isPending: isCreateLoading, mutateAsync: createTicket } = useMutation(
     {
       mutationFn: createTicketReq,
@@ -42,16 +62,16 @@ export const useGetTickets = () => {
 export const useGetTicketByQuery = () => {
   const searchParams = useSearchParams().get("status");
   const { isPending: isTicketLoading, data: ticketsByQueries } = useQuery({
-    queryKey: ["tickets",searchParams],
+    queryKey: ["tickets", searchParams],
     queryFn: () => getTicketByQueryReq(searchParams as string),
   });
   return { isTicketLoading, ticketsByQueries };
 };
 
-export const useGetTicket = (id:string)=>{
-const {data:ticket,isLoading:isTicketLoading} = useQuery({
-  queryKey:["ticket",id],
-  queryFn:()=>getTicketReq({id})
-})
-return {ticket,isTicketLoading}
-}
+export const useGetTicket = (id: string) => {
+  const { data: ticket, isLoading: isTicketLoading } = useQuery({
+    queryKey: ["ticket", id],
+    queryFn: () => getTicketReq({ id }),
+  });
+  return { ticket, isTicketLoading };
+};

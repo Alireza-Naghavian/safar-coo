@@ -11,7 +11,9 @@ export type HeaderContent_T = Partial<ChildrenProps> &
     desc: string | null;
   };
 
-export type User_T = {
+// user types
+export type User_T =
+  | {
       username: string;
       email: string;
       _id: string;
@@ -22,6 +24,15 @@ export type User_T = {
   | null
   | undefined;
 
+export type EditProfile_T = {
+  newUsername: string;
+  newPassword: string;
+
+};
+export type EditProfileReq_T=EditProfile_T&{
+  email: string;
+}
+// ticket types
 export type TicketBody_T = {
   title: string;
   body: string;
@@ -42,5 +53,5 @@ export type Ticket_T = TicketBody_T & {
   updatedAt?: Date;
   messages: Msg_T[] | [];
   adminMessages: Msg_T[] | [];
-  _id:string
+  _id: string;
 };
