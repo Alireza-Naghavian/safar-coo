@@ -11,6 +11,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { useGetTicketByQuery, useGetTickets } from "../../hooks/user.hook";
 import { Ticket_T } from "../../user-panel.t";
+import { ticketStatus } from "@/utils/constants";
 function MyTickets() {
   const { isTicketsLoading, tickets } = useGetTickets();
   const {isTicketLoading,ticketsByQueries} =useGetTicketByQuery()
@@ -90,8 +91,8 @@ const handlePendingTickets = ()=>{
           className=" max-h-[450px] overflow-y-auto flex flex-col
            gap-y-8  overflow-x-auto"
         >
-          {isTicketsLoading ? (
-            <PreLoader isShow={isTicketsLoading} />
+          {isTicketsLoading&&isTicketLoading ? (
+            <PreLoader isShow={isTicketsLoading&&isTicketLoading} />
           ) : (
             (searchParams.size == 0 ?tickets:ticketsByQueries)?.map((ticket, index) => {
               return (
@@ -113,11 +114,7 @@ const handlePendingTickets = ()=>{
   );
 }
 
-const ticketStatus = [
-  { key: "PENDING", value: "در انتظار پاسخ" },
-  { key: "REPLIED", value: "پاسخ داده شده" },
-  { key: "CLOSED", value: "بسته شده" },
-];
+
 
 const TicketCardItem = ({
   index,

@@ -192,3 +192,9 @@ export const citiesInfoOptions = [
   {src:"/images/plain.png",alt:"plain"},
   {src:"/images/azadiTower.png",alt:"azadiTower"},
 ]
+
+export const ticketStatus = [
+  { key: "PENDING", value: "در انتظار پاسخ" },
+  { key: "REPLIED", value: "پاسخ داده شده" },
+  { key: "CLOSED", value: "بسته شده" },
+];

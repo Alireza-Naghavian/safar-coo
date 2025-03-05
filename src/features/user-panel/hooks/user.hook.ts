@@ -2,6 +2,7 @@ import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
 import {
   createTicketReq,
   getTicketByQueryReq,
+  getTicketReq,
   getTicketsReq,
 } from "../services/userServices";
 import { ResponseData_T } from "@/types/global.t";
@@ -46,3 +47,11 @@ export const useGetTicketByQuery = () => {
   });
   return { isTicketLoading, ticketsByQueries };
 };
+
+export const useGetTicket = (id:string)=>{
+const {data:ticket,isLoading:isTicketLoading} = useQuery({
+  queryKey:["ticket",id],
+  queryFn:()=>getTicketReq({id})
+})
+return {ticket,isTicketLoading}
+}

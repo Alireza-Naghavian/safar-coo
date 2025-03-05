@@ -11,8 +11,7 @@ export type HeaderContent_T = Partial<ChildrenProps> &
     desc: string | null;
   };
 
-export type User_T =
-  | {
+export type User_T = {
       username: string;
       email: string;
       _id: string;
@@ -33,11 +32,11 @@ export type TicketBodyReq_T = TicketBody_T & { priority: Priority_T };
 export type Msg_T = {
   body: string;
   sendAt: Date;
-  sender: string;
+  sender: User_T;
 };
 export type Ticket_T = TicketBody_T & {
   priority: Priority_T;
-  user: string;
+  user: User_T;
   status?: "REPLIED" | "PENDING" | "CLOSED";
   createdAt?: Date;
   updatedAt?: Date;
