@@ -1,5 +1,5 @@
 import app from "@/services/services";
-import { EditProfileReq_T, Ticket_T, TicketBodyReq_T } from "../user-panel.t";
+import { EditProfileReq_T, NotificationsType, Ticket_T, TicketBodyReq_T } from "../user-panel.t";
 
 export const createTicketReq = async(data:TicketBodyReq_T)=>{
 return app.post("/user/tickets",data).then(({data})=>data)
@@ -17,3 +17,7 @@ return app.get(`/user/tickets?status=${query}`).then(({data})=>data)
 export const updateUserInfoReq  = async(data:EditProfileReq_T)=>{
 return app.patch("/auth/user/edit",data).then(({data})=>data)
 }
+
+export const getNotifications = async():Promise<NotificationsType[]>=>{
+    return app.get(`/notif/all`).then(({data})=>data)
+    }

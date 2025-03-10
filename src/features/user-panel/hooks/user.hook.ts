@@ -5,17 +5,22 @@ import { Like1 } from "iconsax-react";
 import { useSearchParams } from "next/navigation";
 import {
   createTicketReq,
+  getNotifications,
   getTicketByQueryReq,
   getTicketReq,
   getTicketsReq,
   updateUserInfoReq,
 } from "../services/userServices";
 
+/////////////////
+// edit profile
+/////////////////
 export const useEditUserProfile = () => {
-  const queryClient =useQueryClient();
+  const queryClient = useQueryClient();
   const { isPending: isEditLoading, mutateAsync: editProfile } = useMutation({
     mutationFn: updateUserInfoReq,
     onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["notifications"] });
       queryClient.invalidateQueries({ queryKey: ["user"] });
       customToast({
         title: "موفقیت آمیز",
@@ -30,8 +35,11 @@ export const useEditUserProfile = () => {
   return { isEditLoading, editProfile };
 };
 
+////////////
+// tickets
+////////////
 export const useCreateTicket = () => {
-  const queryClient =useQueryClient();
+  const queryClient = useQueryClient();
   const { isPending: isCreateLoading, mutateAsync: createTicket } = useMutation(
     {
       mutationFn: createTicketReq,
@@ -74,4 +82,18 @@ export const useGetTicket = (id: string) => {
     queryFn: () => getTicketReq({ id }),
   });
   return { ticket, isTicketLoading };
+};
+
+////////////////////
+// notifications
+////////////////////
+
+export const useGetNotifications = () => {
+  const { data, isLoading: isNotifLoading } = useQuery({
+    queryKey: ["notifications"],
+    queryFn: getNotifications,
+  });
+
+  const notifications = data || [];
+  return { notifications, isNotifLoading };
 };

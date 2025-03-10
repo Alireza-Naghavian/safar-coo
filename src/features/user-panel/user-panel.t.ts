@@ -55,3 +55,18 @@ export type Ticket_T = TicketBody_T & {
   adminMessages: Msg_T[] | [];
   _id: string;
 };
+
+
+
+// notifications types 
+export type NotificationsType ={
+  _id:string,
+  title:string,
+  referType:string,
+  body:string,
+  refer:string,
+  user:string,
+  status?:"READ"|"UNREAD",
+  updatedAt?:Date,
+  createdAt?:Date
+}

@@ -14,21 +14,21 @@ function NotifDropDown({ trigger, children, ...rest }: DropDownProps_T) {
       id={rest.id}
       onClick={() => trigger(rest.id)}
       className={`relative w-full py-6 px-3 flex  rounded-8
-        items-start justify-between bg-accent-400  h-full tr-300 cursor-pointer
+        items-start justify-between bg-accent-400  h-full  tr-300 cursor-pointer
          ${
            rest.isOpen
-             ? "sm:max-h-[263px] max-h-[350px] overflow-y-auto sm:overflow-y-hidden"
-             : "max-h-[100px] child:line-clamp-1"
+             ? "sm:max-h-[263px] max-h-[360px] overflow-y-auto sm:overflow-y-hidden"
+             : "max-h-[68px] child:line-clamp-1 overflow-y-hidden "
          } 
          ${rest.className}`}
     >
       {/* body */}
-      <p
+      <div
         className="relative w-full max-w-[220px] sm:max-w-[680px] bg-transparent
        text-white text-bodyB3Regular "
       >
         {children}
-      </p>
+      </div>
       {/* seeen & unseen */}
       <div className="flex items-center ">
         <DirectNormal
