@@ -5,12 +5,14 @@ import { Like1 } from "iconsax-react";
 import { useSearchParams } from "next/navigation";
 import {
   createTicketReq,
-  getNotifications,
+  getNotificationsReq,
   getTicketByQueryReq,
   getTicketReq,
   getTicketsReq,
+  MarkAsReadReq,
   updateUserInfoReq,
 } from "../services/userServices";
+import { NotificationsType } from "../user-panel.t";
 
 /////////////////
 // edit profile
@@ -45,6 +47,7 @@ export const useCreateTicket = () => {
       mutationFn: createTicketReq,
       onSuccess: (data: ResponseData_T<string>) => {
         queryClient.invalidateQueries({ queryKey: ["tickets"] });
+        queryClient.invalidateQueries({ queryKey: ["notifications"] });
         customToast({
           title: "موفقیت آمیز",
           desc: data,
@@ -91,9 +94,45 @@ export const useGetTicket = (id: string) => {
 export const useGetNotifications = () => {
   const { data, isLoading: isNotifLoading } = useQuery({
     queryKey: ["notifications"],
-    queryFn: getNotifications,
+    queryFn: getNotificationsReq,
   });
 
   const notifications = data || [];
   return { notifications, isNotifLoading };
+};
+
+export const useMarkAsRead = () => {
+  const client = useQueryClient();
+  const { isPending: isStatusLoading, mutateAsync: updateNotifStatus } =
+    useMutation({
+      mutationFn: MarkAsReadReq,
+      onMutate: (data) => {
+        const oldState: NotificationsType[] = client.getQueryData([
+          "notifications",
+        ]) as NotificationsType[];
+
+        if (oldState) {
+          const newData = oldState.map((oldData) =>
+            oldData._id == data.notifId ? data : oldData
+          );
+          client.setQueryData(["notifications"], newData);
+        }
+        return oldState;
+      },
+      onError: (_e,_values,context) => {
+        client.setQueryData(["notifications"],context)
+      },
+      onSuccess: (data: ResponseData_T<string>) => {
+        client.invalidateQueries({ queryKey: ["notifications"] });
+        customToast({
+          title: "موفقیت آمیز",
+          desc: data,
+          icon: Like1,
+          iconColor: "#22c55e",
+          className: "text-green-500",
+          type: "SUCCESS",
+        });
+      },
+    });
+  return { isStatusLoading, updateNotifStatus };
 };

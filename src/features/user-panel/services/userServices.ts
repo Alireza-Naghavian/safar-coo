@@ -18,6 +18,9 @@ export const updateUserInfoReq  = async(data:EditProfileReq_T)=>{
 return app.patch("/auth/user/edit",data).then(({data})=>data)
 }
 
-export const getNotifications = async():Promise<NotificationsType[]>=>{
+export const getNotificationsReq = async():Promise<NotificationsType[]>=>{
     return app.get(`/notif/all`).then(({data})=>data)
+    }
+export const MarkAsReadReq = async({notifId}:{notifId:string})=>{
+    return app.patch(`/notif/update`,{notifId}).then(({data})=>data)
     }

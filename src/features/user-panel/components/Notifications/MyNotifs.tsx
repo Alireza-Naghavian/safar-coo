@@ -10,7 +10,6 @@ import NotifSkeltons from "./NotifSkeltons";
 function MyNotifs() {
   const [isDropDownOpen, setIsDropDownOpen] = useState<string | null>(null);
   const { isNotifLoading, notifications } = useGetNotifications();
-  console.log(isNotifLoading);
   const toggleDropDown = (id: string) => {
     setIsDropDownOpen(isDropDownOpen === id ? null : id);
   };
@@ -45,16 +44,19 @@ function MyNotifs() {
               />
             </div>
           </HeaderContentPanelLayout>
-          <div className="flex flex-col  sm:px-11 px-4 py-8   space-y-8 ">
+          <div className="flex flex-col  sm:px-11 px-4 py-8    space-y-8 ">
+            
             {notifications?.length > 0 ? (
-              notifications?.map((notif) => {
+              notifications?.map((notif,index) => {
                 return (
                   <NotifDropDown
-                    key={notif._id}
+                    key={notif._id || index}
                     id={notif._id}
                     isOpen={isDropDownOpen === notif._id}
                     trigger={toggleDropDown}
+                    status ={notif.status as "READ"|"UNREAD"}
                   >
+                  
                     <div className="flex flex-col gap-y-3 justify-start items-start">
                       <span>{notif.title}</span>
                       <p>{notif.body}</p>
