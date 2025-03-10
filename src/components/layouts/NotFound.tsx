@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import ClientLayout from "./ClientLayout";
-type NotFound_T = {
+export type NotFound_T = {
   desc: string;
   picture: string;
   pictureStyles: string;
@@ -38,7 +38,7 @@ function NotFound({ desc, picture, utilLinks, pictureStyles,title }: NotFound_T)
           className="gap-y-4 flex flex-col mt-8 child:flex child:items-center  child:gap-x-2 
     child:pb-1 child:border-b child:border-natural-black"
         >
-          {utilLinks.map((item, index) => {
+          {utilLinks?.map((item, index) => {
             return (
               <Link key={index} href={item.href}>
                 <item.Icon className=" stroke-natural-black sm:size-8 size-4" />

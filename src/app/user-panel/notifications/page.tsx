@@ -1,10 +1,13 @@
-import MyNotifs from '@/features/user-panel/components/Notifications/MyNotifs'
-import React from 'react'
+import MyNotifs from "@/features/user-panel/components/Notifications/MyNotifs";
+import Providers from "@/providers/QueryClientProvider";
+import React from "react";
 
 function page() {
   return (
-   <MyNotifs/>
-  )
+    <Providers>
+      <MyNotifs />
+    </Providers>
+  );
 }
 
-export default page
+export default page;
