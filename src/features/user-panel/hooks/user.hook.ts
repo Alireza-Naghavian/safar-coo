@@ -5,6 +5,7 @@ import { Like1 } from "iconsax-react";
 import { useSearchParams } from "next/navigation";
 import {
   createTicketReq,
+  getNotificationsByQueryReq,
   getNotificationsReq,
   getTicketByQueryReq,
   getTicketReq,
@@ -102,28 +103,35 @@ export const useGetNotifications = () => {
 };
 
 export const useMarkAsRead = () => {
+  const searchParams= useSearchParams().get("status") as string
+
   const client = useQueryClient();
   const { isPending: isStatusLoading, mutateAsync: updateNotifStatus } =
     useMutation({
       mutationFn: MarkAsReadReq,
       onMutate: (data) => {
-        const oldState: NotificationsType[] = client.getQueryData([
+        const oldNotifications : NotificationsType[] = client.getQueryData([
           "notifications",
         ]) as NotificationsType[];
 
-        if (oldState) {
-          const newData = oldState.map((oldData) =>
+        if (oldNotifications ) {
+          const updatedNotifications  = oldNotifications.map((oldData) =>
             oldData._id == data.notifId ? data : oldData
           );
-          client.setQueryData(["notifications"], newData);
+          client.setQueryData(["notifications"], updatedNotifications);
         }
-        return oldState;
+        return oldNotifications;
       },
       onError: (_e,_values,context) => {
         client.setQueryData(["notifications"],context)
       },
       onSuccess: (data: ResponseData_T<string>) => {
         client.invalidateQueries({ queryKey: ["notifications"] });
+        client.invalidateQueries({ queryKey: ["notificationsQueries"] });
+        if(searchParams === "UNREAD"){
+          client.removeQueries({ queryKey: ["notificationsQueries"] });
+
+        }
         customToast({
           title: "موفقیت آمیز",
           desc: data,
@@ -136,3 +144,13 @@ export const useMarkAsRead = () => {
     });
   return { isStatusLoading, updateNotifStatus };
 };
+
+export const useGetNotifByQueries=  ()=>{
+  const searchParams= useSearchParams().get("status") as string
+  const {data,isLoading:isNotifsLoading} = useQuery({
+    queryKey:["notificationsQueries",searchParams],
+    queryFn:()=>getNotificationsByQueryReq(searchParams?.toString())
+  })
+  const notifs = data || []
+  return {notifs,isNotifsLoading}
+}
