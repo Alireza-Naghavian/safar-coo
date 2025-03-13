@@ -23,10 +23,11 @@ function TextEditor({ onChange, value, placeholder }: TextEditor_T) {
         config={{
           ...editorConfig,
           initialData: value,
+          licenseKey:
+            process.env.NODE_ENV === "development"
+              ? process.env.NEXT_PUBLIC_CKEDITOR_DEV_MODE
+              : process.env.NEXT_PUBLIC_CKEDITOR_PROD_MODE,
           placeholder,
-          image: {
-            styles: { options: { class: "rounded-8 w-full !relative" } },
-          },
         }}
       />
     </div>
