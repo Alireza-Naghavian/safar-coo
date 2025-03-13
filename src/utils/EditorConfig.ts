@@ -7,11 +7,7 @@ import {
   BalloonToolbar,
   BlockQuote,
   Bold,
-  CKBox,
-  CKBoxImageEdit,
-  CloudServices,
   CodeBlock,
-  Essentials,
   Heading,
   ImageBlock,
   ImageCaption,
@@ -51,9 +47,6 @@ const editorConfig: any = {
       "undo",
       "redo",
       "|",
-      "aiCommands",
-      "aiAssistant",
-      "|",
       "heading",
       "|",
       "bold",
@@ -82,10 +75,6 @@ const editorConfig: any = {
     BalloonToolbar,
     BlockQuote,
     Bold,
-    CKBox,
-    CKBoxImageEdit,
-    CloudServices,
-    Essentials,
     Heading,
     ImageBlock,
     ImageCaption,
@@ -167,12 +156,11 @@ const editorConfig: any = {
     toolbar: ["imageTextAlternative", "imageStyle:full", "imageStyle:side"],
     styles: {
         options: [
-           "full","side"
+           "full","side",
+         { class:"rounded-8 w-full !relative"}
         ]
     }
   },
-
-  licenseKey: process.env.NEXT_PUBLIC_CKEDITOR,
   link: {
     addTargetToExternalLinks: true,
     defaultProtocol: "https://",
