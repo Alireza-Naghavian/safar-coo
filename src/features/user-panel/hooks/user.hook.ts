@@ -4,6 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Like1 } from "iconsax-react";
 import { useSearchParams } from "next/navigation";
 import {
+  addTrExperienceReq,
   createTicketReq,
   getNotificationsByQueryReq,
   getNotificationsReq,
@@ -13,7 +14,7 @@ import {
   MarkAsReadReq,
   updateUserInfoReq,
 } from "../services/userServices";
-import { NotificationsType } from "../user-panel.t";
+import { Notifications_T } from "../user-panel.t";
 
 /////////////////
 // edit profile
@@ -110,9 +111,9 @@ export const useMarkAsRead = () => {
     useMutation({
       mutationFn: MarkAsReadReq,
       onMutate: (data) => {
-        const oldNotifications : NotificationsType[] = client.getQueryData([
+        const oldNotifications : Notifications_T[] = client.getQueryData([
           "notifications",
-        ]) as NotificationsType[];
+        ]) as Notifications_T[];
 
         if (oldNotifications ) {
           const updatedNotifications  = oldNotifications.map((oldData) =>
@@ -153,4 +154,27 @@ export const useGetNotifByQueries=  ()=>{
   })
   const notifs = data || []
   return {notifs,isNotifsLoading}
+}
+
+
+
+////////////////
+// travel experience
+////////////////
+
+export const useAddExperience = ()=>{
+  const {mutateAsync:addExperience,isPending:isAddLoading} = useMutation({
+    mutationFn:addTrExperienceReq,
+    onSuccess:(data: ResponseData_T<string>)=>{
+      customToast({
+        title: "موفقیت آمیز",
+        desc: data,
+        icon: Like1,
+        iconColor: "#22c55e",
+        className: "text-green-500",
+        type: "SUCCESS",
+      });
+    }
+  })
+  return {addExperience,isAddLoading}
 }

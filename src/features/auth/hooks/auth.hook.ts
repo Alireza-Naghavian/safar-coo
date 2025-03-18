@@ -1,4 +1,4 @@
-import { customToast } from "@/utils/CutomToast";
+import { customErorrToast, customToast } from "@/utils/CutomToast";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Like1 } from "iconsax-react";
 import { useRouter } from "next/navigation";
@@ -17,8 +17,8 @@ export const useGetMe = () => {
     queryFn: getMeReq,
     gcTime: 1000 * 60 * 10,
     staleTime: 1000 * 60 * 5,
-    refetchOnWindowFocus:false,
-    refetchOnReconnect:true,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: true,
   });
   return { userInfo, isUserLoading };
 };
@@ -61,13 +61,9 @@ export const useLogout = () => {
       replace("/", { scroll: true });
     },
     onError: (err: ResponseData_T<string>) => {
-      customToast({
+      customErorrToast({
         title: "خطا هنگام خروج",
         desc: err,
-        icon: Like1,
-        iconColor: "#ef4444",
-        className: "text-red-500",
-        type: "ERROR",
       });
     },
   });
@@ -93,11 +89,10 @@ export const useSignIn = () => {
   return { signIn, isSignInLoading };
 };
 
-
-export const useSendEmail = ()=>{
-  const {isPending:isEmailSending,mutateAsync:sendEmail} = useMutation({
-    mutationFn:sendEmailReq,
-    onSuccess:(data:ResponseData_T<string>)=>{
+export const useSendEmail = () => {
+  const { isPending: isEmailSending, mutateAsync: sendEmail } = useMutation({
+    mutationFn: sendEmailReq,
+    onSuccess: (data: ResponseData_T<string>) => {
       customToast({
         title: "موفقیت آمیز",
         desc: data,
@@ -107,26 +102,27 @@ export const useSendEmail = ()=>{
         type: "SUCCESS",
       });
     },
-  })
-  return {isEmailSending,sendEmail}
-}
+  });
+  return { isEmailSending, sendEmail };
+};
 
-
-export const useResetPassword  = ()=>{
+export const useResetPassword = () => {
   const queryClient = useQueryClient();
-  const {isPending:isResetLoading,mutateAsync:resetPassword}=useMutation({
-    mutationFn:resetPasswordReq,
-    onSuccess:(data:ResponseData_T<string>)=>{
-      queryClient.removeQueries({queryKey:["user"]})
-      customToast({
-        title: "موفقیت آمیز",
-        desc: data,
-        icon: Like1,
-        iconColor: "#22c55e",
-        className: "text-green-500",
-        type: "SUCCESS",
-      });
-    },
-  })
-  return {isResetLoading,resetPassword}
-}
+  const { isPending: isResetLoading, mutateAsync: resetPassword } = useMutation(
+    {
+      mutationFn: resetPasswordReq,
+      onSuccess: (data: ResponseData_T<string>) => {
+        queryClient.removeQueries({ queryKey: ["user"] });
+        customToast({
+          title: "موفقیت آمیز",
+          desc: data,
+          icon: Like1,
+          iconColor: "#22c55e",
+          className: "text-green-500",
+          type: "SUCCESS",
+        });
+      },
+    }
+  );
+  return { isResetLoading, resetPassword };
+};

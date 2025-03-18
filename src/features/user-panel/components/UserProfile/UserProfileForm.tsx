@@ -1,18 +1,17 @@
 "use client";
 import MainBtn from "@/components/atoms/buttons&links/MainBtn";
 import { TextField } from "@/components/atoms/inputFields/TextFields";
+import Spinner from "@/components/atoms/Loaders/Spinner";
+import Skeleton_sample from "@/components/atoms/skeltons/SkeltonSample";
 import { useGetMe } from "@/features/auth/hooks/auth.hook";
 import { ClassName_T, ResponseData_T } from "@/types/global.t";
-import React, { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { EditProfile_T, User_T } from "../../user-panel.t";
-import Skeleton_sample from "@/components/atoms/skeltons/SkeltonSample";
-import { customToast } from "@/utils/CutomToast";
-import { Dislike } from "iconsax-react";
-import { useEditUserProfile } from "../../hooks/user.hook";
-import Spinner from "@/components/atoms/Loaders/Spinner";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { customErorrToast } from "@/utils/CutomToast";
 import { editProfileValidation } from "@/utils/validators/authValidators";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { useEditUserProfile } from "../../hooks/user.hook";
+import { EditProfile_T, User_T } from "../../user-panel.t";
 
 function UserProfileForm() {
   const { isUserLoading, userInfo } = useGetMe();
@@ -76,13 +75,9 @@ const CustomUserProfileForm = ({
     try {
       await editProfile({ ...data, email: userInfo?.email as string });
     } catch (error: unknown) {
-      customToast({
+      customErorrToast({
         title: "خطا در  بروزرسانی اطلاعات",
         desc: error as ResponseData_T<string>,
-        icon: Dislike,
-        iconColor: "#ef4444",
-        className: "text-red-500",
-        type: "ERROR",
       });
     }
   };

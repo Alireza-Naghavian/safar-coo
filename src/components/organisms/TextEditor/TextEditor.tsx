@@ -15,6 +15,7 @@ function TextEditor({ onChange, value, placeholder }: TextEditor_T) {
   return (
     <div className="child:border-none rounded-8">
       <CKEditor
+      
         onChange={(_event, editor) => {
           const data = editor.getData();
           onChange(data);
@@ -22,6 +23,7 @@ function TextEditor({ onChange, value, placeholder }: TextEditor_T) {
         editor={ClassicEditor}
         config={{
           ...editorConfig,
+          
           initialData: value,
           licenseKey:
             process.env.NODE_ENV === "development"

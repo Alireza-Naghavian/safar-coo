@@ -1,7 +1,7 @@
 import { ResponseData_T } from "@/types/global.t";
 import { addToast } from "@heroui/toast";
 import { AxiosError } from "axios";
-import { Icon } from "iconsax-react";
+import { Dislike, Icon } from "iconsax-react";
 import React from "react";
 type Toast_T<U> = {
   desc: ResponseData_T<U>|AxiosError<{ message: string }>;
@@ -39,3 +39,14 @@ export const customToast = ({
     icon: React.createElement(icon, { color: iconColor, variant: "Bold" }),
   });
 };
+
+export const customErorrToast = ({title,desc}:{title:string,desc: ResponseData_T<string>})=>{
+  return  customToast({
+            title,
+            desc:desc as ResponseData_T<string> ,
+            icon: Dislike,
+            iconColor: "#ef4444",
+            className: "text-red-500",
+            type: "ERROR",
+          });
+}

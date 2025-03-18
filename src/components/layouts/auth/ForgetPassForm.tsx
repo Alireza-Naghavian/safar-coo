@@ -1,17 +1,15 @@
 "use client";
-import React from "react";
+import MainBtn from "@/components/atoms/buttons&links/MainBtn";
+import { TextField } from "@/components/atoms/inputFields/TextFields";
+import Spinner from "@/components/atoms/Loaders/Spinner";
+import { useSendEmail } from "@/features/auth/hooks/auth.hook";
+import { FormType } from "@/types/auth.t";
+import { ResponseData_T, SetState } from "@/types/global.t";
+import { customErorrToast } from "@/utils/CutomToast";
+import { emailValidation } from "@/utils/validators/authValidators";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import AuthFormLayout, { inputStyles } from "./AuthFormLayout";
-import { TextField } from "@/components/atoms/inputFields/TextFields";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { emailValidation } from "@/utils/validators/authValidators";
-import MainBtn from "@/components/atoms/buttons&links/MainBtn";
-import { ResponseData_T, SetState } from "@/types/global.t";
-import { FormType } from "@/types/auth.t";
-import { customToast } from "@/utils/CutomToast";
-import { Like1 } from "iconsax-react";
-import { useSendEmail } from "@/features/auth/hooks/auth.hook";
-import Spinner from "@/components/atoms/Loaders/Spinner";
 
 function ForgetPassForm({
   setFormType,
@@ -31,13 +29,9 @@ function ForgetPassForm({
     try {
       await sendEmail(data);
     } catch (err: unknown) {
-      customToast({
+      customErorrToast({
         title: "خطا هنگام ارسال ایمیل بازنشانی",
         desc: err as ResponseData_T<string>,
-        icon: Like1,
-        iconColor: "#ef4444",
-        className: "text-red-500",
-        type: "ERROR",
       });
     } finally {
       reset();
