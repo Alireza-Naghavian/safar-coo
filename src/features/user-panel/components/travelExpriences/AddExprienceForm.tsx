@@ -1,45 +1,110 @@
 "use client";
-import React, { useMemo, useState } from "react";
-import HeaderContentPanelLayout from "../HeaderContentPanelLayout";
-import { TextField } from "@/components/atoms/inputFields/TextFields";
-import { Select, SelectItem } from "@heroui/select";
-import { ArticleCategories, placePriceOptions } from "@/utils/constants";
 import MainBtn from "@/components/atoms/buttons&links/MainBtn";
-import { LocationAdd } from "iconsax-react";
 import DatePickerField from "@/components/atoms/DatePicker/DatePickerField";
-import { DateObject } from "react-multi-date-picker";
-import { SetState } from "@/types/global.t";
-import dynamic from "next/dynamic";
-import { useForm } from "react-hook-form";
-import useDisclosure from "@/hooks/useDisclosure";
+import { TextField } from "@/components/atoms/inputFields/TextFields";
 import MainModal from "@/components/molecules/modal/Modal";
+import CustomSelect from "@/components/molecules/Select/CustomSelect";
 import CustomMap from "@/components/organisms/Map/CustomMap";
+import useDisclosure from "@/hooks/useDisclosure";
+import { ResponseData_T, SetState } from "@/types/global.t";
+import {
+  ArticleCategories,
+  defaultCoordinate,
+  placePriceOptions,
+} from "@/utils/constants";
+import { customErorrToast } from "@/utils/CutomToast";
+import { addExperienceValidation } from "@/utils/validators/experienceValidation";
+import { SelectItem } from "@heroui/select";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { LocationAdd } from "iconsax-react";
+import dynamic from "next/dynamic";
+import { useMemo, useState } from "react";
+import { useForm } from "react-hook-form";
+import { DateObject } from "react-multi-date-picker";
+import { TrExperienceReqBody, TrExperinceFormProps } from "../../user-panel.t";
+import HeaderContentPanelLayout from "../HeaderContentPanelLayout";
+import { AxiosError } from "axios";
+import { useAddExperience } from "../../hooks/user.hook";
+import Spinner from "@/components/atoms/Loaders/Spinner";
 const TextEditor = dynamic(
   () => import("@/components/organisms/TextEditor/TextEditor"),
   { ssr: false }
 );
 
-const defaultCoordinate: [number, number] = [
-  36.359374956015856, 59.55272131609523,
-];
 function AddExprienceForm() {
-  const [date, setDate] = useState<DateObject>();
+  const [date, setDate] = useState<DateObject | null>();
   const [description, setDescription] = useState<string>("");
   const {
     register,
+    handleSubmit,
+    reset,
     formState: { errors, touchedFields },
-  } = useForm();
+  } = useForm<TrExperinceFormProps>({
+    resolver: yupResolver(addExperienceValidation),
+  });
   const { close, open, isOpen: isMapOpen } = useDisclosure(false);
   const [locationStatus, setLocationStatus] = useState({
     value: false,
     label: "ثبت آدرس با نقشه",
   });
   const [coord, setCoord] = useState<[number, number]>(defaultCoordinate);
+
+  const { addExperience, isAddLoading } = useAddExperience();
+
+  // submit location
   useMemo(() => {
     if (coord !== defaultCoordinate) {
       setLocationStatus({ value: true, label: "موقعیت مکانی ثبت شد" });
     }
   }, [setLocationStatus, coord]);
+
+  // send to server
+  const submitHandler = async (data: TrExperinceFormProps) => {
+    try {
+      const isSameCoord = coord === defaultCoordinate;
+      if (isSameCoord && data.address?.trim().length == 0) {
+        customErorrToast({
+          title: "آدرس را به صورت دستی یا ازطریق نقشه وارد کنید",
+          desc: new AxiosError(
+            "آدرس را به صورت دستی یا ازطریق نقشه وارد کنید"
+          ) as unknown as ResponseData_T<string>,
+        });
+        return;
+      } else if (description.trim().length === 0) {
+        customErorrToast({
+          title: "محتوای تجربه سفر الزامی است",
+          desc: new AxiosError(
+            "آدرس را به صورت دستی یا ازطریق نقشه وارد کنید"
+          ) as unknown as ResponseData_T<string>,
+        });
+        return;
+      }
+      const addExperienceBody: TrExperienceReqBody = {
+        title: data.title,
+        body: description,
+        plan: data.plan,
+        category: data.category,
+        location: isSameCoord ? null : coord,
+        address: data.address ?? null,
+        publishTime: date as DateObject ?? null,
+      };
+      await addExperience({data:addExperienceBody})
+    } catch (error: unknown) {
+      customErorrToast({
+        title: "خطا در ایجاد تجربه سفر",
+        desc: error as ResponseData_T<string>,
+      });
+    } finally {
+      setDescription("")
+      setCoord(defaultCoordinate)
+      setLocationStatus({
+        value: false,
+        label: "ثبت آدرس با نقشه",
+      })
+      setDate(null)
+      reset();
+    }
+  };
 
   return (
     <>
@@ -51,62 +116,76 @@ function AddExprienceForm() {
         از تجربه ات استفاده کنن و هم اینکه جزو نویسنده های سایت ما بشی.`}
         />
         <div className="sm:px-11 px-4   py-4">
-          <form className="sm:mt-20 mt-12 flex flex-col gap-y-8  relative size-full ">
+          <form
+            onSubmit={handleSubmit(submitHandler)}
+            className="sm:mt-20 mt-12 flex flex-col gap-y-8  relative size-full "
+          >
             {/* input group */}
-            <div className="flex sm:flex-row flex-col items-center sm:gap-y-0 gap-y-6 gap-x-6">
-              <TextField
-                register={register}
-                errors={errors}
-                touchedFields={touchedFields}
-                name="title"
-                labelstyles="sm:text-bodyB3Regular text-bodyB4Regular"
-                placeholder={" "}
-                isClearable
-                className=" w-full tracking-tighter "
-                label={"عنوان مقاله"}
-              />
-              <Select
-                className="  w-full "
-                placeholder="دسته بندی را انتخاب کنید"
-                label="دسته بندی مقاله"
-                classNames={{
-                  label: "!text-bodyB3Regular",
-                }}
-                labelPlacement="outside"
-              >
-                {ArticleCategories.map((category) => {
-                  return (
-                    <SelectItem className="!rounded-12 " key={category.key}>
-                      {category.label}
-                    </SelectItem>
-                  );
-                })}
-              </Select>
-            </div>
-            {/* input group  */}
-            <div className="flex sm:flex-row flex-col items-center sm:gap-y-0 gap-y-6 gap-x-6">
-              <div className="flex flex-col sm:w-1/2 w-full items-start">
+            <div className=" first:w-full ">
+              <div className="flex child:w-1/2 sm:flex-row flex-col items-center sm:gap-y-0 gap-y-6 gap-x-6">
                 <TextField
-                  readOnly={locationStatus.value}
+                  register={register}
+                  touchedFields={touchedFields}
+                  errors={errors}
+                  name="title"
+                  labelstyles="sm:text-bodyB3Regular text-bodyB4Regular"
+                  placeholder={" "}
+                  isClearable
+                  className=" w-full tracking-tighter "
+                  label={"عنوان مقاله"}
+                />
+                <CustomSelect
+                  validationSchema={{
+                    required: "دسته بندی الزامی است",
+                  }}
                   register={register}
                   errors={errors}
                   touchedFields={touchedFields}
-                  name="address"
-                  labelstyles="sm:text-bodyB3Regular text-bodyB4Regular"
-                  placeholder={
-                    locationStatus.value
-                      ? "آدرس به وسیله نقشه ثبت شد."
-                      : "آدرس دقیق را وارد کنید یا از موقعیت مکانی استفاده کنید"
-                  }
-                  isClearable
-                  className="w-full tracking-tighter "
-                  label={"آدرس جاذبه گردشگری"}
-                />
-                <MainBtn
-                  onClick={open}
-                  type="button"
-                  variant="fill"
-                  className={`
+                  name="category"
+                  className="  w-full "
+                  placeholder="دسته بندی را انتخاب کنید"
+                  label="دسته بندی مقاله"
+                  classNames={{
+                    label: "!text-bodyB3Regular",
+                    description: "text-red-500",
+                  }}
+                  labelPlacement="outside"
+                >
+                  {ArticleCategories.map((option) => (
+                    <SelectItem className="!rounded-12" key={option.key}>
+                      {option.label}
+                    </SelectItem>
+                  ))}
+                </CustomSelect>
+              </div>
+              <div className="h-[63px] gap-2 sm:block hidden w-0"></div>
+            </div>
+            {/* input group  */}
+            <div className=" first:w-full ">
+              <div className="flex child:w-1/2 sm:flex-row flex-col items-center sm:gap-y-0 gap-y-6 gap-x-6">
+                <div className="flex flex-col  w-full items-start">
+                  <TextField
+                    touchedFields={touchedFields}
+                    readOnly={locationStatus.value}
+                    register={register}
+                    errors={errors}
+                    name="address"
+                    labelstyles="sm:text-bodyB3Regular text-bodyB4Regular"
+                    placeholder={
+                      locationStatus.value
+                        ? "آدرس به وسیله نقشه ثبت شد."
+                        : "آدرس دقیق را وارد کنید یا از موقعیت مکانی استفاده کنید"
+                    }
+                    isClearable
+                    className="w-full tracking-tighter "
+                    label={"آدرس جاذبه گردشگری"}
+                  />
+                  <MainBtn
+                    onClick={open}
+                    type="button"
+                    name="location"
+                    variant="fill"
+                    className={`
                   text-natural-black ${
                     locationStatus.value
                       ? "!bg-primary-300"
@@ -115,35 +194,39 @@ function AddExprienceForm() {
                 w-full md:max-w-[210px] sm:max-w-[180px]
                 rounded-8 flex items-center gap-x-2 mt-4
                   `}
-                  size="xxl"
-                  state="hover"
-                >
-                  <LocationAdd className="size-4 stroke-natural-black" />
-                  <span className="md:text-btnTextXl text-btnTextM ">
-                    {locationStatus.label}
-                  </span>
-                </MainBtn>
-              </div>
-              <div className="flex flex-col sm:w-1/2 w-full items-end">
-                <Select
-                  className=" w-full "
+                    size="xxl"
+                    state="hover"
+                  >
+                    <LocationAdd className="size-4 stroke-natural-black" />
+                    <span className="md:text-btnTextXl text-btnTextM ">
+                      {locationStatus.label}
+                    </span>
+                  </MainBtn>
+                </div>
+                <CustomSelect
+                  validationSchema={{
+                    required: "هزینه بازدید باید مشخص شود",
+                  }}
+                  register={register}
+                  errors={errors}
+                  touchedFields={touchedFields}
+                  className="w-full mb-[63px]"
                   placeholder="رایگان؟غیررایگان؟"
                   label="هزینه بازدید"
+                  name="plan"
                   classNames={{
                     label: "!text-bodyB3Regular",
                   }}
                   labelPlacement="outside"
                 >
-                  {placePriceOptions.map((option) => {
-                    return (
-                      <SelectItem className="!rounded-12 " key={option.key}>
-                        {option.label}
-                      </SelectItem>
-                    );
-                  })}
-                </Select>
-                <div className="h-[63px] gap-2 sm:block hidden"></div>
+                  {placePriceOptions.map((option) => (
+                    <SelectItem className="!rounded-12" key={option.key}>
+                      {option.label}
+                    </SelectItem>
+                  ))}
+                </CustomSelect>
               </div>
+              <div className="h-[63px] gap-2 sm:block hidden w-0"></div>
             </div>
             {/* input group */}
             <div className=" relative flex sm:flex-row flex-col w-full  gap-x-6  ">
@@ -151,6 +234,7 @@ function AddExprienceForm() {
               <div className="sm:w-1/2 w-full">
                 <DatePickerField
                   date={date as DateObject}
+                  
                   setDate={setDate as SetState<DateObject>}
                   label="ساعت انتشار مقاله"
                   className="h-10  rounded-8 p-2 w-full relative"
@@ -164,14 +248,18 @@ function AddExprienceForm() {
               value={description}
               onChange={setDescription}
             />
-
             <MainBtn
               variant="fill"
               className="bg-primary-300 text-natural-black mr-auto rounded-8 "
               size="xxl"
               state="normal"
+              type="submit"
             >
-              انتشار مقاله
+              {isAddLoading ? (
+                <Spinner width="w-8" height="h-8" color={"stroke-white"} />
+              ) : (
+                "انتشار مقاله"
+              )}
             </MainBtn>
           </form>
         </div>

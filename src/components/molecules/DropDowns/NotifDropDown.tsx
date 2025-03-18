@@ -1,9 +1,8 @@
 "use client";
 import { useMarkAsRead } from "@/features/user-panel/hooks/user.hook";
 import { ChildrenProps, ClassName_T, ResponseData_T } from "@/types/global.t";
-import { customToast } from "@/utils/CutomToast";
-import { DirectNormal, Dislike, SmsNotification } from "iconsax-react";
-import React from "react";
+import { customErorrToast } from "@/utils/CutomToast";
+import { DirectNormal, SmsNotification } from "iconsax-react";
 type DropDownProps_T = ClassName_T &
   ChildrenProps & {
     trigger: (id: string) => void;
@@ -12,21 +11,17 @@ type DropDownProps_T = ClassName_T &
     status: "READ" | "UNREAD";
   };
 function NotifDropDown({ trigger, children, ...rest }: DropDownProps_T) {
-  const {  updateNotifStatus } = useMarkAsRead();
+  const { updateNotifStatus } = useMarkAsRead();
   const markHadnler = async () => {
     try {
       trigger(rest.id);
-    if(rest.status == "UNREAD" )  {
-      await updateNotifStatus({notifId:rest.id})
-    }
+      if (rest.status == "UNREAD") {
+        await updateNotifStatus({ notifId: rest.id });
+      }
     } catch (error: unknown) {
-      customToast({
+      customErorrToast({
         title: "خطا در بروزرسانی اعلان",
         desc: error as ResponseData_T<string>,
-        icon: Dislike,
-        iconColor: "#ef4444",
-        className: "text-red-500",
-        type: "ERROR",
       });
     }
   };
@@ -46,9 +41,10 @@ function NotifDropDown({ trigger, children, ...rest }: DropDownProps_T) {
       >
         {rest.status === "UNREAD" && (
           <span className="absolute -left-2 -top-2  flex size-4 z-[70]">
-            <span className="absolute left-0 inline-flex h-full w-full 
-            animate-ping rounded-full bg-secondary-400 opacity-75">
-            </span>
+            <span
+              className="absolute left-0 inline-flex h-full w-full 
+            animate-ping rounded-full bg-secondary-400 opacity-75"
+            ></span>
             <span className="relative inline-flex size-4 rounded-full bg-secondary-500"></span>
           </span>
         )}

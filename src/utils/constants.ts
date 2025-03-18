@@ -107,8 +107,8 @@ export const sortByOptions = [
   {key:"byUsers",label:"از نگاه کاربران",_id:"byUsers",name:"byUsers"},
 ]
 export const placePriceOptions = [
-  {key:"touristCat",label:"رایگان",_id:"freeOption"},
-  {key:"natureCat",label:"غیر رایگان",_id:"paidOption"},
+  {key:"FREE",label:"رایگان",_id:"freeOption"},
+  {key:"PAID",label:"غیر رایگان",_id:"paidOption"},
 
 ]
 
@@ -125,4 +125,10 @@ export const ticketStatus = [
   { key: "PENDING", value: "در انتظار پاسخ" },
   { key: "REPLIED", value: "پاسخ داده شده" },
   { key: "CLOSED", value: "بسته شده" },
+];
+
+
+
+export const defaultCoordinate: [number, number] = [
+  36.359374956015856, 59.55272131609523,
 ];

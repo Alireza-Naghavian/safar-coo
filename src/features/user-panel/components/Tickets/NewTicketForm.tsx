@@ -1,24 +1,23 @@
 "use client";
-import React, { useState } from "react";
-import HeaderContentPanelLayout from "../HeaderContentPanelLayout";
 import BackLink from "@/components/atoms/buttons&links/BackLink";
-import { TextField } from "@/components/atoms/inputFields/TextFields";
-import { inputStyles } from "@/components/layouts/auth/AuthFormLayout";
-import { Select, SelectItem } from "@heroui/select";
-import { TicketPriorities } from "@/utils/constants";
-import TextAriaField from "@/components/atoms/inputFields/TextAriaField";
 import MainBtn from "@/components/atoms/buttons&links/MainBtn";
-import { useForm } from "react-hook-form";
-import { Priority_T, TicketBody_T } from "../../user-panel.t";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { createTicketValidation } from "@/utils/validators/userValidators";
-import { customToast } from "@/utils/CutomToast";
-import { ResponseData_T } from "@/types/global.t";
-import { Dislike } from "iconsax-react";
-import { useCreateTicket } from "../../hooks/user.hook";
+import TextAriaField from "@/components/atoms/inputFields/TextAriaField";
+import { TextField } from "@/components/atoms/inputFields/TextFields";
 import Spinner from "@/components/atoms/Loaders/Spinner";
+import { inputStyles } from "@/components/layouts/auth/AuthFormLayout";
+import { ResponseData_T } from "@/types/global.t";
+import { TicketPriorities } from "@/utils/constants";
+import { customErorrToast } from "@/utils/CutomToast";
+import { createTicketValidation } from "@/utils/validators/userValidators";
+import { Select, SelectItem } from "@heroui/select";
 import { addToast } from "@heroui/toast";
-
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Dislike } from "iconsax-react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useCreateTicket } from "../../hooks/user.hook";
+import { Priority_T, TicketBody_T } from "../../user-panel.t";
+import HeaderContentPanelLayout from "../HeaderContentPanelLayout";
 
 function NewTicketForm() {
   const {
@@ -34,18 +33,20 @@ function NewTicketForm() {
       if (priority === 0) {
         return addToast({
           title: "اولویت تیکت را انتخاب نکرده اید!",
-          icon: <Dislike className="size-10  order-2 fill-[#ef4444] " variant="Bold" color="#ef4444" />,
+          icon: (
+            <Dislike
+              className="size-10  order-2 fill-[#ef4444] "
+              variant="Bold"
+              color="#ef4444"
+            />
+          ),
         });
       }
       await createTicket({ ...data, priority });
     } catch (error: unknown) {
-      customToast({
+      customErorrToast({
         title: "خطا در ایجاد تیکت",
         desc: error as ResponseData_T<string>,
-        icon: Dislike,
-        iconColor: "#ef4444",
-        className: "text-red-500",
-        type: "ERROR",
       });
     } finally {
       reset();
@@ -69,8 +70,10 @@ function NewTicketForm() {
         className="flex flex-col items-center mt-12 sm:px-11 px-4"
       >
         {/* input group */}
-        <div className="flex items-center justify-between sm:flex-row flex-col 
-        w-full sm:gap-y-0 gap-y-6 sm:child:w-1/2 gap-x-6 ">
+        <div
+          className="flex items-center justify-between sm:flex-row flex-col 
+        w-full sm:gap-y-0 gap-y-6 sm:child:w-1/2 gap-x-6 "
+        >
           <TextField
             register={register}
             errors={errors}
@@ -88,9 +91,9 @@ function NewTicketForm() {
             placeholder="بالا،پایین،متوسط؟"
             label="اولویت"
             labelPlacement="outside"
-            className={`${errors?.["title"] ? "after:h-5":"after:h-0"}`}
+            className={`${errors?.["title"] ? "after:h-5" : "after:h-0"}`}
             defaultSelectedKeys={[priority]}
-            onChange={(e)=> setPriority(Number(e.target.value) as Priority_T)}
+            onChange={(e) => setPriority(Number(e.target.value) as Priority_T)}
           >
             {TicketPriorities.map((priority) => {
               return (

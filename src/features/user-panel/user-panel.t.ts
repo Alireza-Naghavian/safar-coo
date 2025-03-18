@@ -1,4 +1,5 @@
 import { ChildrenProps, ClassName_T } from "@/types/global.t";
+import { DateObject } from "react-multi-date-picker";
 
 export type MenuProps = {
   isMenuOpen: boolean;
@@ -59,7 +60,7 @@ export type Ticket_T = TicketBody_T & {
 
 
 // notifications types 
-export type NotificationsType ={
+export type Notifications_T ={
   _id:string,
   title:string,
   referType:string,
@@ -69,4 +70,23 @@ export type NotificationsType ={
   status?:"READ"|"UNREAD",
   updatedAt?:Date,
   createdAt?:Date
+}
+
+
+/////////////////
+// tr-experience
+/////////////////
+export type TrExperinceFormProps ={
+  title:string,
+  address?: string | null; 
+  category:string,
+  plan:"PAID"|"FREE",
+  location?: (number | null | undefined)[] | null | undefined;
+}
+
+
+export type TrExperienceReqBody =TrExperinceFormProps&{
+  body:string,
+  location?:[number,number]|null,
+  publishTime?:DateObject|null
 }

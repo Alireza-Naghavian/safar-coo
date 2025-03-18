@@ -1,28 +1,26 @@
 "use client";
 import MainBtn from "@/components/atoms/buttons&links/MainBtn";
 import { TextField } from "@/components/atoms/inputFields/TextFields";
+import Spinner from "@/components/atoms/Loaders/Spinner";
 import AuthFormLayout, {
   inputStyles,
 } from "@/components/layouts/auth/AuthFormLayout";
 import ClientLayout from "@/components/layouts/ClientLayout";
+import { ResponseData_T } from "@/types/global.t";
+import { customErorrToast } from "@/utils/CutomToast";
 import { newPassValidation } from "@/utils/validators/authValidators";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter, useSearchParams } from "next/navigation";
-import React from "react";
 import { useForm } from "react-hook-form";
-import {  ResetPasswordValues } from "../../../features/auth/auth.t";
+import { ResetPasswordValues } from "../../../features/auth/auth.t";
 import { useResetPassword } from "../../../features/auth/hooks/auth.hook";
-import { customToast } from "@/utils/CutomToast";
-import { ResponseData_T } from "@/types/global.t";
-import { Dislike } from "iconsax-react";
-import Spinner from "@/components/atoms/Loaders/Spinner";
 
 function ResetLink() {
   const params = useSearchParams();
   const token = params.get("token") as string;
   const email = params.get("email") as string;
   const { isResetLoading, resetPassword } = useResetPassword();
-  const {replace} = useRouter();
+  const { replace } = useRouter();
   const {
     register,
     reset,
@@ -31,17 +29,18 @@ function ResetLink() {
   } = useForm({ resolver: yupResolver(newPassValidation) });
   const resetPassHandler = async (data: ResetPasswordValues) => {
     try {
-      await resetPassword({...data,token,email},{onSuccess:()=>{
-        replace("/",{scroll:true})
-      }})
+      await resetPassword(
+        { ...data, token, email },
+        {
+          onSuccess: () => {
+            replace("/", { scroll: true });
+          },
+        }
+      );
     } catch (error: unknown) {
-      customToast({
+      customErorrToast({
         title: "خطا در ثبت نام کاربر",
         desc: error as ResponseData_T<string>,
-        icon: Dislike,
-        iconColor: "#ef4444",
-        className: "text-red-500",
-        type: "ERROR",
       });
     } finally {
       reset();
