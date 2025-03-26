@@ -28,11 +28,10 @@ export type User_T =
 export type EditProfile_T = {
   newUsername: string;
   newPassword: string;
-
 };
-export type EditProfileReq_T=EditProfile_T&{
+export type EditProfileReq_T = EditProfile_T & {
   email: string;
-}
+};
 // ticket types
 export type TicketBody_T = {
   title: string;
@@ -57,36 +56,33 @@ export type Ticket_T = TicketBody_T & {
   _id: string;
 };
 
-
-
-// notifications types 
-export type Notifications_T ={
-  _id:string,
-  title:string,
-  referType:string,
-  body:string,
-  refer:string,
-  user:string,
-  status?:"READ"|"UNREAD",
-  updatedAt?:Date,
-  createdAt?:Date
-}
-
+// notifications types
+export type Notifications_T = {
+  _id: string;
+  title: string;
+  referType: string;
+  body: string;
+  refer: string;
+  user: string;
+  status?: "READ" | "UNREAD";
+  updatedAt?: Date;
+  createdAt?: Date;
+};
 
 /////////////////
 // tr-experience
 /////////////////
-export type TrExperinceFormProps ={
-  title:string,
-  address?: string | null; 
-  category:string,
-  plan:"PAID"|"FREE",
+export type TrExperinceFormProps = {
+  title: string;
+  address?: string | null;
+  category: string;
+  plan: "PAID" | "FREE";
   location?: (number | null | undefined)[] | null | undefined;
-}
+};
 
-
-export type TrExperienceReqBody =TrExperinceFormProps&{
-  body:string,
-  location?:[number,number]|null,
-  publishTime?:DateObject|null
-}
+export type TrExperienceReqBody = TrExperinceFormProps & {
+  body: string;
+  location?: [number, number] | null;
+  publishTime?: DateObject | null;
+  _id?:string
+};

@@ -11,8 +11,10 @@ import {
   getTicketByQueryReq,
   getTicketReq,
   getTicketsReq,
+  getTrExperiencesReq,
   MarkAsReadReq,
-  updateUserInfoReq,
+  removeTrExperienseReq,
+  updateUserInfoReq
 } from "../services/userServices";
 import { Notifications_T } from "../user-panel.t";
 
@@ -104,34 +106,33 @@ export const useGetNotifications = () => {
 };
 
 export const useMarkAsRead = () => {
-  const searchParams= useSearchParams().get("status") as string
+  const searchParams = useSearchParams().get("status") as string;
 
   const client = useQueryClient();
   const { isPending: isStatusLoading, mutateAsync: updateNotifStatus } =
     useMutation({
       mutationFn: MarkAsReadReq,
       onMutate: (data) => {
-        const oldNotifications : Notifications_T[] = client.getQueryData([
+        const oldNotifications: Notifications_T[] = client.getQueryData([
           "notifications",
         ]) as Notifications_T[];
 
-        if (oldNotifications ) {
-          const updatedNotifications  = oldNotifications.map((oldData) =>
+        if (oldNotifications) {
+          const updatedNotifications = oldNotifications.map((oldData) =>
             oldData._id == data.notifId ? data : oldData
           );
           client.setQueryData(["notifications"], updatedNotifications);
         }
         return oldNotifications;
       },
-      onError: (_e,_values,context) => {
-        client.setQueryData(["notifications"],context)
+      onError: (_e, _values, context) => {
+        client.setQueryData(["notifications"], context);
       },
       onSuccess: (data: ResponseData_T<string>) => {
         client.invalidateQueries({ queryKey: ["notifications"] });
         client.invalidateQueries({ queryKey: ["notificationsQueries"] });
-        if(searchParams === "UNREAD"){
+        if (searchParams === "UNREAD") {
           client.removeQueries({ queryKey: ["notificationsQueries"] });
-
         }
         customToast({
           title: "موفقیت آمیز",
@@ -146,26 +147,55 @@ export const useMarkAsRead = () => {
   return { isStatusLoading, updateNotifStatus };
 };
 
-export const useGetNotifByQueries=  ()=>{
-  const searchParams= useSearchParams().get("status") as string
-  const {data,isLoading:isNotifsLoading} = useQuery({
-    queryKey:["notificationsQueries",searchParams],
-    queryFn:()=>getNotificationsByQueryReq(searchParams?.toString())
-  })
-  const notifs = data || []
-  return {notifs,isNotifsLoading}
-}
-
-
+export const useGetNotifByQueries = () => {
+  const searchParams = useSearchParams().get("status") as string;
+  const { data, isLoading: isNotifsLoading } = useQuery({
+    queryKey: ["notificationsQueries", searchParams],
+    queryFn: () => getNotificationsByQueryReq(searchParams?.toString()),
+  });
+  const notifs = data || [];
+  return { notifs, isNotifsLoading };
+};
 
 ////////////////
 // travel experience
 ////////////////
 
-export const useAddExperience = ()=>{
-  const {mutateAsync:addExperience,isPending:isAddLoading} = useMutation({
-    mutationFn:addTrExperienceReq,
-    onSuccess:(data: ResponseData_T<string>)=>{
+export const useAddExperience = () => {
+  const queryClient = useQueryClient();
+  const { mutateAsync: addExperience, isPending: isAddLoading } = useMutation({
+    mutationFn: addTrExperienceReq,
+    onSuccess: (data: ResponseData_T<string>) => {
+      queryClient.invalidateQueries({queryKey:["experiences"]})
+      customToast({
+        title: "موفقیت آمیز",
+        desc: data,
+        icon: Like1,
+        iconColor: "#22c55e",
+        className: "text-green-500",
+        type: "SUCCESS",
+      });
+    },
+  });
+  return { addExperience, isAddLoading };
+};
+
+export const useGetExperiences = () => {
+  const { data, isLoading: isExpLoading } = useQuery({
+    queryKey: ["experiences"],
+    
+    queryFn: getTrExperiencesReq,
+  });
+  const experiences = data || [];
+  return { experiences, isExpLoading };
+};
+
+export const useRemoveTrExp = ()=>{
+  const queryClient = useQueryClient();
+  const {mutateAsync:removeTrExp,isPending:isRemoveLoading} = useMutation({
+    mutationFn:removeTrExperienseReq,
+    onSuccess:(data)=>{
+      queryClient.invalidateQueries({queryKey:["experiences"]})
       customToast({
         title: "موفقیت آمیز",
         desc: data,
@@ -176,5 +206,5 @@ export const useAddExperience = ()=>{
       });
     }
   })
-  return {addExperience,isAddLoading}
+  return {removeTrExp,isRemoveLoading}
 }

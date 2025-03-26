@@ -1,4 +1,4 @@
-import TransitionRoute from '@/components/organisms/TransitionRoute/TransitionRoute'
+import TransitionRoute from '@/components/organisms/motions/TransitionRoute/TransitionRoute'
 import { ChildrenProps } from '@/types/global.t'
 import React from 'react'
 

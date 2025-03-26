@@ -26,6 +26,7 @@ import HeaderContentPanelLayout from "../HeaderContentPanelLayout";
 import { AxiosError } from "axios";
 import { useAddExperience } from "../../hooks/user.hook";
 import Spinner from "@/components/atoms/Loaders/Spinner";
+import { useRouter } from "next/navigation";
 const TextEditor = dynamic(
   () => import("@/components/organisms/TextEditor/TextEditor"),
   { ssr: false }
@@ -34,6 +35,7 @@ const TextEditor = dynamic(
 function AddExprienceForm() {
   const [date, setDate] = useState<DateObject | null>();
   const [description, setDescription] = useState<string>("");
+  const {push} = useRouter()
   const {
     register,
     handleSubmit,
@@ -88,7 +90,9 @@ function AddExprienceForm() {
         address: data.address ?? null,
         publishTime: date as DateObject ?? null,
       };
-      await addExperience({data:addExperienceBody})
+      await addExperience({data:addExperienceBody},{onSuccess:()=>{
+        push("/user-panel/travel-exprience")
+      }})
     } catch (error: unknown) {
       customErorrToast({
         title: "خطا در ایجاد تجربه سفر",

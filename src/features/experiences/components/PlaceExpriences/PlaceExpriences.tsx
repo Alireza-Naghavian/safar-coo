@@ -3,7 +3,7 @@ import BreadCrumb from "@/components/atoms/Breadcrumb/BreadCrumb";
 import MainBtn from "@/components/atoms/buttons&links/MainBtn";
 import SectionTitle from "@/components/atoms/SectionTitle/SectionTitle";
 import ClientLayout from "@/components/layouts/ClientLayout";
-import TransitionRoute from "@/components/organisms/TransitionRoute/TransitionRoute";
+import TransitionRoute from "@/components/organisms/motions/TransitionRoute/TransitionRoute";
 import { Save2, Share } from "iconsax-react";
 import { BtnBox_T } from "../../experiences.t";
 import ShortIntro from "./ShortIntro";
