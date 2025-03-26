@@ -1,6 +1,6 @@
 import BreadCrumb from '@/components/atoms/Breadcrumb/BreadCrumb'
 import ClientLayout from '@/components/layouts/ClientLayout'
-import TransitionRoute from '@/components/organisms/TransitionRoute/TransitionRoute'
+import TransitionRoute from '@/components/organisms/motions/TransitionRoute/TransitionRoute'
 import React from 'react'
 import IranologyIcon from '../../../../../public/icons/svgs/IranologyIcon'
 import { CloudDrizzle } from 'iconsax-react'

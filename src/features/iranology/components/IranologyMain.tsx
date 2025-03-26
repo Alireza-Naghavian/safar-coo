@@ -3,7 +3,7 @@ import ClientLayout from '@/components/layouts/ClientLayout'
 import React from 'react'
 import IranologyFilterSection from './IranologyFilterSection'
 import PopularAttractions from './swipers/PopularAttractions'
-import TransitionRoute from '@/components/organisms/TransitionRoute/TransitionRoute'
+import TransitionRoute from '@/components/organisms/motions/TransitionRoute/TransitionRoute'
 import PopRecreationalPlaces from './swipers/PopRecreationalPlaces'
 
 function IranologyMain() {

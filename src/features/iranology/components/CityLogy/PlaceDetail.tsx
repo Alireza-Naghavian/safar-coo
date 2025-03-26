@@ -2,7 +2,7 @@ import BreadCrumb from "@/components/atoms/Breadcrumb/BreadCrumb";
 import NavLink from "@/components/atoms/buttons&links/NavLink";
 import ClientLayout from "@/components/layouts/ClientLayout";
 import RateStar from "@/components/molecules/RateStar/RateStar";
-import TransitionRoute from "@/components/organisms/TransitionRoute/TransitionRoute";
+import TransitionRoute from "@/components/organisms/motions/TransitionRoute/TransitionRoute";
 import ArticleContent from "@/features/Tourism-articles/components/article/ArticleContent";
 import ArticleHeader from "@/features/Tourism-articles/components/article/ArticleHeader";
 import ArtilceCommentForm from "@/features/Tourism-articles/components/article/ArtilceCommentForm";

@@ -26,7 +26,6 @@ function DatePickerField({ date, label, setDate,className,labeStyle }: DatePrick
           <TimePicker position="bottom" key={Math.floor((Math.random()*100))} />
         ]}
         locale={persian_fa}
-        currentDate={undefined}
         minDate={Date.now()}
         inputClass={className}
       />

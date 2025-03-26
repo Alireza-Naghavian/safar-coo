@@ -46,3 +46,10 @@ export const MarkAsReadReq = async ({ notifId }: { notifId: string }) => {
 export const addTrExperienceReq= async({data}:{data:TrExperienceReqBody})=>{
 return app.post("/experience/add",data).then(({data})=>data)
 }
+export const getTrExperiencesReq= async():Promise<TrExperienceReqBody[]>=>{
+return app.get("/experience/all").then(({data})=>data)
+}
+
+export const removeTrExperienseReq = async({expId}:{expId:string})=>{
+return app.delete(`/experience/${expId}`).then(({data})=>data)
+}

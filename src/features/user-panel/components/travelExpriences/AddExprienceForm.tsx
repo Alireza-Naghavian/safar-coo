@@ -26,6 +26,7 @@ import HeaderContentPanelLayout from "../HeaderContentPanelLayout";
 import { AxiosError } from "axios";
 import { useAddExperience } from "../../hooks/user.hook";
 import Spinner from "@/components/atoms/Loaders/Spinner";
+import { useRouter } from "next/navigation";
 const TextEditor = dynamic(
   () => import("@/components/organisms/TextEditor/TextEditor"),
   { ssr: false }
@@ -34,6 +35,7 @@ const TextEditor = dynamic(
 function AddExprienceForm() {
   const [date, setDate] = useState<DateObject | null>();
   const [description, setDescription] = useState<string>("");
+  const {push} = useRouter()
   const {
     register,
     handleSubmit,
@@ -88,7 +90,9 @@ function AddExprienceForm() {
         address: data.address ?? null,
         publishTime: date as DateObject ?? null,
       };
-      await addExperience({data:addExperienceBody})
+      await addExperience({data:addExperienceBody},{onSuccess:()=>{
+        push("/user-panel/travel-exprience")
+      }})
     } catch (error: unknown) {
       customErorrToast({
         title: "خطا در ایجاد تجربه سفر",
@@ -228,26 +232,27 @@ function AddExprienceForm() {
               </div>
               <div className="h-[63px] gap-2 sm:block hidden w-0"></div>
             </div>
+             {/* blog description */}
+             <TextEditor
+              placeholder="لطفا تجربه سفر خود را توضیح دهید"
+              value={description}
+              onChange={setDescription}
+            />
             {/* input group */}
             <div className=" relative flex sm:flex-row flex-col w-full  gap-x-6  ">
               <div className="sm:w-1/2 w-full"></div>
               <div className="sm:w-1/2 w-full">
                 <DatePickerField
                   date={date as DateObject}
-                  
                   setDate={setDate as SetState<DateObject>}
                   label="ساعت انتشار مقاله"
                   className="h-10  rounded-8 p-2 w-full relative"
                   labeStyle="sm:text-bodyB3Regular text-bodyB4Regular"
                 />
+                <span className="text-right text-natural-black text-bodyB5semi">در صورت انتشار‌آنی این بخش را نادیده بگیرید.</span>
               </div>
             </div>
-            {/* blog description */}
-            <TextEditor
-              placeholder="لطفا تجربه سفر خود را توضیح دهید"
-              value={description}
-              onChange={setDescription}
-            />
+           
             <MainBtn
               variant="fill"
               className="bg-primary-300 text-natural-black mr-auto rounded-8 "
