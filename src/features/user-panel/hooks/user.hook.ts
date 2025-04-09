@@ -211,7 +211,7 @@ export const useRemoveTrExp = () => {
 };
 
 export const useGetTrExpByQueries = ({status}:{status:string}) => {
-  const { data: expByQuery, isPending: isExpQueryLoading } = useQuery({
+  const { data: expByQuery, isLoading: isExpQueryLoading } = useQuery({
     queryKey: ["experiences", status],
     queryFn: () => getTrExperiencesByReqQuery(status),
   });

@@ -1,3 +1,4 @@
+"use client"
 import MainBtn from '@/components/atoms/buttons&links/MainBtn';
 import SearchBox from '@/components/atoms/inputFields/SearchBox';
 import CustomSwitch from '@/components/atoms/Switch/CustomSwitch';
