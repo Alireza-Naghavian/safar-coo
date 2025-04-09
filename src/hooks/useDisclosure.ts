@@ -1,3 +1,4 @@
+"use client"
 import { useState } from "react"
 type DefaultState=Partial<boolean>
 export type Disclosure_T =DefaultState& {
