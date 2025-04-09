@@ -84,5 +84,6 @@ export type TrExperienceReqBody = TrExperinceFormProps & {
   body: string;
   location?: [number, number] | null;
   publishTime?: DateObject | null;
-  _id?:string
+  _id?:string,
+  isPublished?:boolean
 };

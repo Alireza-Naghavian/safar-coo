@@ -4,7 +4,7 @@ import { articlesFilterOption } from "@/utils/constants";
 import React from "react";
 
 
-function BtnGroup({ activate, children,activeBtn }: BtnGroup_T) {
+function BtnGroup({ activate, children,activeBtn,actionHandler }: BtnGroup_T) {
   return (
     <div
       className={`w-full  relative flex items-center child:size-full
@@ -19,7 +19,13 @@ function BtnGroup({ activate, children,activeBtn }: BtnGroup_T) {
             return (
               <button
                 key={option.id}
-                onClick={ ()=>activate &&activate({value:option.value})}
+                onClick={ ()=>{
+                  if(activate){
+                    const value = option.value
+                    activate({value})
+                    actionHandler({value})
+                  }
+                }}
                 className={`
                     first:rounded-r-8 last:rounded-l-8 
                     ${activeBtn?.value === option.value ? "bg-primary-500" : "bg-white"}

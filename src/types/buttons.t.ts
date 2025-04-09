@@ -19,4 +19,5 @@ export type Badge_T = ClassName_T &{title:string | React.ReactNode,variant: "fil
 export type BtnGroup_T = Partial<ChildrenProps>&{
   activate?:SetState<{value:string}>
   activeBtn?:{value:string}
+  actionHandler:({value}:{value:string})=>void
 }

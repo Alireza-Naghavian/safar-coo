@@ -9,24 +9,34 @@ import InfoCardSkelton from "@/components/molecules/cards/skeltons/InfoCardSkelt
 import DeleteModal from "@/components/molecules/modal/DeleteModal";
 import useDisclosure from "@/hooks/useDisclosure";
 import { ResponseData_T } from "@/types/global.t";
-import { ArticleCategories } from "@/utils/constants";
 import { customErorrToast } from "@/utils/CutomToast";
 import { Eye } from "iconsax-react";
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { useGetExperiences, useRemoveTrExp } from "../../hooks/user.hook";
+import {
+  useGetExperiences,
+  useGetTrExpByQueries,
+  useRemoveTrExp,
+} from "../../hooks/user.hook";
 import HeaderContentPanelLayout from "../HeaderContentPanelLayout";
 function Expriences() {
   const [activeBtn, setActiveBtn] = useState<{ value: string }>({
-    value: "published",
+    value: "allTrExp",
   });
-
+  const searchParams = useSearchParams();
+  const { replace } = useRouter();
+  const path = usePathname();
   const {
     close: closeDelModal,
     open: openDelModal,
     isOpen: isDelOpen,
   } = useDisclosure(false);
-  const { experiences: trExperience, isExpLoading } = useGetExperiences();
+  const { experiences, isExpLoading } = useGetExperiences();
+  // by queries ?
+  const status =
+    searchParams.get("status") || ("allTrExp"?.toString() as string);
+  const { expByQuery, isExpQueryLoading } = useGetTrExpByQueries({ status });
   // remove tr exp ?
   const { isRemoveLoading, removeTrExp } = useRemoveTrExp();
   const removeHandler = async (_id: string) => {
@@ -41,14 +51,22 @@ function Expriences() {
       closeDelModal();
     }
   };
-  // change en category to fa
-  const experiences = trExperience.map((exp) => {
-    for (const category of ArticleCategories) {
-      if (category.key === exp.category) {
-        return { ...exp, category: category.label };
-      }
+
+  // change retreived data based queries
+  const handleChangeStatus = ({ value }: { value: string }) => {
+    try {
+      const urlSearchParams = new URLSearchParams(searchParams);
+      setActiveBtn({ value });
+      urlSearchParams.set("status", value);
+      replace(`${path}?${urlSearchParams.toString()}`);
+    } catch (error) {
+      customErorrToast({
+        title: "خطا احتمالی در  تجربه سفر",
+        desc: error as ResponseData_T<string>,
+      });
     }
-  });
+  };
+
   return (
     <>
       <div className="user-panel-container">
@@ -57,7 +75,11 @@ function Expriences() {
           title="تجربیات منتشر شده من"
           desc={null}
         >
-          <BtnGroup activate={setActiveBtn} activeBtn={activeBtn} />
+          <BtnGroup
+            actionHandler={handleChangeStatus}
+            activate={setActiveBtn}
+            activeBtn={activeBtn}
+          />
         </HeaderContentPanelLayout>
         <div className="sm:px-11 px-4 py-4">
           <div className="w-full relative flex flex-wrap gap-y-5 items-center justify-between ">
@@ -77,7 +99,7 @@ function Expriences() {
             </NavLink>
           </div>
           <div className=" md:mt-16 mt-12 max-h-[450px]     flex flex-col gap-y-14  ">
-            {isExpLoading ? (
+            {isExpLoading || isExpQueryLoading ? (
               <InfoCardSkelton count={3} />
             ) : experiences.length === 0 ? (
               <EmptyResult
@@ -87,52 +109,59 @@ function Expriences() {
                 title={"هیچ تجربه سفری یافت نشد!"}
               />
             ) : (
-              experiences.map((exp) => {
-                return (
-                  <div key={exp?._id} className="size-full relative">
-                    <InfoCard className="!bg-primary-700  !gap-x-8 tr-300  ">
-                      <InfoCard.InfoCardItem title="عنوان" value={exp?.title} />
-                      <InfoCard.InfoCardItem
-                        title="دسته بندی مقاله"
-                        value={exp?.category}
-                      />
-                      <InfoCard.InfoCardItem
-                        title="تاریخ انتشار"
-                        value={new Date(
-                          exp?.publishTime as unknown as Date
-                        ).toLocaleDateString("fa-IR")}
-                      />
-                      <InfoCard.InfoCardItem
-                        title="ساعت انتشار"
-                        value={new Date(
-                          exp?.publishTime as unknown as Date
-                        ).toLocaleString("fa-IR", {
-                          timeStyle: "short",
-                          hour12: true,
-                        })}
-                      />
-                      <InfoCard.InfoCardItem title="مشاهده در وبسایت">
-                        <Link href="" className="">
-                          <Eye
-                            variant="Outline"
-                            className="fill-white size-6"
-                          />
-                        </Link>
-                      </InfoCard.InfoCardItem>
-                      <DeleteBtn open={openDelModal} />
-                    </InfoCard>
+              (searchParams.size === 0 ? experiences : expByQuery)?.map(
+                (exp) => {
+                  return (
+                    <div key={exp?._id} className="size-full relative">
+                      <InfoCard className="!bg-primary-700  !gap-x-8 tr-300  ">
+                        <InfoCard.InfoCardItem
+                          title="عنوان"
+                          value={exp?.title}
+                        />
+                        <InfoCard.InfoCardItem
+                          title="وضعیت"
+                          value={
+                            exp?.isPublished ? "منتشر شده" : "در‌ صف‌انتشار"
+                          }
+                        />
+                        <InfoCard.InfoCardItem
+                          title="تاریخ انتشار"
+                          value={new Date(
+                            exp?.publishTime as unknown as Date
+                          ).toLocaleDateString("fa-IR")}
+                        />
+                        <InfoCard.InfoCardItem
+                          title="ساعت انتشار"
+                          value={new Date(
+                            exp?.publishTime as unknown as Date
+                          ).toLocaleString("fa-IR", {
+                            timeStyle: "short",
+                            hour12: true,
+                          })}
+                        />
+                        <InfoCard.InfoCardItem title="مشاهده در وبسایت">
+                          <Link href="" className="">
+                            <Eye
+                              variant="Outline"
+                              className="fill-white size-6"
+                            />
+                          </Link>
+                        </InfoCard.InfoCardItem>
+                        <DeleteBtn open={openDelModal} />
+                      </InfoCard>
 
-                    <DeleteModal
-                      removeHandler={removeHandler}
-                      isRemoveLoading={isRemoveLoading}
-                      subject="تجربه سفر"
-                      _id={exp?._id as string}
-                      close={closeDelModal}
-                      isModalOpen={isDelOpen}
-                    />
-                  </div>
-                );
-              })
+                      <DeleteModal
+                        removeHandler={removeHandler}
+                        isRemoveLoading={isRemoveLoading}
+                        subject="تجربه سفر"
+                        _id={exp?._id as string}
+                        close={closeDelModal}
+                        isModalOpen={isDelOpen}
+                      />
+                    </div>
+                  );
+                }
+              )
             )}
           </div>
         </div>
