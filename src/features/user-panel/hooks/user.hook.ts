@@ -11,10 +11,11 @@ import {
   getTicketByQueryReq,
   getTicketReq,
   getTicketsReq,
+  getTrExperiencesByReqQuery,
   getTrExperiencesReq,
   MarkAsReadReq,
   removeTrExperienseReq,
-  updateUserInfoReq
+  updateUserInfoReq,
 } from "../services/userServices";
 import { Notifications_T } from "../user-panel.t";
 
@@ -166,7 +167,7 @@ export const useAddExperience = () => {
   const { mutateAsync: addExperience, isPending: isAddLoading } = useMutation({
     mutationFn: addTrExperienceReq,
     onSuccess: (data: ResponseData_T<string>) => {
-      queryClient.invalidateQueries({queryKey:["experiences"]})
+      queryClient.invalidateQueries({ queryKey: ["experiences"] });
       customToast({
         title: "موفقیت آمیز",
         desc: data,
@@ -183,19 +184,19 @@ export const useAddExperience = () => {
 export const useGetExperiences = () => {
   const { data, isLoading: isExpLoading } = useQuery({
     queryKey: ["experiences"],
-    
+
     queryFn: getTrExperiencesReq,
   });
   const experiences = data || [];
   return { experiences, isExpLoading };
 };
 
-export const useRemoveTrExp = ()=>{
+export const useRemoveTrExp = () => {
   const queryClient = useQueryClient();
-  const {mutateAsync:removeTrExp,isPending:isRemoveLoading} = useMutation({
-    mutationFn:removeTrExperienseReq,
-    onSuccess:(data)=>{
-      queryClient.invalidateQueries({queryKey:["experiences"]})
+  const { mutateAsync: removeTrExp, isPending: isRemoveLoading } = useMutation({
+    mutationFn: removeTrExperienseReq,
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["experiences"] });
       customToast({
         title: "موفقیت آمیز",
         desc: data,
@@ -204,7 +205,15 @@ export const useRemoveTrExp = ()=>{
         className: "text-green-500",
         type: "SUCCESS",
       });
-    }
-  })
-  return {removeTrExp,isRemoveLoading}
-}
+    },
+  });
+  return { removeTrExp, isRemoveLoading };
+};
+
+export const useGetTrExpByQueries = ({status}:{status:string}) => {
+  const { data: expByQuery, isPending: isExpQueryLoading } = useQuery({
+    queryKey: ["experiences", status],
+    queryFn: () => getTrExperiencesByReqQuery(status),
+  });
+  return { isExpQueryLoading, expByQuery };
+};

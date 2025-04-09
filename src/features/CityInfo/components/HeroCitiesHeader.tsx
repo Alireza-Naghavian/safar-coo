@@ -13,7 +13,7 @@ function HeroCitiesHeader() {
   return (
     <LazyMotion features={domAnimation}>
       <motion.div
-        className=" overflow-hidden relative w-full h-full max-h-[633px]   grid lg:grid-cols-4  grid-cols-2 lg:grid-rows-none grid-rows-2 "
+        className=" overflow-hidden relative w-full  h-full max-h-[633px]   grid lg:grid-cols-4  grid-cols-2 lg:grid-rows-none grid-rows-2 "
         variants={{
           hidden: { opacity: 0 },
           visible: {

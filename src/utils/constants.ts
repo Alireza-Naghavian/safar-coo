@@ -66,14 +66,14 @@ export const TicketPriorities = [
 
 export const articlesFilterOption = [
   {
+    title:"پیش فرض",
+    id:"allTrExp",
+    value:"allTrExp"
+  },
+  {
     title:" منتشر شده ها",
     id:"published",
     value:"published"
-  },
-  {
-    title:"زمان بندی شده",
-    id:"scheduled",
-    value:"scheduled"
   },
   {
     title:"در صف انتشار",
