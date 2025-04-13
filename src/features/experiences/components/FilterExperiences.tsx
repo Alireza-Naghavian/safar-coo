@@ -2,6 +2,7 @@
 import MainBtn from "@/components/atoms/buttons&links/MainBtn";
 import SearchBox from "@/components/atoms/inputFields/SearchBox";
 import FilterSwitchBox from "@/components/molecules/FilterSwitchBox/FilterSwitchBox";
+import Providers from "@/providers/QueryClientProvider";
 import { ArticleCategories, recreationalCategories } from "@/utils/constants";
 import { FilterSearch } from "iconsax-react";
 import React from "react";
@@ -22,7 +23,9 @@ function FilterExperiences() {
       </div>
       <form className="w-full relative  rounded-8 px-4 py-10 bg-primary-500">
         <div className="flex items-start gap-x-6 lg:flex-row flex-col lg:gap-y-0 sm:gap-y-12 gap-y-8">
-          <SearchBox size="desktop" placeholder="کجا میخوای بری؟" />
+        <Providers>
+        <SearchBox size="desktop" placeholder="کجا میخوای بری؟" />
+        </Providers>
           <FilterSwitchBox
             className="lg:max-w-[315px] md:max-w-[72%]"
             contentBox={ArticleCategories}

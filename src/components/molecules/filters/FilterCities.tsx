@@ -2,13 +2,16 @@
 import MainBtn from '@/components/atoms/buttons&links/MainBtn';
 import SearchBox from '@/components/atoms/inputFields/SearchBox';
 import CustomSwitch from '@/components/atoms/Switch/CustomSwitch';
+import Providers from '@/providers/QueryClientProvider';
 import { ClassName_T } from '@/types/global.t';
 import { FilterSearch } from 'iconsax-react';
 
 const FilterCities = () => {
     return (
       <div className="flex flex-col items-start ">
-        <HeaderSearchBox className='sm:flex md:hidden xl:flex'/>
+      <Providers>
+      <HeaderSearchBox className='sm:flex md:hidden xl:flex'/>
+      </Providers>
         <div className="mt-16 flex flex-col gap-y-4 items-start w-full">
           <p className="flex items-center gap-x-1 text-white">
             <FilterSearch className='size-10 fill-white' variant='Bold'  />

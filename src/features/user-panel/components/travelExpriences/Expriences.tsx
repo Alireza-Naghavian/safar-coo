@@ -20,6 +20,7 @@ import {
   useRemoveTrExp,
 } from "../../hooks/user.hook";
 import HeaderContentPanelLayout from "../HeaderContentPanelLayout";
+import Providers from "@/providers/QueryClientProvider";
 function Expriences() {
   const [activeBtn, setActiveBtn] = useState<{ value: string }>({
     value: "allTrExp",
@@ -83,11 +84,13 @@ function Expriences() {
         </HeaderContentPanelLayout>
         <div className="sm:px-11 px-4 py-4">
           <div className="w-full relative flex flex-wrap gap-y-5 items-center justify-between ">
-            <SearchBox
+        <Providers>
+        <SearchBox
               size="desktop"
-              placeholder="جستجو در مقالات"
+              placeholder="جستجو در تجربیات"
               className="sm:!w-[411px]"
             />
+        </Providers>
             <NavLink
               size="xl"
               className="bg-secondary-400 !px-4 !py-2 rounded-4"

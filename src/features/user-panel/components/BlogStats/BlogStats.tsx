@@ -6,6 +6,7 @@ import { Eye, MessageText, Star1 } from "iconsax-react";
 import Link from "next/link";
 import { useState } from "react";
 import HeaderContentPanelLayout from "../HeaderContentPanelLayout";
+import Providers from "@/providers/QueryClientProvider";
 const blogFilterOptions = [
   { label: "جدیدترین", value: "latest" },
   { label: "قدیمی ترین", value: "oldest" },
@@ -45,11 +46,13 @@ function BlogStats() {
       {/* stat cards */}
       <section className="w-full relative my-10  ">
         <div className="sm:px-11 px-4 py-4 flex flex-col gap-y-[56px]">
-          <SearchBox
+    <Providers>
+    <SearchBox
             size="desktop"
             placeholder="جستجو در مقالات"
             className="sm:!w-[411px]"
           />
+    </Providers>
         {/* stats cards */}
         <BlogStatsCards/>
         </div>
