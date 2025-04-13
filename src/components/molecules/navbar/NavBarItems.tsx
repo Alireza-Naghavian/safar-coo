@@ -4,6 +4,7 @@ import SearchBox from "@/components/atoms/inputFields/SearchBox";
 import NavItem from "@/components/atoms/NavItem/NavItem";
 import { Disclosure_T } from "@/hooks/useDisclosure";
 import useUnderline from "@/hooks/useUnderline";
+import Providers from "@/providers/QueryClientProvider";
 import { menuItems } from "@/utils/constants";
 import { motionDisappear } from "@/utils/motionVairants";
 import { AnimatePresence, motion } from "motion/react";
@@ -84,7 +85,9 @@ function NavBarItems({ close, isOpen: isSearchOpen, open }: Pick<Disclosure_T,"c
             animate={isSearchOpen ? "initial" : "animate"}
             exit={isSearchOpen ? "initial" : "animate"}
           >
+            <Providers>
             <SearchBox size="desktop" />
+            </Providers>
           </motion.div>
         </AnimatePresence>
         {/* underline effect */}

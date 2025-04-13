@@ -6,10 +6,13 @@ import Link from "next/link";
 import React from "react";
 import { HeaderSearchBox } from "../filters/FilterCities";
 import styles from "./iranMap.module.css";
+import Providers from "@/providers/QueryClientProvider";
 function IranMap() {
   return (
     <div className="flex flex-col gap-y-6">
-      <HeaderSearchBox className="xl:hidden flex "/>
+    <Providers>
+    <HeaderSearchBox className="xl:hidden flex "/>
+    </Providers>
         <div className="relative  ">
       <div className={styles.container}>
         <div className={styles.map}>

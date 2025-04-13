@@ -1,10 +1,16 @@
 "use client ";
-import { SearchBox_T } from "@/types/textField.t";
-import { cva } from "class-variance-authority";
-import Chips from "../chips/Chips";
-import { motion } from "motion/react";
+import { searchTrExperiencesByReqQuery } from "@/features/user-panel/services/userServices";
+import { TrExperienceReqBody } from "@/features/user-panel/user-panel.t";
 import useDisclosure from "@/hooks/useDisclosure";
+import { useSearch } from "@/hooks/useSearch";
+import { SearchBox_T } from "@/types/textField.t";
 import { motionDisappear } from "@/utils/motionVairants";
+import { cva } from "class-variance-authority";
+import { motion } from "motion/react";
+import { useRouter } from "next/navigation";
+import { ChangeEvent, useEffect, useState } from "react";
+import Chips from "../chips/Chips";
+import Spinner from "../Loaders/Spinner";
 const searchBoxStyles = cva(
   `border-2 tr-300 outline-none  focus:border-secondary-500 w-full   box-center
     placeholder:text-natural-gray2 placeholder:text-bodyB3Regular text-natural-black text-right rounded-8
@@ -19,6 +25,10 @@ const searchBoxStyles = cva(
     },
   }
 );
+type Chips_T = {
+  _id: string;
+  title: string;
+};
 
 function SearchBox({
   size,
@@ -26,11 +36,38 @@ function SearchBox({
   placeholder = "جستجو کنید",
 }: SearchBox_T) {
   const { open, close, isOpen: isSerachOpen } = useDisclosure(false);
+  const [search, setSearch] = useState("");
+  const searchInfos: Chips_T[] =
+    JSON.parse(localStorage.getItem("search") as string) || [];
+  const [chips, setChips] = useState<Chips_T[]>(searchInfos);
+  const { push } = useRouter();
+  const { expBySearchQuery, isSearchLoading } = useSearch<TrExperienceReqBody>({
+    search,
+    request: async () => await searchTrExperiencesByReqQuery({ query: search }),
+  });
+  const searchHandler = async (e: ChangeEvent<HTMLInputElement>) => {
+    const search = e.target.value;
+    setSearch(search);
+  };
+
+  // use prev suggest experience
+  const selectFromSuggestList = ({ _id, title }: Chips_T) => {
+    const isItemExist = searchInfos.some((info) => info._id === _id);
+    if (isItemExist) return;
+    const chipInfo = { _id, title };
+    setChips((prev) => [...prev, chipInfo]);
+  };
+  useEffect(() => {
+    localStorage.setItem("search", JSON.stringify(chips));
+  }, [chips]);
+
   return (
     <div className="relative ">
       <input
-      onFocus={open}
-      onBlur={close}
+        onFocus={open}
+        onBlur={close}
+        value={search}
+        onChange={searchHandler}
         className={searchBoxStyles({ className, size })}
         type="search"
         placeholder={placeholder}
@@ -45,9 +82,22 @@ function SearchBox({
          mt-1 shadow-md flex flex-col p-2 "
       >
         {/* chips ? */}
-        <div className="flex gap-2 items-center flex-wrap border-b border-b-natural-gray2 pb-2 ">
-          <Chips href="" title="test" />
-          <Chips href="" title="test" />
+        <div
+          className={`${
+            chips.length > 0
+              ? `flex gap-2 items-center flex-wrap border-b border-b-natural-gray2 pb-2`
+              : ``
+          }`}
+        >
+          {chips.slice(-5).map((chip) => {
+            return (
+              <Chips
+                key={chip._id}
+                href={`/experiences/${chip._id}`}
+                title={chip.title}
+              />
+            );
+          })}
         </div>
         {/* suggestion list based values */}
         <ul
@@ -55,10 +105,38 @@ function SearchBox({
             overflow-y-auto relative items-start justify-start
            child:text-natural-black space-y-1 py-2 child:py-1 child:px-1 child:rounded-2 child:w-full
             child-hover:bg-secondary-300
-            child-hover:text-white child:tr-300 child:cursor-pointer "
+            child-hover:text-white child:tr-300 "
         >
-          <li>مقالات سایت</li>
-          <li>درباره ما</li>
+          {isSearchLoading && search.trim().length > 0 ? (
+            <div className="flex items-center gap-x-2">
+              <Spinner width="w-6" height="h-6" color={"stroke-white"} />
+              <span>درحال جستجو</span>
+            </div>
+          ) : expBySearchQuery?.length === 0 ? (
+            <div className="flex items-center text-right !bg-white">
+              <span className="text-sm text-natural-black ">
+                هیچ نتیجه ای یافت نشد
+              </span>
+            </div>
+          ) : (
+            expBySearchQuery?.map((result) => {
+              return (
+                <li key={result._id}>
+                  <button
+                    onClick={() => {
+                      selectFromSuggestList({
+                        _id: result._id as string,
+                        title: result.title,
+                      });
+                      push(`/experiences/${result._id}`);
+                    }}
+                  >
+                    {result.title}
+                  </button>
+                </li>
+              );
+            })
+          )}
         </ul>
       </motion.div>
     </div>

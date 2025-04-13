@@ -7,6 +7,7 @@ import { motion } from "motion/react";
 import React from "react";
 import Close_square from "../../../../public/icons/svgs/Close_square";
 import useScrollLocker from "@/hooks/useScrollLocker";
+import Providers from "@/providers/QueryClientProvider";
 function MobileMenu({
   close: closeMenu,
   isOpen: isMenuOpen,
@@ -26,7 +27,9 @@ function MobileMenu({
           <button onClick={closeMenu} className="w-fit">
             <Close_square />
           </button>
-          <SearchBox size="mobile" />
+       <Providers>
+       <SearchBox size="mobile" />
+       </Providers>
         </div>
         {/* menu items */}
 

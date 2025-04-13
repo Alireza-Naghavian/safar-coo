@@ -7,6 +7,7 @@ import useDisclosure from "@/hooks/useDisclosure";
 import { ArticleCategories, recreationalCategories } from "@/utils/constants";
 import { Edit2 } from "iconsax-react";
 import FilterSwitchBox from "@/components/molecules/FilterSwitchBox/FilterSwitchBox";
+import Providers from "@/providers/QueryClientProvider";
 
 function IranologyFilterSection() {
   const { isOpen: isSearching, open } = useDisclosure(false);
@@ -44,11 +45,13 @@ function IranologyFilterSection() {
                 <Edit2 className="size-6 stroke-white" />
                 <span>اسم جایی که میخوای بری رو بنویس</span>
               </div>
-              <SearchBox
+           <Providers>
+           <SearchBox
                 className="w-full"
                 size="desktop"
                 placeholder="مثلا خراسان رضوی یا گلستان..."
               />
+           </Providers>
             </div>
             {/* attractional categories */}
             <FilterSwitchBox

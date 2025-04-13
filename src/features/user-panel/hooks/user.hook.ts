@@ -15,7 +15,7 @@ import {
   getTrExperiencesReq,
   MarkAsReadReq,
   removeTrExperienseReq,
-  updateUserInfoReq,
+  updateUserInfoReq
 } from "../services/userServices";
 import { Notifications_T } from "../user-panel.t";
 
@@ -210,10 +210,12 @@ export const useRemoveTrExp = () => {
   return { removeTrExp, isRemoveLoading };
 };
 
-export const useGetTrExpByQueries = ({status}:{status:string}) => {
+export const useGetTrExpByQueries = ({ status }: { status: string }) => {
   const { data: expByQuery, isLoading: isExpQueryLoading } = useQuery({
     queryKey: ["experiences", status],
     queryFn: () => getTrExperiencesByReqQuery(status),
   });
   return { isExpQueryLoading, expByQuery };
 };
+
+

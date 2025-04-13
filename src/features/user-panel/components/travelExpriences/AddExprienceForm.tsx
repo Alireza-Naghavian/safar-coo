@@ -232,6 +232,9 @@ function AddExprienceForm() {
               </div>
               <div className="h-[63px] gap-2 sm:block hidden w-0"></div>
             </div>
+            <div className="">
+              
+            </div>
              {/* blog description */}
              <TextEditor
               placeholder="لطفا تجربه سفر خود را توضیح دهید"
