@@ -1,3 +1,4 @@
+"use client"
 import MainBtn from "@/components/atoms/buttons&links/MainBtn";
 import Nav_searchBox from "@/components/atoms/inputFields/NavsearchBox";
 import SearchBox from "@/components/atoms/inputFields/SearchBox";

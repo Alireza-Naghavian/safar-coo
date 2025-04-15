@@ -27,4 +27,12 @@ const fetchData = async (
     return response;
   };
 
+
+  export const getFromStorage = (key: string) => {
+    if (typeof window !== "undefined") {
+      const data = JSON.parse(localStorage.getItem(key) as string);
+      return data;
+    }
+  };
+
   export default fetchData

@@ -37,9 +37,7 @@ function SearchBox({
 }: SearchBox_T) {
   const { open, close, isOpen: isSerachOpen } = useDisclosure(false);
   const [search, setSearch] = useState("");
-  const searchInfos: Chips_T[] =
-    JSON.parse(localStorage.getItem("search") as string) || [];
-  const [chips, setChips] = useState<Chips_T[]>(searchInfos);
+  const [chips, setChips] = useState<Chips_T[]>([]);
   const { push } = useRouter();
   const { expBySearchQuery, isSearchLoading } = useSearch<TrExperienceReqBody>({
     search,
@@ -49,18 +47,22 @@ function SearchBox({
     const search = e.target.value;
     setSearch(search);
   };
-
   // use prev suggest experience
   const selectFromSuggestList = ({ _id, title }: Chips_T) => {
-    const isItemExist = searchInfos.some((info) => info._id === _id);
+    const isItemExist = chips.some((info:Chips_T) => info._id === _id);
     if (isItemExist) return;
     const chipInfo = { _id, title };
-    setChips((prev) => [...prev, chipInfo]);
+    const updated = [...chips, chipInfo];
+    setChips(updated);
+    localStorage.setItem("search",JSON.stringify(updated))
   };
-  useEffect(() => {
-    localStorage.setItem("search", JSON.stringify(chips));
-  }, [chips]);
-
+  useEffect(()=>{
+    const  savedInfo =localStorage.getItem("search");
+    if(savedInfo){
+        const parsed = JSON.parse(savedInfo);
+        setChips(parsed)
+    }
+  },[])
   return (
     <div className="relative ">
       <input
