@@ -93,6 +93,7 @@ function AddExprienceForm() {
       await addExperience({data:addExperienceBody},{onSuccess:()=>{
         push("/user-panel/travel-exprience")
       }})
+
     } catch (error: unknown) {
       customErorrToast({
         title: "خطا در ایجاد تجربه سفر",
