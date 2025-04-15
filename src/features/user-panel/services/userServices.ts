@@ -6,6 +6,7 @@ import {
   TicketBodyReq_T,
   TrExperienceReqBody,
 } from "../user-panel.t";
+import { ResponseData_T } from "@/types/global.t";
 
 export const createTicketReq = async (data: TicketBodyReq_T) => {
   return app.post("/user/tickets", data).then(({ data }) => data);
@@ -73,3 +74,6 @@ export const searchTrExperiencesByReqQuery = async ({
     .get(`/experience/allInPanel?search=${query}`, { signal })
     .then(({ data }) => data);
 };
+export const removeNotifReq = async({notifId}:{notifId:string}):Promise<ResponseData_T<string>>=>{
+return app.delete(`/notif/${notifId}`).then(({data})=>data)
+}
