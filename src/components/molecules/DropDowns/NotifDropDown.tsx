@@ -64,6 +64,7 @@ function NotifDropDown({ trigger, children, ...rest }: DropDownProps_T) {
           } else {
             setIsDragging(true);
           }
+          setTimeout(()=>setIsDragging(is=>!is),500)
         }}
         className=" relative w-full "
       >
