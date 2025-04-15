@@ -14,6 +14,7 @@ import {
   getTrExperiencesByReqQuery,
   getTrExperiencesReq,
   MarkAsReadReq,
+  removeNotifReq,
   removeTrExperienseReq,
   updateUserInfoReq
 } from "../services/userServices";
@@ -148,6 +149,38 @@ export const useMarkAsRead = () => {
   return { isStatusLoading, updateNotifStatus };
 };
 
+export const useRemoveNotif =()=>{
+  const queryClient = useQueryClient();
+
+  const {mutateAsync:removeNotif,isPending:isRemoveLoading} = useMutation({
+    mutationFn:removeNotifReq,
+    onMutate:(data)=>{
+      const oldNotifications :Notifications_T[]= 
+       queryClient.getQueryData(["notifications"])as Notifications_T[]
+      if(oldNotifications){
+        const updatedNotifications = oldNotifications.map((oldNotif)=>oldNotif._id === data.notifId ?data :oldNotif)
+        queryClient.setQueryData(["notifications"],updatedNotifications)
+      }
+      return oldNotifications
+    },
+    onError:(_e,_values,context)=>{
+      queryClient.setQueryData(["notifications"],context)
+    },
+    onSuccess:(data:ResponseData_T<string>)=>{
+      queryClient.invalidateQueries({ queryKey: ["notifications"] });
+      queryClient.invalidateQueries({ queryKey: ["notificationsQueries"] });
+      customToast({
+        title: "موفقیت آمیز",
+        desc: data,
+        icon: Like1,
+        iconColor: "#22c55e",
+        className: "text-green-500",
+        type: "SUCCESS",
+      });
+    }
+  })
+  return {removeNotif,isRemoveLoading}
+} 
 export const useGetNotifByQueries = () => {
   const searchParams = useSearchParams().get("status") as string;
   const { data, isLoading: isNotifsLoading } = useQuery({
@@ -217,5 +250,4 @@ export const useGetTrExpByQueries = ({ status }: { status: string }) => {
   });
   return { isExpQueryLoading, expByQuery };
 };
-
 

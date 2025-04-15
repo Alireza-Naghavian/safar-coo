@@ -1,10 +1,12 @@
 "use client";
-import { useMarkAsRead } from "@/features/user-panel/hooks/user.hook";
+import { useMarkAsRead, useRemoveNotif } from "@/features/user-panel/hooks/user.hook";
+import useDisclosure from "@/hooks/useDisclosure";
 import { ChildrenProps, ClassName_T, ResponseData_T } from "@/types/global.t";
 import { customErorrToast } from "@/utils/CutomToast";
 import { DirectNormal, SmsNotification, Trash } from "iconsax-react";
 import { motion } from "motion/react";
 import { useRef, useState } from "react";
+import DeleteModal from "../modal/DeleteModal";
 type DropDownProps_T = ClassName_T &
   ChildrenProps & {
     trigger: (id: string) => void;
@@ -16,6 +18,8 @@ function NotifDropDown({ trigger, children, ...rest }: DropDownProps_T) {
   const { updateNotifStatus } = useMarkAsRead();
   const [isDragging, setIsDragging] = useState(false);
   const [isShowDelBtn, setIsShowDelBtn] = useState(false);
+  const {isOpen:isModalOpen,open:openModal,close:closeModal} = useDisclosure(false);
+  const {isRemoveLoading,removeNotif} = useRemoveNotif();
   const dragThreshold = 30;
   const dragStartX = useRef<number | null>(null);
   const markHandler = async () => {
@@ -32,11 +36,24 @@ function NotifDropDown({ trigger, children, ...rest }: DropDownProps_T) {
       });
     }
   };
+
+  const removeHandler = async(notifId:string)=>{
+    try {
+      await removeNotif({notifId})
+    } catch (error:unknown) {
+      customErorrToast({
+        title: "خطا در حذف اعلان",
+        desc: error as ResponseData_T<string>,
+      });
+    }
+  }
   return (
+    <>
     <div className=" flex relative items-center w-full  ">
       <button
         className="absolute right-0 top-0 bottom-0 w-[70px]
         bg-error-2 z-0 flex justify-center items-center rounded-r-8"
+        onClick={openModal}
       >
         <Trash className=" size-10 " variant="Linear" color="#ffffff" />
       </button>
@@ -64,6 +81,7 @@ function NotifDropDown({ trigger, children, ...rest }: DropDownProps_T) {
           } else {
             setIsDragging(true);
           }
+          setTimeout(()=>setIsDragging(is=>!is),500)
         }}
         className=" relative w-full "
       >
@@ -115,6 +133,15 @@ function NotifDropDown({ trigger, children, ...rest }: DropDownProps_T) {
         </div>
       </motion.div>
     </div>
+    <DeleteModal
+    removeHandler={removeHandler}
+    isRemoveLoading={isRemoveLoading}
+    subject="اعلان"
+    _id={rest.id as string}
+    close={closeModal}
+    isModalOpen={isModalOpen}
+    />
+    </>
   );
 }
 
