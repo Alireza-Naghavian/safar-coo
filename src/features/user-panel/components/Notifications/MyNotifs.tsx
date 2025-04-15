@@ -2,6 +2,7 @@
 import CustomSwitch from "@/components/atoms/Switch/CustomSwitch";
 import EmptyResult from "@/components/layouts/EmptyResult";
 import NotifDropDown from "@/components/molecules/DropDowns/NotifDropDown";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import {
   useGetNotifByQueries,
@@ -9,12 +10,12 @@ import {
 } from "../../hooks/user.hook";
 import HeaderContentPanelLayout from "../HeaderContentPanelLayout";
 import NotifSkeltons from "./NotifSkeltons";
-import { useRouter, useSearchParams } from "next/navigation";
 
 function MyNotifs() {
   const [isDropDownOpen, setIsDropDownOpen] = useState<string | null>(null);
   const searchParams = useSearchParams();
   const router = useRouter();
+
   const urlSearchParams = new URLSearchParams(searchParams);
   const [isRead, setIsRead] = useState(
     urlSearchParams.get("status") === "READ" ? true : false
@@ -32,7 +33,6 @@ function MyNotifs() {
       scroll: false,
     });
   };
-
   const handleReadNotifs = () => {
     const newReadOption = !isRead;
     setIsRead(newReadOption);
@@ -87,7 +87,7 @@ function MyNotifs() {
               />
             </div>
           </HeaderContentPanelLayout>
-          <div className="flex flex-col  sm:px-11 px-4 py-8    space-y-8 ">
+          <div className="flex w-full overflow-x-hidden flex-col  sm:px-11 px-4 py-8    space-y-8 ">
             {(notifications || notifs)?.length > 0 ? (
               (searchParams.size === 0 ? notifications : notifs)?.map(
                 (notif, index) => {
