@@ -12,3 +12,9 @@ export type FooterLinks_T = {
   title: string;
   items: Pick<menuItems_T,"title"|"target">[];
 };
+export type ArticleCategories_T={
+  key:string
+label:string
+_id:string
+name:string
+}

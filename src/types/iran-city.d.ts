@@ -1,0 +1,2 @@
+declare module "iran-city"
+

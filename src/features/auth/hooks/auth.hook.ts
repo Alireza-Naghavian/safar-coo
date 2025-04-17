@@ -10,7 +10,7 @@ import {
   sendEmailReq,
   signUpReq,
 } from "../services/authServices";
-import { ResponseData_T } from "./../../../types/global.t";
+import { ResponseData_T } from "../../../types/global.t";
 export const useGetMe = () => {
   const { data: userInfo, isPending: isUserLoading } = useQuery({
     queryKey: ["user"],
