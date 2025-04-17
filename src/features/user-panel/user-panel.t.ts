@@ -93,5 +93,5 @@ export type TrExperienceReqBody = TrExperinceFormProps & {
   publishTime?: DateObject | null;
   _id?:string,
   isPublished?:boolean
-
+  createdAt?:Date
 };

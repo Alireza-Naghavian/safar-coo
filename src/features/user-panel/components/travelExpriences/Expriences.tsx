@@ -84,13 +84,13 @@ function Expriences() {
         </HeaderContentPanelLayout>
         <div className="sm:px-11 px-4 py-4">
           <div className="w-full relative flex flex-wrap gap-y-5 items-center justify-between ">
-        <Providers>
-        <SearchBox
-              size="desktop"
-              placeholder="جستجو در تجربیات"
-              className="sm:!w-[411px]"
-            />
-        </Providers>
+            <Providers>
+              <SearchBox
+                size="desktop"
+                placeholder="جستجو در تجربیات"
+                className="sm:!w-[411px]"
+              />
+            </Providers>
             <NavLink
               size="xl"
               className="bg-secondary-400 !px-4 !py-2 rounded-4"
@@ -130,20 +130,27 @@ function Expriences() {
                         <InfoCard.InfoCardItem
                           title="تاریخ انتشار"
                           value={new Date(
-                            exp?.publishTime as unknown as Date
+                            exp.isPublished
+                              ? (exp.createdAt as unknown as Date)
+                              : (exp.publishTime as unknown as Date)
                           ).toLocaleDateString("fa-IR")}
                         />
                         <InfoCard.InfoCardItem
                           title="ساعت انتشار"
                           value={new Date(
-                            exp?.publishTime as unknown as Date
+                            exp.isPublished
+                              ? (exp.createdAt as unknown as Date)
+                              : (exp.publishTime as unknown as Date)
                           ).toLocaleString("fa-IR", {
                             timeStyle: "short",
                             hour12: true,
                           })}
                         />
                         <InfoCard.InfoCardItem title="مشاهده در وبسایت">
-                          <Link href="" className="">
+                          <Link
+                            href={`/experiences/${exp.province}/${exp._id}`}
+                            className=""
+                          >
                             <Eye
                               variant="Outline"
                               className="fill-white size-6"

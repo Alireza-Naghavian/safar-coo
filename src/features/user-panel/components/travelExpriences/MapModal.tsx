@@ -14,7 +14,7 @@ function MapModal({close,coord,isMapOpen,setCoord}:MapModal_T) {
   return (
     <MainModal
     className={`
-    md:p-8 p-4 relative w-full max-w-[60%] 
+    md:p-8 p-4 relative w-full sm:max-w-[60%] max-w-[95%] 
     !top-8 
     overflow-y-auto h-[520px]
    `}
