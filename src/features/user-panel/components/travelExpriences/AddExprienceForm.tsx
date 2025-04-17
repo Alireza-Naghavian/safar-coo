@@ -34,6 +34,7 @@ import {
 import HeaderContentPanelLayout from "../HeaderContentPanelLayout";
 import MapModal from "./MapModal";
 import styles from "./trExp.module.css";
+import BackLink from "@/components/atoms/buttons&links/BackLink";
 type CustomRenderSelect_T = {
   schemaMsg: string;
   placeholder: string;
@@ -191,7 +192,9 @@ function AddExprienceForm() {
           desc={`توی این بخش میتونی تجربه هایی که از سفرت به یه مکان یا شهری که رفتی رو بنویسی
         و اونو در سایت منتشر کنی تا بقیه هم 
         از تجربه ات استفاده کنن و هم اینکه جزو نویسنده های سایت ما بشی.`}
-        />
+        >
+              <BackLink target="/user-panel/travel-exprience" />
+        </HeaderContentPanelLayout>
         <div className="sm:px-11 px-4   py-4">
           <form
             onSubmit={handleSubmit(submitHandler)}
