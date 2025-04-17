@@ -85,11 +85,11 @@ export const articlesFilterOption = [
 
 
 export const ArticleCategories = [
-  {key:"touristCat",label:"گردشگری",_id:"touristCat",name:"touristCat"},
-  {key:"natureCat",label:"طبیعی",_id:"natureCat",name:"natureCat"},
-  {key:"historicalCat",label:"تاریخی",_id:"historicalCat",name:"historicalCat"},
-  {key:"culturalCat",label:"فرهنگی",_id:"culturalCat",name:"culturalCat"},
-  {key:"religousCat",label:"مذهبی",_id:"religousCat",name:"religousCat"},
+  {key:"touristCat",label:"گردشگری",name:"touristCat"},
+  {key:"natureCat",label:"طبیعی",name:"natureCat"},
+  {key:"historicalCat",label:"تاریخی",name:"historicalCat"},
+  {key:"culturalCat",label:"فرهنگی",name:"culturalCat"},
+  {key:"religousCat",label:"مذهبی",name:"religousCat"},
 ]
 export const recreationalCategories = [
   {key:"resturantsCat",label:"رستوران ها",_id:"resturantsCat",name:"resturantsCat"},

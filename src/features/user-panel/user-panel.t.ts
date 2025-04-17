@@ -78,12 +78,20 @@ export type TrExperinceFormProps = {
   category: string;
   plan: "PAID" | "FREE";
   location?: (number | null | undefined)[] | null | undefined;
+  province:string;
+  city:string
 };
-
+export type IranCity_T = {
+  id:number,
+  name:string,
+  slug:string
+}
+ export type ObjectValue = {key:string|number,label:string,name?:string}
 export type TrExperienceReqBody = TrExperinceFormProps & {
   body: string;
   location?: [number, number] | null;
   publishTime?: DateObject | null;
   _id?:string,
   isPublished?:boolean
+
 };

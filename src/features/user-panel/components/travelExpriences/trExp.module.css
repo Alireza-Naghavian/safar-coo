@@ -1,0 +1,6 @@
+.inputGroupMainContainer {
+@apply first:w-full
+}
+.inputGroupContainer{
+    @apply flex child:w-1/2 sm:flex-row flex-col items-center sm:gap-y-0 gap-y-6 gap-x-6
+}

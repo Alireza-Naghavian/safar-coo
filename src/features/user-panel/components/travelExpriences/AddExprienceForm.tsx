@@ -2,11 +2,11 @@
 import MainBtn from "@/components/atoms/buttons&links/MainBtn";
 import DatePickerField from "@/components/atoms/DatePicker/DatePickerField";
 import { TextField } from "@/components/atoms/inputFields/TextFields";
-import MainModal from "@/components/molecules/modal/Modal";
+import Spinner from "@/components/atoms/Loaders/Spinner";
 import CustomSelect from "@/components/molecules/Select/CustomSelect";
-import CustomMap from "@/components/organisms/Map/CustomMap";
 import useDisclosure from "@/hooks/useDisclosure";
 import { ResponseData_T, SetState } from "@/types/global.t";
+import { CustomSelectProps } from "@/types/textField.t";
 import {
   ArticleCategories,
   defaultCoordinate,
@@ -16,45 +16,76 @@ import { customErorrToast } from "@/utils/CutomToast";
 import { addExperienceValidation } from "@/utils/validators/experienceValidation";
 import { SelectItem } from "@heroui/select";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { AxiosError } from "axios";
 import { LocationAdd } from "iconsax-react";
+import iranCity from "iran-city";
 import dynamic from "next/dynamic";
-import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { DateObject } from "react-multi-date-picker";
-import { TrExperienceReqBody, TrExperinceFormProps } from "../../user-panel.t";
-import HeaderContentPanelLayout from "../HeaderContentPanelLayout";
-import { AxiosError } from "axios";
 import { useAddExperience } from "../../hooks/user.hook";
-import Spinner from "@/components/atoms/Loaders/Spinner";
-import { useRouter } from "next/navigation";
+import {
+  IranCity_T,
+  ObjectValue,
+  TrExperienceReqBody,
+  TrExperinceFormProps,
+} from "../../user-panel.t";
+import HeaderContentPanelLayout from "../HeaderContentPanelLayout";
+import MapModal from "./MapModal";
+import styles from "./trExp.module.css";
+type CustomRenderSelect_T = {
+  schemaMsg: string;
+  placeholder: string;
+  name: CustomSelectProps<TrExperinceFormProps>["name"];
+  label: string;
+  options: ObjectValue[];
+  isDisabled?: boolean;
+};
 const TextEditor = dynamic(
   () => import("@/components/organisms/TextEditor/TextEditor"),
   { ssr: false }
 );
 
 function AddExprienceForm() {
-  const [date, setDate] = useState<DateObject | null>();
-  const [description, setDescription] = useState<string>("");
-  const {push} = useRouter()
   const {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors, touchedFields },
   } = useForm<TrExperinceFormProps>({
     resolver: yupResolver(addExperienceValidation),
   });
+  const [date, setDate] = useState<DateObject | null>();
+  const [description, setDescription] = useState<string>("");
+  const { push } = useRouter();
+
+  // correct provinces structure
+  const provincesArr: IranCity_T[] = iranCity.allProvinces();
+  const provincesStructure = provincesArr.map((province) => {
+    return { key: province.id, label: province.slug };
+  });
+
+    // correct cities structure
+  const citiesOfProvince: IranCity_T[] = iranCity.citiesOfProvince(
+    Number(watch("province"))
+  );
+  const citiesStructure = citiesOfProvince.map((city) => {
+    return { key: city.id, label: city.slug };
+  });
+
   const { close, open, isOpen: isMapOpen } = useDisclosure(false);
   const [locationStatus, setLocationStatus] = useState({
     value: false,
     label: "ثبت آدرس با نقشه",
   });
-  const [coord, setCoord] = useState<[number, number]>(defaultCoordinate);
 
+  const [coord, setCoord] = useState<[number, number]>(defaultCoordinate);
   const { addExperience, isAddLoading } = useAddExperience();
 
   // submit location
-  useMemo(() => {
+  useEffect(() => {
     if (coord !== defaultCoordinate) {
       setLocationStatus({ value: true, label: "موقعیت مکانی ثبت شد" });
     }
@@ -88,29 +119,70 @@ function AddExprienceForm() {
         category: data.category,
         location: isSameCoord ? null : coord,
         address: data.address ?? null,
-        publishTime: date as DateObject ?? null,
+        publishTime: (date as DateObject) ?? null,
+        province: data.province,
+        city: data.city,
       };
-      await addExperience({data:addExperienceBody},{onSuccess:()=>{
-        push("/user-panel/travel-exprience")
-      }})
-
+      await addExperience(
+        { data: addExperienceBody },
+        {
+          onSuccess: () => {
+           setTimeout(()=> push("/user-panel/travel-exprience"),1000)
+          },
+        }
+      );
     } catch (error: unknown) {
       customErorrToast({
         title: "خطا در ایجاد تجربه سفر",
         desc: error as ResponseData_T<string>,
       });
     } finally {
-      setDescription("")
-      setCoord(defaultCoordinate)
+      setDescription("");
+      setCoord(defaultCoordinate);
       setLocationStatus({
         value: false,
         label: "ثبت آدرس با نقشه",
-      })
-      setDate(null)
+      });
+      setDate(null);
       reset();
     }
   };
-
+  const RenderCustomSelect = ({
+    label,
+    name,
+    options,
+    placeholder,
+    schemaMsg,
+    ...rest
+  }: CustomRenderSelect_T) => {
+    return (
+      <CustomSelect
+        validationSchema={{
+          required: schemaMsg,
+        }}
+        register={register}
+        errors={errors}
+        touchedFields={touchedFields}
+        name={name}
+        className="  w-full "
+        placeholder={placeholder}
+        label={label}
+        isDisabled={rest.isDisabled}
+        classNames={{
+          label: "!text-bodyB3Regular",
+          description: "text-red-500",
+        }}
+        labelPlacement="outside"
+        {...rest}
+      >
+        {options.map((option) => (
+          <SelectItem className="!rounded-12" key={option.key}>
+            {option.label}
+          </SelectItem>
+        ))}
+      </CustomSelect>
+    );
+  };
   return (
     <>
       <div className="user-panel-container">
@@ -126,8 +198,8 @@ function AddExprienceForm() {
             className="sm:mt-20 mt-12 flex flex-col gap-y-8  relative size-full "
           >
             {/* input group */}
-            <div className=" first:w-full ">
-              <div className="flex child:w-1/2 sm:flex-row flex-col items-center sm:gap-y-0 gap-y-6 gap-x-6">
+            <div className={styles.inputGroupMainContainer}>
+              <div className={styles.inputGroupContainer}>
                 <TextField
                   register={register}
                   touchedFields={touchedFields}
@@ -139,35 +211,19 @@ function AddExprienceForm() {
                   className=" w-full tracking-tighter "
                   label={"عنوان مقاله"}
                 />
-                <CustomSelect
-                  validationSchema={{
-                    required: "دسته بندی الزامی است",
-                  }}
-                  register={register}
-                  errors={errors}
-                  touchedFields={touchedFields}
-                  name="category"
-                  className="  w-full "
-                  placeholder="دسته بندی را انتخاب کنید"
-                  label="دسته بندی مقاله"
-                  classNames={{
-                    label: "!text-bodyB3Regular",
-                    description: "text-red-500",
-                  }}
-                  labelPlacement="outside"
-                >
-                  {ArticleCategories.map((option) => (
-                    <SelectItem className="!rounded-12" key={option.key}>
-                      {option.label}
-                    </SelectItem>
-                  ))}
-                </CustomSelect>
+                {RenderCustomSelect({
+                  label: "دسته بندی مقاله",
+                  name: "category",
+                  options: ArticleCategories,
+                  placeholder: "دسته بندی را انتخاب کنید",
+                  schemaMsg: "دسته بندی الزامی است",
+                })}
               </div>
               <div className="h-[63px] gap-2 sm:block hidden w-0"></div>
             </div>
             {/* input group  */}
-            <div className=" first:w-full ">
-              <div className="flex child:w-1/2 sm:flex-row flex-col items-center sm:gap-y-0 gap-y-6 gap-x-6">
+            <div className={styles.inputGroupMainContainer}>
+              <div className={styles.inputGroupContainer}>
                 <div className="flex flex-col  w-full items-start">
                   <TextField
                     touchedFields={touchedFields}
@@ -208,42 +264,45 @@ function AddExprienceForm() {
                     </span>
                   </MainBtn>
                 </div>
-                <CustomSelect
-                  validationSchema={{
-                    required: "هزینه بازدید باید مشخص شود",
-                  }}
-                  register={register}
-                  errors={errors}
-                  touchedFields={touchedFields}
-                  className="w-full mb-[63px]"
-                  placeholder="رایگان؟غیررایگان؟"
-                  label="هزینه بازدید"
-                  name="plan"
-                  classNames={{
-                    label: "!text-bodyB3Regular",
-                  }}
-                  labelPlacement="outside"
-                >
-                  {placePriceOptions.map((option) => (
-                    <SelectItem className="!rounded-12" key={option.key}>
-                      {option.label}
-                    </SelectItem>
-                  ))}
-                </CustomSelect>
+                <div className="self-start">
+                  {RenderCustomSelect({
+                    label: "هزینه بازدید",
+                    name: "plan",
+                    options: placePriceOptions,
+                    placeholder: "رایگان؟غیررایگان؟",
+                    schemaMsg: "هزینه بازدید باید مشخص شود",
+                  })}
+                </div>
               </div>
               <div className="h-[63px] gap-2 sm:block hidden w-0"></div>
             </div>
-            <div className="">
-              
+            <div className={styles.inputGroupMainContainer}>
+              <div className={styles.inputGroupContainer}>
+                {RenderCustomSelect({
+                  label: "استان محل سفر",
+                  name: "province",
+                  options: provincesStructure,
+                  placeholder: "استان محل سفر را انتخاب کنید",
+                  schemaMsg: "انتخاب استان الزامی است",
+                })}
+                {RenderCustomSelect({
+                  label: "شهر محل سفر",
+                  isDisabled: watch("province") == undefined,
+                  name: "city",
+                  options: citiesStructure,
+                  placeholder: "شهر محل سفر را انتخاب کنید",
+                  schemaMsg: "انتخاب شهر الزامی است",
+                })}
+              </div>
             </div>
-             {/* blog description */}
-             <TextEditor
+            {/* blog description */}
+            <TextEditor
               placeholder="لطفا تجربه سفر خود را توضیح دهید"
               value={description}
               onChange={setDescription}
             />
             {/* input group */}
-            <div className=" relative flex sm:flex-row flex-col w-full  gap-x-6  ">
+            <div className={styles.inputGroupContainer}>
               <div className="sm:w-1/2 w-full"></div>
               <div className="sm:w-1/2 w-full">
                 <DatePickerField
@@ -253,13 +312,16 @@ function AddExprienceForm() {
                   className="h-10  rounded-8 p-2 w-full relative"
                   labeStyle="sm:text-bodyB3Regular text-bodyB4Regular"
                 />
-                <span className="text-right text-natural-black text-bodyB5semi">در صورت انتشار‌آنی این بخش را نادیده بگیرید.</span>
+                <span className="text-right text-natural-black text-bodyB5semi">
+                  در صورت انتشار‌آنی این بخش را نادیده بگیرید.
+                </span>
               </div>
             </div>
-           
             <MainBtn
               variant="fill"
-              className="bg-primary-300 text-natural-black mr-auto rounded-8 "
+              className="bg-primary-300
+               text-natural-black
+               mr-auto rounded-8 "
               size="xxl"
               state="normal"
               type="submit"
@@ -274,40 +336,12 @@ function AddExprienceForm() {
         </div>
       </div>
       {/* Map modal */}
-      <MainModal
-        className={`
-        md:p-8 p-4 relative w-full max-w-[60%] 
-        !top-8 
-        overflow-y-auto h-[520px]
-       `}
-        isClickable
-        isShow={isMapOpen}
-        onClose={close}
-        effect="ease_out"
-      >
-        <MainModal.Header isClickable onClose={close}>
-          <></>
-        </MainModal.Header>
-        <MainModal.Body>
-          <CustomMap
-            setPosition={setCoord}
-            popupTitle="مکان مورد نظر شما"
-            position={coord}
-          />
-          <div className="mt-4 w-full">
-            <MainBtn
-              variant="fill"
-              className="bg-primary-300 text-natural-black mr-auto rounded-8 "
-              size="xxl"
-              state="normal"
-              type="button"
-              onClick={close}
-            >
-              تایید مکان
-            </MainBtn>
-          </div>
-        </MainModal.Body>
-      </MainModal>
+      <MapModal
+        close={close}
+        isMapOpen={isMapOpen}
+        coord={coord}
+        setCoord={setCoord}
+      />
     </>
   );
 }
