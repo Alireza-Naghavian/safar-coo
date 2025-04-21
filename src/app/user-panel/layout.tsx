@@ -7,6 +7,7 @@ import { ChildrenProps } from "@/types/global.t";
 import React from "react";
 import { motion } from "motion/react";
 import useDisclosure from "@/hooks/useDisclosure";
+import Providers from "@/providers/QueryClientProvider";
 
 function UserPanelLayout({ children }: ChildrenProps) {
   const { isOpen: isMenuOpen, open, close } = useDisclosure(true as boolean);
@@ -32,11 +33,13 @@ function UserPanelLayout({ children }: ChildrenProps) {
               animate={isMenuOpen ? { width: "var(--motion-menu-width-open)" } : { width: "var(--motion-menu-width-close)" }}
               className="relative  tr-200"
             >
-              <UserPanelMenu
+           <Providers>
+           <UserPanelMenu
                 isMenuOpen={isMenuOpen}
                 openMenu={open}
                 closeMenu={close}
               />
+           </Providers>
             </motion.section>
             <motion.section
               transition={{ duration: 0.2,bounce:0,stiffness:0 }}

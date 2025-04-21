@@ -11,12 +11,9 @@ const protectedRoutes = [
 ];
 
 export const middleware = async (req: NextRequest) => {
-  const accessToken = req.cookies.get("accessToken")?.value ?? "";
   const refreshToken = req.cookies.get("refreshToken")?.value ?? "";
-
   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/clientAuthMiddleware`, {
     headers:{
-      "accessToken":accessToken,
       "refreshToken":refreshToken
     },
     credentials:"include"

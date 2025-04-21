@@ -14,9 +14,11 @@ function HeaderContentPanelLayout({ children, desc, title,className }: HeaderCon
           <p className="max-w-[385px] md:text-btnTextXl  tracking-tighter text-bodyB3semi ">
             {desc}
           </p>
+      
         </div>
         {/* switches box */}
         {children}
+        
       </div>
       {/* seperator */}
       <Divider/>

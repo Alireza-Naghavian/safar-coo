@@ -130,20 +130,12 @@ export const useMarkAsRead = () => {
       onError: (_e, _values, context) => {
         client.setQueryData(["notifications"], context);
       },
-      onSuccess: (data: ResponseData_T<string>) => {
+      onSuccess: () => {
         client.invalidateQueries({ queryKey: ["notifications"] });
         client.invalidateQueries({ queryKey: ["notificationsQueries"] });
         if (searchParams === "UNREAD") {
           client.removeQueries({ queryKey: ["notificationsQueries"] });
         }
-        customToast({
-          title: "موفقیت آمیز",
-          desc: data,
-          icon: Like1,
-          iconColor: "#22c55e",
-          className: "text-green-500",
-          type: "SUCCESS",
-        });
       },
     });
   return { isStatusLoading, updateNotifStatus };
